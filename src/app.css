@@ -1,0 +1,28 @@
+.app-wrapper {
+    display: grid;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-areas: 
+    "header header"
+    "navMenu content"
+    "footer footer";
+
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 60px 1fr 60px;
+}
+
+.header {
+    grid-area: header;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.content {
+    grid-area: content;
+}
+
+.nav-menu {
+    grid-area: navMenu;
+}

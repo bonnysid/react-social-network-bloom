@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+
+}
+
+.logo-text {
+    display: inline-block;
+    margin-left: 20px;
+}
