@@ -4,15 +4,20 @@ import Footer from './modules/Footer';
 import Content from './modules/Content';
 import NavMenu from './modules/NavMenu';
 import './app.css';
-
+import './container.css';
+import './nullstyle.css'
 
 const App = () => (
-  <div className='app-wrapper'>
+  <>
     <Header/>
-    <NavMenu/>
-    <Content />
+
+    <div className='container'>
+      <NavMenu/>
+      <Content />
+    </div>
+
     <Footer/>
-  </div>
+  </>
 );
 
 export default App;
