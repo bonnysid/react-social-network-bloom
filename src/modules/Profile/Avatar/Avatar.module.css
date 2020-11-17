@@ -1,0 +1,13 @@
+.avatar {
+    max-width: 300px;
+    
+}
+
+.image {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn {
+    margin-top: 1em;
+}

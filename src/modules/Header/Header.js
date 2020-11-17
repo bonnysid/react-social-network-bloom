@@ -1,12 +1,12 @@
 import React from 'react';
-import './header.css';
+import s from './Header.module.css';
 
 const Header = () => (
-    <header className='header'>
-        <div className='logo'>
-            <img src='#' className='logo__img'></img>
-            <h1 className='logo__text'>Bloom</h1>
-        </div>
+    <header className={s.header}>
+        <a href='/' className={`${s.logo} container`}>
+            <img src='#' className={s.logo__img} alt='logo'></img>
+            <h1 className={s.logo__text}>Bloom</h1>
+        </a>
     </header>
 );
 

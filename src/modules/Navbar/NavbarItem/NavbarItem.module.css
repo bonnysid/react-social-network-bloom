@@ -1,0 +1,23 @@
+.item {
+    margin-left: 10px;
+}
+
+.icon { 
+    width: 17px;
+    height: 25px;
+    margin: .5em;
+    fill: var(--navbar-icon);
+}
+
+.asideBlock {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: -0.5em;
+    color: var(--navbar-text);
+    transition: .3s;
+}
+
+.asideBlock:hover {
+    background: var(--btn-nav-hover);
+}

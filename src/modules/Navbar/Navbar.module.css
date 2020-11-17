@@ -1,0 +1,8 @@
+.nav_menu {
+    display: flex;
+    flex-direction: column;
+    grid-area: navMenu;
+    grid-row: 1;
+    grid-column: 1 / 1;
+    margin-right: 1.5em;
+}

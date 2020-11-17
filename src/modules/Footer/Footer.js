@@ -1,9 +1,11 @@
 import React from 'react';
-import './footer.css';
+import s from './Footer.module.css';
 
 const Footer = () => (
-    <footer className='footer'>
-        <p>FOOTER</p>
+    <footer className={s.footer}>
+        <div className={`containter`}>
+            <p className={s.text}>© 2020 BLOOM</p>   
+        </div>
     </footer>
 );
 

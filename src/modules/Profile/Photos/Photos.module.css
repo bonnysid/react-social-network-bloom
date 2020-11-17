@@ -1,0 +1,5 @@
+.content {
+    grid-area: content;
+    grid-row: 1;
+    grid-column: 2 / -1;
+}

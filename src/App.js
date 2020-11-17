@@ -1,19 +1,18 @@
 import React from 'react';
 import Header from './modules/Header';
 import Footer from './modules/Footer';
-import Content from './modules/Content';
-import NavMenu from './modules/NavMenu';
-import './app.css';
-import './container.css';
-import './nullstyle.css'
+import Profile from './modules/Profile';
+import Navbar from './modules/Navbar';
+import './App.css';
+import './Nullstyle.css'
 
 const App = () => (
   <>
     <Header/>
 
-    <div className='container'>
-      <NavMenu/>
-      <Content />
+    <div className='container content__grid'>
+      <Navbar/>
+      <Profile />
     </div>
 
     <Footer/>
