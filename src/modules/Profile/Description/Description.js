@@ -3,7 +3,7 @@ import s from './Description.module.css';
 
 const Description = () => {
     return (
-        <main className={s.content}>Content</main>
+        <main className={`${s.content} block`}>Description</main>
     );
 }
 

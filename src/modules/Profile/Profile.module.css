@@ -1,5 +1,13 @@
 .content {
+    display: grid;
+    grid-template-areas: 
+    "avatar description"
+    "photos photos"
+    "posts posts";
+    grid-template-columns: 3fr 10fr;
+    grid-template-rows: 3fr 1fr 100%;
     grid-area: content;
     grid-row: 1;
     grid-column: 2 / -1;
+    grid-gap: 1em;
 }

@@ -1,6 +1,6 @@
-.avatar {
+.content {
     max-width: 300px;
-    
+    grid-area: avatar;
 }
 
 .image {

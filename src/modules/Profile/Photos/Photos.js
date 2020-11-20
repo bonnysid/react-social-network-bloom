@@ -3,7 +3,7 @@ import s from './Photos.module.css';
 
 const Photos = () => {
     return (
-        <main className={s.content}>Content</main>
+        <section className={`${s.content} block`}>Photos</section>
     );
 }
 
