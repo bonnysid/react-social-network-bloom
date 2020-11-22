@@ -4,7 +4,7 @@ import Footer from './modules/Footer';
 import Profile from './modules/Profile';
 import Navbar from './modules/Navbar';
 import './App.css';
-import './Nullstyle.css'
+import './Nullstyle.css';
 
 const App = () => (
   <>

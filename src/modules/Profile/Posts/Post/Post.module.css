@@ -1,0 +1,64 @@
+.content {
+    width: 100%;
+    border-right: 3px solid var(--underline);
+    border-left: 3px solid var(--underline);
+}
+
+.author {
+    font-size: 16px;
+    font-weight: 600;
+    
+}
+
+.header__info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 13px;
+}
+
+.date {
+    font-size: 13px;
+    color: rgb(92, 92, 92);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+}
+
+.comment {
+    margin: 0.7em 0;
+    /* margin-left: 63px; */
+    line-height: 1.7em;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 0.7em;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    fill: var(--navbar-icon);
+    cursor: pointer;
+}
+
+.count {
+    font-size: 17px;
+    margin-left: 0.5em;
+    font-weight: 600;
+    color: var(--navbar-icon);
+    cursor: pointer;
+}

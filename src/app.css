@@ -9,7 +9,7 @@
     --header-bg: var(--main-color);
     --header-text: var(--gray-light);
 
-    --app-bg: rgb(237, 225, 247);
+    --app-bg: rgb(240, 240, 240);
 
     --navbar-text: rgb(107, 60, 151);
     --navbar-icon: rgb(107, 60, 151);
@@ -33,11 +33,14 @@
     "header"
     "container"
     "footer";
-    height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 60px;
     font-family: 'Open Sans', sans-serif;
-    background-color: var(--app-bg);
+    height: 100%;
+}
+
+body {
+    background: var(--app-bg);
 }
 
 .container {
