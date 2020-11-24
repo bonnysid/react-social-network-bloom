@@ -1,14 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import AvatarLower from '../../AvatarLower';
 import s from './Dialog.module.css';
+// import AvatarLower;
 
-const Dialog = ({name, avatarLink, lastMsg, time}) => {
+const Dialog = ({name, avatarLink, lastMsg, time, id}) => {
     return (
-        <div className={`${s.content} block`}>
-            <div className={s.avatar}><img className={s.image} src={avatarLink} alt="avatar"/></div>
-            <p className={s.name}>{name}</p>
+        <NavLink to={`/messages/${id}`} className={`${s.content} block`}>
+            <AvatarLower url={avatarLink}/>
+            <h2 className={s.name}>{name}</h2>
             <p className={s.msg}>{lastMsg}</p>
-            <p className={s.time}>{time}</p>
-        </div>
+            <time className={s.time}>{time}</time>
+        </NavLink>
     );
 }
 

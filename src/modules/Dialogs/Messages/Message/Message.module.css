@@ -1,13 +1,18 @@
 .content {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 7fr 1fr;
     grid-template-rows: 1fr 1fr;
+
     grid-template-areas: 
     "avatar name time"
-    "avatar msg msg";
+    "avatar text text";
+
+    padding: 1em;
     cursor: pointer;
-    border-left: 3px solid var(--underline);
-    color: black;
+}
+
+.time {
+    grid-area: time;
 }
 
 .name {
@@ -16,11 +21,6 @@
     font-weight: 600;
 }
 
-.msg {
-    grid-area: msg;
+.text {
+    grid-area: text;
 }
-
-.time {
-    grid-area: time;
-}
-

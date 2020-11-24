@@ -1,9 +1,8 @@
 import React from 'react';
 import s from './Post.module.css';
 
-const Post = ({author, comment}) => {
+const Post = ({author, comment, likeCount}) => {
     const date = new Date();
-    let count = 0;
 
     return (
         <main className={`${s.content} block`}>
@@ -23,7 +22,7 @@ const Post = ({author, comment}) => {
                 <svg className={s.icon}>
                     <use xlinkHref={`img/icons.svg#like`} />
                 </svg>
-                <p className={s.count}>{count}</p>
+                <p className={s.count}>{likeCount}</p>
             </section>
         </main>
     );
