@@ -1,0 +1,18 @@
+.content {
+    border-right: 3px solid var(--underline);
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    grid-area: header;
+}
+
+.input__msg {
+    
+}

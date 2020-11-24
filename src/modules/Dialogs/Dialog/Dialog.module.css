@@ -1,0 +1,37 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "avatar name time"
+    "avatar msg msg";
+    cursor: pointer;
+    border-left: 3px solid var(--underline);
+}
+
+.name {
+    grid-area: name;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.msg {
+    grid-area: msg;
+}
+
+.time {
+    grid-area: time;
+}
+
+.avatar {
+    grid-area: avatar;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.image {
+    width: 100%;
+}

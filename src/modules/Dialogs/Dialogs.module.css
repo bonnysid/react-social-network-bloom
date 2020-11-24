@@ -1,0 +1,36 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas: 
+    "header header"
+    "people messages";
+    grid-gap: 1em;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: header;
+    border: 3px solid var(--underline);
+    border-bottom: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.people {
+    grid-area: people;
+}
+
+.messages {
+    grid-area: messages;
+    border-right: 3px solid var(--underline);
+}
