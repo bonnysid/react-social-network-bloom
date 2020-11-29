@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import state from './redux/state';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App
+        profilePage={state.profilePage}
+        dialogsPage={state.dialogsPage}
+        navbar={state.navbar}
+    />
   </React.StrictMode>,
   document.getElementById('app-wrapper')
 );

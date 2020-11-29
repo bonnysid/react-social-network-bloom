@@ -12,18 +12,18 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import './Nullstyle.css';
 
-const App = () => (
+const App = ({profilePage, dialogsPage, navbar}) => (
   <BrowserRouter>
     <Header/>
 
     <div className='container content__grid'>
-      <Navbar/>
-      <Route path="/profile" component={Profile}/>
-      <Route path="/messages" component={Dialogs}/>
-      <Route path="/news" component={News}/>
-      <Route path="/friends" component={Friends}/>
-      <Route path="/music" component={Music}/>
-      <Route path="/settings" component={Settings}/>
+      <Navbar items={navbar.menuItems}/>
+      <Route path="/profile" render={() => <Profile state={profilePage}/>}/>
+      <Route path="/messages" render={() => <Dialogs state={dialogsPage}/>}/>
+      <Route path="/news" render={() => <News/>}/>
+      <Route path="/friends" render={() => <Friends/>}/>
+      <Route path="/music" render={() => <Music/>}/>
+      <Route path="/settings" render={() => <Settings/>}/>
     </div>
 
     <Footer/>

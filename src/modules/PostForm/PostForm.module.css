@@ -1,0 +1,54 @@
+.block {
+    display: grid;
+    grid-template-rows: min-content 2fr min-content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "title title"
+    "input input"
+    "fileLine btn";
+    grid-auto-rows: max-content;
+    grid-gap: 1em;
+}
+
+.text {
+    grid-area: input;
+    border-radius: 5px;
+    border: 1px solid var(--underline);
+    resize: vertical;
+}
+
+.btn {
+    grid-area: btn;
+    justify-self: end;
+    width: 100px;
+}
+
+.title {
+    grid-area: title;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+}
+
+.file {
+    display: none;
+}
+
+.file_btn {
+    grid-area: fileLine;
+    width: 25px;
+    height: 25px;
+}
+
+.icon {
+    fill: var(--navbar-icon);
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: .3s fill;
+}
+
+.icon:hover {
+    fill: var(--btn-nav-hover);
+}

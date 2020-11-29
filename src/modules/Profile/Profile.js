@@ -5,13 +5,13 @@ import Photos from './Photos';
 import Description from './Description';
 import Posts from './Posts';
 
-const Profile = () => {
+const Profile = ({state: {posts}}) => {
     return (
         <main className={s.content}>
             <Avatar/>
             <Description/>
             <Photos/>
-            <Posts/>
+            <Posts posts={posts}/>
         </main>
     );
 }
