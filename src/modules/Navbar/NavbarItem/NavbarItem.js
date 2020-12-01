@@ -8,7 +8,7 @@ const NavbarItem = ({title, link}) => {
             <svg className={s.icon}>
                 <use xlinkHref={`img/icons.svg#${title.toLowerCase().replace(/ /g, '_')}`} />
             </svg>
-            <p className={s.item}>{title}</p>
+            {/*<p className={s.item}>{title}</p>*/}
         </NavLink> 
     );
 }

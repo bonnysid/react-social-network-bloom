@@ -1,8 +1,23 @@
-.nav_menu {
+.block {
     display: flex;
+    position: fixed;
     flex-direction: column;
-    grid-area: navMenu;
-    grid-row: 1;
-    grid-column: 1 / 1;
-    margin-right: 1.5em;
+    justify-content: center;
+    grid-area: navbar;
+    background: var(--navbar-bg);
+    height: 100%;
+    width: 75px;
+}
+
+.logo {
+    display: flex;
+    font-size: 1.2em;
+    align-items: center;
+    color: var(--header-text);
+}
+
+.logo__text {
+    display: inline-block;
+    margin-left: 20px;
+    text-transform: uppercase;
 }

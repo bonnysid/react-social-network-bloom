@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './modules/Header';
-import Footer from './modules/Footer';
 import Profile from './modules/Profile';
 import Navbar from './modules/Navbar';
 import Dialogs from './modules/Dialogs';
@@ -14,10 +13,10 @@ import './Nullstyle.css';
 
 const App = ({profilePage, dialogsPage, navbar}) => (
   <BrowserRouter>
-    <Header/>
+    <Navbar items={navbar.menuItems}/>
+    <Header />
 
-    <div className='container content__grid'>
-      <Navbar items={navbar.menuItems}/>
+    <div className='container'>
       <Route path="/profile" render={() => <Profile state={profilePage}/>}/>
       <Route path="/messages" render={() => <Dialogs state={dialogsPage}/>}/>
       <Route path="/news" render={() => <News/>}/>
@@ -26,7 +25,6 @@ const App = ({profilePage, dialogsPage, navbar}) => (
       <Route path="/settings" render={() => <Settings/>}/>
     </div>
 
-    <Footer/>
   </BrowserRouter>
 );
 

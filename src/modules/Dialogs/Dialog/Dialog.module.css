@@ -7,13 +7,14 @@
     "avatar msg msg";
     cursor: pointer;
     border-left: 3px solid var(--underline);
-    color: black;
+    color: var(--text);
 }
 
 .name {
     grid-area: name;
     font-size: 15px;
     font-weight: 600;
+    color: var(--text-light);
 }
 
 .msg {

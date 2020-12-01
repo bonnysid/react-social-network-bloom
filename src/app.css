@@ -1,24 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
 :root {
-    --main-color: rgb(117, 73, 158);
-    --main-color-light:rgb(182, 138, 219);
-    --main-color-extralight: rgb(215, 189, 236);
+    --main-color: rgb(32, 34, 37);
+    --main-color-light: rgb(57, 60, 65);
+    --main-color-extralight: rgb(47, 49, 54);
     --gray-light: #f7f7f7;
+    --text: rgb(141, 145, 150);
+    --text-light: #f6f6f6;
 
-    --header-bg: var(--main-color);
-    --header-text: var(--gray-light);
+    --header-bg: var(--main-color-extralight);
+    --header-text: var(--text);
 
-    --app-bg: rgb(240, 240, 240);
+    --app-bg: rgb(54, 57, 63);
 
-    --navbar-text: rgb(107, 60, 151);
-    --navbar-icon: rgb(107, 60, 151);
+    --navbar-text: var(--text);
+    --navbar-icon: rgb(141, 145, 150);
+    --navbar-bg: var(--main-color);
 
-    --block-bg: #fff;
+    --block-bg: #2f3136;
 
     --btn-bg: var(--main-color-extralight);
-    --btn-hover: rgb(193, 153, 229);
-    --btn-text: rgb(107, 60, 151);
+    --btn-hover: rgb(88, 95, 100);
+    --btn-text: var(--text);
     --btn-nav-hover: var(--main-color-extralight);
 
     --footer-text: var(--main-color-light);
@@ -32,7 +35,7 @@
     grid-template-areas: 
     "header"
     "container"
-    "footer";
+    "container";
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 60px;
     font-family: 'Open Sans', sans-serif;
@@ -47,12 +50,6 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-}
-
-.content__grid {
-    display: grid;
-    align-items: start;
-    grid-template-columns: 2fr 10fr;
     grid-area: container;
     padding: 1.5em;
 }
