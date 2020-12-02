@@ -15,7 +15,10 @@
 
     --navbar-text: var(--text);
     --navbar-icon: rgb(141, 145, 150);
+    --navbar-icon2: rgb(246, 246, 250);
     --navbar-bg: var(--main-color);
+    --navbar-exit: rgb(240, 71, 71);
+    --navbar-exit-bg: #413338;
 
     --block-bg: #2f3136;
 
@@ -40,6 +43,12 @@
     grid-template-rows: 60px 1fr 60px;
     font-family: 'Open Sans', sans-serif;
     height: 100%;
+}
+
+.separator {
+    margin: 8px 10px;
+    height: 1px;
+    background: #727272;
 }
 
 body {
