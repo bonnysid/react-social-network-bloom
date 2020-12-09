@@ -2,8 +2,9 @@ import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
 import PostForm from "../../PostForm";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
-const Posts = ({posts, onPost, updateText, newPostText, dispatch}) => {
+const Posts = ({posts, newPostText, dispatch}) => {
 
     const postElements = posts.map(post => (
         <Post
@@ -17,7 +18,14 @@ const Posts = ({posts, onPost, updateText, newPostText, dispatch}) => {
     return (
         <>
             <section className={`${s.content} block`}>
-                <PostForm onPost={onPost} title='posts' placeholderBtn='Post' id={1} dispatch={dispatch}/>
+                <PostForm
+                    title='posts'
+                    placeholderBtn='Post'
+                    id={1} dispatch={dispatch}
+                    newPostText={newPostText}
+                    addDataActionCreator={addPostActionCreator}
+                    updateInputFieldTextActionCreator={updateNewPostTextActionCreator}
+                />
             </section>
             <section className={s.posts}>
                 {postElements}

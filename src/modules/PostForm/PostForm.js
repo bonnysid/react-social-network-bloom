@@ -1,29 +1,35 @@
 import React from 'react';
 import s from './PostForm.module.css';
 import SvgItem from "../SvgItem";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/state";
 
-
-const PostForm = ({placeholderBtn, title, id, dispatch, newPostText}) => {
+const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActionCreator, updateInputFieldTextActionCreator, rows = 5, isLine = false, isResize = true}) => {
     const refText = React.createRef();
     return (
-        <div className={s.block}>
-            <h1 className={s.title}>{title}</h1>
+        <div className={isLine ? s.block_line : s.block}>
+            {!title ? null : <h1 className={s.title}>{title}</h1>}
             <textarea
                 ref={refText}
-                onChange={() => dispatch(updateNewPostTextActionCreator(refText.current.value))}
+                onChange={() => dispatch(updateInputFieldTextActionCreator(refText.current.value))}
                 placeholder={'Input your text'}
-                rows={5} className={s.text}
+                rows={rows}
+                className={`${s.text}  ${!isResize ? s.notRes : ''}`}
                 value={newPostText}
             />
 
             <input type='file' id={`${title}-${id}`} className={s.file} accept="image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp"/>
             <label htmlFor={`${title}-${id}`} className={`${s.file_btn}`}>
-                <SvgItem width={'25px'} height={'25px'} className={s.icon} urlId={'fileImg'} />
+                <SvgItem width={'25px'} height={'25px'} className={s.icon} urlId={'add'} />
             </label>
-            <button
-                onClick={() => dispatch(addPostActionCreator('Nikita Bortsov'))}
-                className={`${s.btn} btn`}>{placeholderBtn}</button>
+
+            { isLine ?
+                <button className={s.send_button_block} onClick={() => dispatch(addDataActionCreator('Nikita Bortsov'))}>
+                    <SvgItem width={'25px'} height={'25px'} className={s.send_button} urlId={'send'}/>
+                </button> :
+                <button
+                    onClick={() => dispatch(addDataActionCreator('Nikita Bortsov'))}
+                    className={`${s.btn} btn`}>{placeholderBtn}</button>
+            }
+
         </div>
     )
 }

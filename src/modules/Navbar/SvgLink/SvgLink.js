@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './NavbarItem.module.css';
+import s from './SvgLink.module.css';
 import { NavLink } from 'react-router-dom';
 
-const NavbarItem = ({title, link, isExit}) => {
+const SvgLink = ({title, link, isExit}) => {
     return (
         <NavLink title={title} to={link} className={s.asideBlock + (isExit ? " " + s.exit : "")}>
             <svg className={s.icon + (isExit ? " " + s.exit_icon : "")}>
@@ -13,4 +13,4 @@ const NavbarItem = ({title, link, isExit}) => {
     );
 }
 
-export default NavbarItem;
+export default SvgLink;

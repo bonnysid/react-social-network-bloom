@@ -30,7 +30,11 @@
     --footer-text: var(--main-color-light);
     --footer-bg: var(--main-color-extralight);
 
-    --underline: var(--main-color-extralight);
+    --underline: rgb(96, 96, 96);
+}
+
+button {
+    background: none;
 }
 
 #app-wrapper {

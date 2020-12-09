@@ -6,8 +6,11 @@
     "avatar name time"
     "avatar msg msg";
     cursor: pointer;
-    border-left: 3px solid var(--underline);
     color: var(--text);
+}
+
+.content.active {
+    border-left: 3px solid var(--underline);
 }
 
 .name {

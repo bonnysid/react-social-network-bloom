@@ -55,6 +55,7 @@ const store = {
             likeCount: 0
         }
         this._state.profilePage.posts.push(post);
+        this._state.profilePage.newPostText = '';
         this.rerenderEntireTree(this._state);
     },
     _deletePost(id) {

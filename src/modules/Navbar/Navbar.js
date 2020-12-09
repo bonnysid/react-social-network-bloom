@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './Navbar.module.css';
-import NavbarItem from './NavbarItem';
+import SvgLink from './SvgLink';
 import {NavLink} from "react-router-dom";
 
 const Navbar = ({items}) => {
-    const menuItems = items.map((item, id) => (<NavbarItem title={item.title} link={item.link}/>))
+    const menuItems = items.map((item, id) => (<SvgLink title={item.title} link={item.link}/>))
 
     return (
         <nav className={`${s.block}`}>
@@ -16,7 +16,7 @@ const Navbar = ({items}) => {
                 {menuItems}
             </div>
 
-            <NavbarItem title={"exit"} link={"/"} isExit={true}/>
+            <SvgLink title={"exit"} link={"/"} isExit={true}/>
 
         </nav>       
     )

@@ -15,8 +15,6 @@
     flex-direction: column;
     align-items: center;
     grid-area: header;
-    border: 3px solid var(--underline);
-    border-bottom: none;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }

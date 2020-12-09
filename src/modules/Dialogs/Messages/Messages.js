@@ -1,8 +1,9 @@
 import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
+import PostForm from "../../PostForm";
 
-const Messages = ({name, messagesData}) => {
+const Messages = ({name, messagesData, dispatch, newMessageText}) => {
 
 
 
@@ -10,9 +11,9 @@ const Messages = ({name, messagesData}) => {
         <aside className={`${s.content} block`}>
             <div className={s.header}>
                 <h2 className={s.title}>{name}</h2>
-                
+                <div className="underline"/>
             </div>
-            <div className="underline"/>
+
             
             <div className={s.messages}>
                 {messagesData.map(msg => (
@@ -25,8 +26,16 @@ const Messages = ({name, messagesData}) => {
                 ))}
             </div>
 
-            <div className="input__msg">
-
+            <div className={s.input__msg}>
+                <PostForm
+                    id={2}
+                    isLine={true}
+                    dispatch={dispatch}
+                    newPostText={newMessageText}
+                    placeholderBtn='Send'
+                    rows={1}
+                    isResize={false}
+                />
             </div>
         </aside>
     );

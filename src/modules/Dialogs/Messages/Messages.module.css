@@ -1,5 +1,10 @@
 .content {
-    border-right: 3px solid var(--underline);
+    display: grid;
+    grid-template-areas:
+        "header"
+        "messages"
+        "input";
+    grid-auto-rows: 43px 1fr 60px;
 }
 
 .title {
@@ -10,10 +15,18 @@
 
 .header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     grid-area: header;
 }
 
 .input__msg {
-    
+    grid-area: input;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messages {
+    grid-area: messages;
 }
