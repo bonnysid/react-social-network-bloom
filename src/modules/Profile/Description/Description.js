@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Description.module.css';
+import SocialLink from "./SocialLink";
 
 const Description = () => {
     return (
@@ -10,8 +11,21 @@ const Description = () => {
                 <div className="underline"></div>
             </div>
             <section className={s.about}>
-                <div className={s.item}>Instagram: <a href="https://instagram.com/bonnysid" className={s.link}>bonnysid</a></div>
-                <div className={s.item}>Github: <a href="https://github.com/bonnysid" className={s.link}>bonnysid</a></div>
+                <SocialLink
+                    link='https://instagram.com/bonnysid'
+                    urlId='instagram'
+                    hoverTitle="instagram"
+                    width='35px'
+                    height='35px'
+                />
+                <SocialLink
+                    link='https://github.com/bonnysid'
+                    urlId='github'
+                    hoverTitle="github"
+                    width='35px'
+                    height='35px'
+                />
+
             </section>
         </main>
     );

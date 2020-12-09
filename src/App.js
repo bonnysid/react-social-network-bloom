@@ -10,22 +10,25 @@ import Friends from './modules/Friends';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import './Nullstyle.css';
+import store from "./redux/state";
 
-const App = ({profilePage, dialogsPage, navbar}) => (
-  <BrowserRouter>
-    <Navbar items={navbar.menuItems}/>
-    <Header />
+const App = ({profilePage, dialogsPage, navbar, dispatch}) => {
+    return (
+        <BrowserRouter>
+            <Navbar items={navbar.menuItems}/>
+            <Header />
 
-    <div className='container'>
-      <Route path="/profile" render={() => <Profile state={profilePage}/>}/>
-      <Route path="/messages" render={() => <Dialogs state={dialogsPage}/>}/>
-      <Route path="/news" render={() => <News/>}/>
-      <Route path="/friends" render={() => <Friends/>}/>
-      <Route path="/music" render={() => <Music/>}/>
-      <Route path="/settings" render={() => <Settings/>}/>
-    </div>
+            <div className='container'>
+                <Route path="/profile" render={() => <Profile state={profilePage} dispatch={dispatch}/>}/>
+                <Route path="/messages" render={() => <Dialogs state={dialogsPage} dispatch={dispatch}/>}/>
+                <Route path="/news" render={() => <News/>}/>
+                <Route path="/friends" render={() => <Friends/>}/>
+                <Route path="/music" render={() => <Music/>}/>
+                <Route path="/settings" render={() => <Settings/>}/>
+            </div>
 
-  </BrowserRouter>
-);
+        </BrowserRouter>
+    );
+}
 
 export default App;

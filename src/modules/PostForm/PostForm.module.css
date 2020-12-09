@@ -15,6 +15,7 @@
     border-radius: 5px;
     border: 1px solid var(--underline);
     resize: vertical;
+    padding: 0.7em;
 }
 
 .btn {
@@ -50,5 +51,5 @@
 }
 
 .icon:hover {
-    fill: var(--btn-nav-hover);
+    fill: var(--text-light);
 }

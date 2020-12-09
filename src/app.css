@@ -5,7 +5,7 @@
     --main-color-light: rgb(57, 60, 65);
     --main-color-extralight: rgb(47, 49, 54);
     --gray-light: #f7f7f7;
-    --text: rgb(141, 145, 150);
+    --text: rgb(165, 170, 176);
     --text-light: #f6f6f6;
 
     --header-bg: var(--main-color-extralight);
@@ -22,9 +22,9 @@
 
     --block-bg: #2f3136;
 
-    --btn-bg: var(--main-color-extralight);
-    --btn-hover: rgb(88, 95, 100);
-    --btn-text: var(--text);
+    --btn-bg: rgb(113, 136, 212);
+    --btn-hover: rgb(102, 122, 191);
+    --btn-text: var(--text-light);
     --btn-nav-hover: var(--main-color-extralight);
 
     --footer-text: var(--main-color-light);
@@ -77,6 +77,7 @@ body {
     border-radius: 5px;
     width: 100%;
     color: var(--btn-text);
+    font-weight: bold;
 }
 
 .btn:hover {

@@ -19,10 +19,11 @@ const Post = ({author, comment, likeCount}) => {
             <p className={s.comment}>{comment}</p>
             <div className="underline"></div>
             <section className={s.footer}>
-                <svg className={s.icon}>
-                    <use xlinkHref={`img/icons.svg#like`} />
-                </svg>
-                <p className={s.count}>{likeCount}</p>
+                    <svg className={s.icon}>
+                        <use xlinkHref={`img/icons.svg#like`} />
+                    </svg>
+                    <p className={s.count}>{likeCount}</p>
+
             </section>
         </main>
     );

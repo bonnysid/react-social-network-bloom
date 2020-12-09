@@ -3,7 +3,7 @@ import s from './Posts.module.css';
 import Post from './Post';
 import PostForm from "../../PostForm";
 
-const Posts = ({posts}) => {
+const Posts = ({posts, onPost, updateText, newPostText, dispatch}) => {
 
     const postElements = posts.map(post => (
         <Post
@@ -17,7 +17,7 @@ const Posts = ({posts}) => {
     return (
         <>
             <section className={`${s.content} block`}>
-                <PostForm onPost={() => alert(1)} title='posts' placeholderBtn='Post' id={1} />
+                <PostForm onPost={onPost} title='posts' placeholderBtn='Post' id={1} dispatch={dispatch}/>
             </section>
             <section className={s.posts}>
                 {postElements}

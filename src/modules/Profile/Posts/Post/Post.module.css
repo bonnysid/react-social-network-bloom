@@ -18,7 +18,7 @@
 
 .date {
     font-size: 13px;
-    color: rgb(92, 92, 92);
+    color: var(--text);
 }
 
 .header {
@@ -40,6 +40,7 @@
     margin: 0.7em 0;
     /* margin-left: 63px; */
     line-height: 1.7em;
+    color: #c4cad0;
 }
 
 .footer {
@@ -53,6 +54,11 @@
     height: 25px;
     fill: var(--navbar-icon);
     cursor: pointer;
+    transition: .3s;
+}
+
+.icon:hover {
+    fill: var(--text-light);
 }
 
 .count {
