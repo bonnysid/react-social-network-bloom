@@ -3,17 +3,20 @@ import Dialog from './Dialog';
 import s from './Dialogs.module.css';
 import Messages from './Messages';
 
-const Dialogs = ({state: {dialogs, messages}}) => {
+const Dialogs = ({state: {dialogs}, dispatch}) => {
 
     const dialogsElements = dialogs.map(dialog => (
         <Dialog
             id={dialog.id}
+            key={dialog.id}
             name={dialog.name}
             time={dialog.time}
-            lastMsg={dialog.lastMsg}
+            lastMsg={dialog.messages.length !== 0 ? dialog.messages[dialog.messages.length - 1].message : 'nothing'}
             avatarLink={dialog.avatarLink}
         />
     ));
+
+    const activeDialog = dialogs.find(dialog => dialog.isActive === true);
 
     return (
         <main className={`${s.content}`}>
@@ -25,8 +28,8 @@ const Dialogs = ({state: {dialogs, messages}}) => {
                 {dialogsElements}
             </aside>
             <Messages
-                name="Yana Pros"
-                messagesData={messages}
+                dialog={activeDialog}
+                dispatch={dispatch}
             />
         </main>
     );

@@ -2,25 +2,26 @@ import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
 import PostForm from "../../PostForm";
+import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/state";
 
-const Messages = ({name, messagesData, dispatch, newMessageText}) => {
-
+const Messages = ({dialog, dispatch, newMessageText}) => {
 
 
     return (
         <aside className={`${s.content} block`}>
             <div className={s.header}>
-                <h2 className={s.title}>{name}</h2>
+                <h2 className={s.title}>{dialog.name}</h2>
                 <div className="underline"/>
             </div>
 
             
             <div className={s.messages}>
-                {messagesData.map(msg => (
-                    <Message 
-                        avatarLink={msg.avatarLink}
+                {dialog.messages.map(msg => (
+                    <Message
+                        key={msg.id}
+                        avatarLink={dialog.avatarLink}
                         message={msg.message}
-                        name={msg.name}
+                        name={dialog.name}
                         time={msg.time}
                     />
                 ))}
@@ -30,8 +31,11 @@ const Messages = ({name, messagesData, dispatch, newMessageText}) => {
                 <PostForm
                     id={2}
                     isLine={true}
+                    authorInfo={dialog}
                     dispatch={dispatch}
                     newPostText={newMessageText}
+                    updateInputFieldTextActionCreator={updateNewMessageTextActionCreator}
+                    addDataActionCreator={addMessageActionCreator}
                     placeholderBtn='Send'
                     rows={1}
                     isResize={false}

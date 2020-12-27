@@ -2,8 +2,9 @@ import React from 'react';
 import s from './PostForm.module.css';
 import SvgItem from "../SvgItem";
 
-const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActionCreator, updateInputFieldTextActionCreator, rows = 5, isLine = false, isResize = true}) => {
+const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActionCreator, updateInputFieldTextActionCreator, authorInfo, rows = 5, isLine = false, isResize = true}) => {
     const refText = React.createRef();
+
     return (
         <div className={isLine ? s.block_line : s.block}>
             {!title ? null : <h1 className={s.title}>{title}</h1>}
@@ -22,11 +23,11 @@ const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActi
             </label>
 
             { isLine ?
-                <button className={s.send_button_block} onClick={() => dispatch(addDataActionCreator('Nikita Bortsov'))}>
+                <button className={s.send_button_block} onClick={() => dispatch(addDataActionCreator(authorInfo))}>
                     <SvgItem width={'25px'} height={'25px'} className={s.send_button} urlId={'send'}/>
                 </button> :
                 <button
-                    onClick={() => dispatch(addDataActionCreator('Nikita Bortsov'))}
+                    onClick={() => dispatch(addDataActionCreator(authorInfo))}
                     className={`${s.btn} btn`}>{placeholderBtn}</button>
             }
 

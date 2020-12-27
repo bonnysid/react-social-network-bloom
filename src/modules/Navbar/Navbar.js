@@ -4,7 +4,7 @@ import SvgLink from './SvgLink';
 import {NavLink} from "react-router-dom";
 
 const Navbar = ({items}) => {
-    const menuItems = items.map((item, id) => (<SvgLink title={item.title} link={item.link}/>))
+    const menuItems = items.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>))
 
     return (
         <nav className={`${s.block}`}>
