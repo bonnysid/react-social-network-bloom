@@ -3,16 +3,18 @@ import Dialog from './Dialog';
 import s from './Dialogs.module.css';
 import Messages from './Messages';
 
-const Dialogs = ({state: {dialogs}, dispatch}) => {
+const Dialogs = ({state: {dialogs}, dispatch, joinedUser}) => {
 
     const dialogsElements = dialogs.map(dialog => (
         <Dialog
             id={dialog.id}
             key={dialog.id}
-            name={dialog.name}
+            name={dialog.user.name}
             time={dialog.time}
             lastMsg={dialog.messages.length !== 0 ? dialog.messages[dialog.messages.length - 1].message : 'nothing'}
-            avatarLink={dialog.avatarLink}
+            avatarLink={dialog.user.avatarLink}
+            isActive={dialog.isActive}
+            dispatch={dispatch}
         />
     ));
 
@@ -30,6 +32,7 @@ const Dialogs = ({state: {dialogs}, dispatch}) => {
             <Messages
                 dialog={activeDialog}
                 dispatch={dispatch}
+                joinedUser={joinedUser}
             />
         </main>
     );

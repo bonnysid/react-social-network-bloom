@@ -16,12 +16,12 @@ const store = {
     _state: {
         dialogsPage: {
             dialogs : [
-                {id: 1, isActive: true, name: 'Yana Pros', time: new Date().toTimeString().substr(0, 9), avatarLink: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg', messages: [
-                        {id: 1, time: new Date().toTimeString().substr(0, 9), message: 'Hello'},
-                        {id: 2, time: new Date().toTimeString().substr(0, 9), message: 'How are you?'},
+                {id: 1, isActive: true, user: {id: 1, name: 'Yana Pros', avatarLink: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg'}, time: new Date().toTimeString().substr(0, 9), messages: [
+                        {id: 1, author: {id: 1, name: 'Yana Pros', avatarLink: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg'}, time: new Date().toTimeString().substr(0, 9), message: 'Hello'},
+                        {id: 2, author: {id: 1, name: 'Yana Pros', avatarLink: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg'}, time: new Date().toTimeString().substr(0, 9), message: 'How are you?'},
                     ],},
-                {id: 2, isActive: false, name: 'Ira Pauchok', time: new Date().toTimeString().substr(0, 9), avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f', messages: []},
-                {id: 3, isActive: false, name: 'Nikita Brekhov', time: new Date().toTimeString().substr(0, 9), avatarLink: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b', messages: []}
+                {id: 2, isActive: false, user: {id: 2, name: 'Ira Pauchok', avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f'}, time: new Date().toTimeString().substr(0, 9),  messages: []},
+                {id: 3, isActive: false, user: {id: 3, name: 'Nikita Brekhov', avatarLink: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b'}, time: new Date().toTimeString().substr(0, 9), messages: []}
             ],
 
 
@@ -43,7 +43,25 @@ const store = {
                 {title: 'Music', link: 'music'},
                 {title: 'Settings', link: 'settings'}
             ]
+        },
+        users: {
+            joinedUser: {
+                id: 4,
+                name: 'Nikita Bortsov',
+                avatarLink: 'https://sun9-52.userapi.com/VbuS5diiKVWIdt37_zJ5Qdj99TQclDM8IfHkPA/VpKVDBLkFJ8.jpg',
+            },
+            all: [
+                {id: 1, name: 'Yana Pros', avatarLink: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg'},
+                {id: 2, name: 'Ira Pauchok', avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f'},
+                {id: 3, name: 'Nikita Brekhov', avatarLink: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b'},
+                {
+                    id: 4,
+                    name: 'Nikita Bortsov',
+                    avatarUrl: 'https://sun9-52.userapi.com/VbuS5diiKVWIdt37_zJ5Qdj99TQclDM8IfHkPA/VpKVDBLkFJ8.jpg',
+                }
+            ],
         }
+
     },
 
     getState() {
@@ -76,14 +94,17 @@ const store = {
         this.rerenderEntireTree(this._state);
     },
     _addMessage(authorInfo) {
-        console.log(authorInfo);
+        const activeDialog = this._state.dialogsPage.dialogs.find(dialog => dialog.isActive);
+        const dialogMessages = activeDialog.messages;
+
         const msg = {
-            id: this._state.dialogsPage.dialogs[authorInfo.id - 1].messages[this._state.dialogsPage.dialogs[authorInfo.id - 1].messages.length - 1].id++,
+            id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
             time: new Date().toTimeString().substr(0, 9),
-            message: this._state.dialogsPage.newMessageText
+            message: this._state.dialogsPage.newMessageText,
+            author: authorInfo
         };
 
-        this._state.dialogsPage.dialogs[authorInfo.id - 1].messages.push(msg);
+        activeDialog.messages.push(msg);
         this._state.dialogsPage.newMessageText = '';
         this.rerenderEntireTree(this._state);
     },
@@ -91,6 +112,16 @@ const store = {
         this._state.dialogsPage.newMessageText = text;
         this.rerenderEntireTree(this._state);
     },
+    // _selectDialog(id) {
+    //     this._state.dialogsPage.dialogs.forEach(d => {
+    //         if (d.id === id) {
+    //             d.isActive = true;
+    //         } else {
+    //             d.isActive = false;
+    //         }
+    //     });
+    //     this.rerenderEntireTree(this._state);
+    // },
 
     dispatch(action) {
         switch (action.type) {
@@ -108,6 +139,9 @@ const store = {
                 break;
             case UPDATE_NEW_MESSAGE_TEXT:
                 this._updateNewMessageText(action.newText);
+                break;
+            case SELECT_DIALOG:
+                this._selectDialog(action.dialogId);
                 break;
         }
     }

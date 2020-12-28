@@ -4,7 +4,7 @@ import s from './Messages.module.css';
 import PostForm from "../../PostForm";
 import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/state";
 
-const Messages = ({dialog, dispatch, newMessageText}) => {
+const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
 
 
     return (
@@ -19,10 +19,11 @@ const Messages = ({dialog, dispatch, newMessageText}) => {
                 {dialog.messages.map(msg => (
                     <Message
                         key={msg.id}
-                        avatarLink={dialog.avatarLink}
+                        avatarLink={msg.author.avatarLink}
                         message={msg.message}
-                        name={dialog.name}
+                        name={msg.author.name}
                         time={msg.time}
+                        dispatch={dispatch}
                     />
                 ))}
             </div>
@@ -31,7 +32,7 @@ const Messages = ({dialog, dispatch, newMessageText}) => {
                 <PostForm
                     id={2}
                     isLine={true}
-                    authorInfo={dialog}
+                    authorInfo={joinedUser}
                     dispatch={dispatch}
                     newPostText={newMessageText}
                     updateInputFieldTextActionCreator={updateNewMessageTextActionCreator}

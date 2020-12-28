@@ -4,7 +4,7 @@ import Post from './Post';
 import PostForm from "../../PostForm";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
-const Posts = ({posts, newPostText, dispatch}) => {
+const Posts = ({posts, newPostText, dispatch, joinedUser}) => {
 
     const postElements = posts.map(post => (
         <Post
@@ -24,6 +24,7 @@ const Posts = ({posts, newPostText, dispatch}) => {
                     id={1} dispatch={dispatch}
                     newPostText={newPostText}
                     addDataActionCreator={addPostActionCreator}
+                    authorInfo={joinedUser}
                     updateInputFieldTextActionCreator={updateNewPostTextActionCreator}
                 />
             </section>

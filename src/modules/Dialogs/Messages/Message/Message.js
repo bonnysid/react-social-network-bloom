@@ -2,7 +2,8 @@ import React from 'react';
 import s from './Message.module.css';
 import AvatarLower from '../../../AvatarLower';
 
-const Message = ({message, avatarLink, time, name}) => {
+const Message = ({message, avatarLink, time, name, dispatch}) => {
+
     return (
         <div className={s.content}>
             <AvatarLower url={avatarLink}/>

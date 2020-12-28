@@ -11,6 +11,7 @@ const rerenderEntireTree = (state) => {
                 dispatch={store.dispatch.bind(store)}
                 dialogsPage={state.dialogsPage}
                 navbar={state.navbar}
+                joinedUser={state.users.joinedUser}
             />
         </React.StrictMode>,
         document.getElementById('app-wrapper')
