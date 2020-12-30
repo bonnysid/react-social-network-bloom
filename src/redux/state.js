@@ -1,16 +1,7 @@
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
-const DELETE_POST = 'DELETE_POST';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const SELECT_DIALOG = 'SELECT_DIALOG';
-
-export const addPostActionCreator = (authorInfo) => ({type: ADD_POST, authorInfo: authorInfo});
-export const addMessageActionCreator = (authorInfo) => ({type: ADD_MESSAGE, authorInfo: authorInfo});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
-export const deletePostActionCreator = (id) => ({type: DELETE_POST, postId: id});
-export const selectDialogActionCreator = (id) => ({type: SELECT_DIALOG, dialogId: id});
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+import usersReducer from "./usersReducer";
+import navbarReducer from "./navbarReducer";
 
 const store = {
     _state: {
@@ -23,8 +14,6 @@ const store = {
                 {id: 2, isActive: false, user: {id: 2, name: 'Ira Pauchok', avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f'}, time: new Date().toTimeString().substr(0, 9),  messages: []},
                 {id: 3, isActive: false, user: {id: 3, name: 'Nikita Brekhov', avatarLink: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b'}, time: new Date().toTimeString().substr(0, 9), messages: []}
             ],
-
-
             newMessageText: ''
         },
         profilePage: {
@@ -72,78 +61,13 @@ const store = {
     },
     rerenderEntireTree() {},
 
-    _addPost(authorInfo) {
-        const post = {
-            id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id++,
-            author: authorInfo.name,
-            comment: this._state.profilePage.newPostText,
-            likeCount: 0
-        }
-        this._state.profilePage.posts.push(post);
-        this._state.profilePage.newPostText = '';
-        this.rerenderEntireTree(this._state);
-    },
-    _deletePost(id) {
-        this._state.profilePage.posts.forEach((item, index) => {
-            if (item.id === id) this._state.profilePage.posts.splice(index, 1);
-        });
-        this.rerenderEntireTree(this._state);
-    },
-    _updateNewPostText(text) {
-        this._state.profilePage.newPostText = text;
-        this.rerenderEntireTree(this._state);
-    },
-    _addMessage(authorInfo) {
-        const activeDialog = this._state.dialogsPage.dialogs.find(dialog => dialog.isActive);
-        const dialogMessages = activeDialog.messages;
-
-        const msg = {
-            id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
-            time: new Date().toTimeString().substr(0, 9),
-            message: this._state.dialogsPage.newMessageText,
-            author: authorInfo
-        };
-
-        activeDialog.messages.push(msg);
-        this._state.dialogsPage.newMessageText = '';
-        this.rerenderEntireTree(this._state);
-    },
-    _updateNewMessageText(text) {
-        this._state.dialogsPage.newMessageText = text;
-        this.rerenderEntireTree(this._state);
-    },
-    // _selectDialog(id) {
-    //     this._state.dialogsPage.dialogs.forEach(d => {
-    //         if (d.id === id) {
-    //             d.isActive = true;
-    //         } else {
-    //             d.isActive = false;
-    //         }
-    //     });
-    //     this.rerenderEntireTree(this._state);
-    // },
-
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                this._addPost(action.authorInfo);
-                break;
-            case UPDATE_NEW_POST_TEXT:
-                this._updateNewPostText(action.newText);
-                break;
-            case DELETE_POST:
-                this._deletePost(action.postId);
-                break;
-            case ADD_MESSAGE:
-                this._addMessage(action.authorInfo);
-                break;
-            case UPDATE_NEW_MESSAGE_TEXT:
-                this._updateNewMessageText(action.newText);
-                break;
-            case SELECT_DIALOG:
-                this._selectDialog(action.dialogId);
-                break;
-        }
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.users = usersReducer(this._state.users, action);
+        this._state.navbar = navbarReducer(this._state.navbar, action);
+
+        this.rerenderEntireTree(this._state);
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
 import PostForm from "../../PostForm";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
 
 const Posts = ({posts, newPostText, dispatch, joinedUser}) => {
 
