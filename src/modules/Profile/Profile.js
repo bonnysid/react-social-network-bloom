@@ -4,7 +4,7 @@ import Avatar from './Avatar';
 import Photos from './Photos';
 import Description from './Description';
 import Posts from './Posts';
-import {addPost} from "../../redux/state";
+import {addPost} from "../../redux/store";
 
 const Profile = ({state: {posts, newPostText}, dispatch, joinedUser}) => {
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
 import PostForm from "../../PostForm";
-import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/dialogReducer.js";
+import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/dialogsReducer.js";
 
 const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
 
