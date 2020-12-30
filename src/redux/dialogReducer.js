@@ -12,14 +12,12 @@ const dialogsReducer = (state, action) => {
         case ADD_MESSAGE:
             const activeDialog = state.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
-
             const msg = {
                 id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
                 time: new Date().toTimeString().substr(0, 9),
                 message: state.newMessageText,
                 author: action.authorInfo
             };
-
             activeDialog.messages.push(msg);
             state.newMessageText = '';
             return state;
@@ -30,11 +28,7 @@ const dialogsReducer = (state, action) => {
 
         case SELECT_DIALOG:
             state.dialogs.forEach(d => {
-                if (d.id === action.dialogId) {
-                    d.isActive = true;
-                } else {
-                    d.isActive = false;
-                }
+                d.isActive = d.id === action.dialogId;
             });
             return state;
 

@@ -3,7 +3,7 @@ import Dialog from './Dialog';
 import s from './Dialogs.module.css';
 import Messages from './Messages';
 
-const Dialogs = ({state: {dialogs}, dispatch, joinedUser}) => {
+const Dialogs = ({state: {dialogs, newMessageText}, dispatch, joinedUser}) => {
 
     const dialogsElements = dialogs.map(dialog => (
         <Dialog
@@ -33,6 +33,7 @@ const Dialogs = ({state: {dialogs}, dispatch, joinedUser}) => {
                 dialog={activeDialog}
                 dispatch={dispatch}
                 joinedUser={joinedUser}
+                newMessageText={newMessageText}
             />
         </main>
     );
