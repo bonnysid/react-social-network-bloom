@@ -12,15 +12,19 @@ import './App.css';
 import './Nullstyle.css';
 
 
-const App = ({profilePage, dialogsPage, navbar, dispatch, joinedUser}) => {
+const App = (props) => {
+
+    const {profilePage, dialogsPage, navbar, users} = props.state;
+    const {dispatch} = props.store;
+
     return (
         <BrowserRouter>
             <Navbar items={navbar.menuItems}/>
             <Header />
 
             <div className='container'>
-                <Route path="/profile" render={() => <Profile state={profilePage} dispatch={dispatch} joinedUser={joinedUser}/>}/>
-                <Route path="/messages" render={() => <Dialogs state={dialogsPage} dispatch={dispatch} joinedUser={joinedUser}/>}/>
+                <Route path="/profile" render={() => <Profile state={profilePage} dispatch={dispatch} joinedUser={users.joinedUser}/>}/>
+                <Route path="/messages" render={() => <Dialogs state={dialogsPage} dispatch={dispatch} joinedUser={users.joinedUser}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/friends" render={() => <Friends/>}/>
                 <Route path="/music" render={() => <Music/>}/>

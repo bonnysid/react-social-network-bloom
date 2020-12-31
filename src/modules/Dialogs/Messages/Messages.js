@@ -6,6 +6,14 @@ import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../
 
 const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
 
+    const addMessage = () => {
+        dispatch(addMessageActionCreator(joinedUser));
+    };
+
+    const updateNewMessageText = (e) => {
+        const text = e.target.value;
+        dispatch(updateNewMessageTextActionCreator(text))
+    };
 
     return (
         <aside className={`${s.content} block`}>
@@ -32,11 +40,10 @@ const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
                 <PostForm
                     id={2}
                     isLine={true}
-                    authorInfo={joinedUser}
                     dispatch={dispatch}
                     newPostText={newMessageText}
-                    updateInputFieldTextActionCreator={updateNewMessageTextActionCreator}
-                    addDataActionCreator={addMessageActionCreator}
+                    updateInputFieldText={updateNewMessageText}
+                    addData={addMessage}
                     placeholderBtn='Send'
                     rows={1}
                     isResize={false}

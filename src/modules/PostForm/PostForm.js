@@ -2,15 +2,13 @@ import React from 'react';
 import s from './PostForm.module.css';
 import SvgItem from "../SvgItem";
 
-const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActionCreator, updateInputFieldTextActionCreator, authorInfo, rows = 5, isLine = false, isResize = true}) => {
-    const refText = React.createRef();
+const PostForm = ({placeholderBtn, title, id, newPostText, addData, updateInputFieldText, rows = 5, isLine = false, isResize = true}) => {
 
     return (
         <div className={isLine ? s.block_line : s.block}>
             {!title ? null : <h1 className={s.title}>{title}</h1>}
             <textarea
-                ref={refText}
-                onChange={() => dispatch(updateInputFieldTextActionCreator(refText.current.value))}
+                onChange={(event) => updateInputFieldText(event)}
                 placeholder={'Input your text'}
                 rows={rows}
                 className={`${s.text}  ${!isResize ? s.notRes : ''}`}
@@ -23,11 +21,11 @@ const PostForm = ({placeholderBtn, title, id, dispatch, newPostText, addDataActi
             </label>
 
             { isLine ?
-                <button className={s.send_button_block} onClick={() => dispatch(addDataActionCreator(authorInfo))}>
+                <button className={s.send_button_block} onClick={() => addData()}>
                     <SvgItem width={'25px'} height={'25px'} className={s.send_button} urlId={'send'}/>
                 </button> :
                 <button
-                    onClick={() => dispatch(addDataActionCreator(authorInfo))}
+                    onClick={() => addData()}
                     className={`${s.btn} btn`}>{placeholderBtn}</button>
             }
 

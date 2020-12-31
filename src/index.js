@@ -8,7 +8,8 @@ const rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                profilePage={state.profilePage}
+                state={state}
+                store={store}
                 dispatch={store.dispatch.bind(store)}
                 dialogsPage={state.dialogsPage}
                 navbar={state.navbar}

@@ -15,6 +15,15 @@ const Posts = ({posts, newPostText, dispatch, joinedUser}) => {
         />
     ));
 
+    const addPost = () => {
+        dispatch(addPostActionCreator(joinedUser));
+    }
+
+    const updateNewPostText = (e) => {
+        const text = e.target.value;
+        dispatch(updateNewPostTextActionCreator(text));
+    }
+
     return (
         <>
             <section className={`${s.content} block`}>
@@ -23,9 +32,8 @@ const Posts = ({posts, newPostText, dispatch, joinedUser}) => {
                     placeholderBtn='Post'
                     id={1} dispatch={dispatch}
                     newPostText={newPostText}
-                    addDataActionCreator={addPostActionCreator}
-                    authorInfo={joinedUser}
-                    updateInputFieldTextActionCreator={updateNewPostTextActionCreator}
+                    addData={addPost}
+                    updateInputFieldText={updateNewPostText}
                 />
             </section>
             <section className={s.posts}>
