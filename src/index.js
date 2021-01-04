@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 // import store from './redux/store';
 import store from './redux/reduxStore';
+import {Provider} from "react-redux";
 
 const rerenderEntireTree = (state) => {
     ReactDOM.render(
-        <React.StrictMode>
+        <Provider store={store}>
             <App
                 state={state}
                 store={store}
@@ -15,7 +16,7 @@ const rerenderEntireTree = (state) => {
                 navbar={state.navbar}
                 joinedUser={state.users.joinedUser}
             />
-        </React.StrictMode>,
+        </Provider>,
         document.getElementById('app-wrapper')
     );
 }

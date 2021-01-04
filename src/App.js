@@ -18,7 +18,7 @@ const App = (props) => {
     const {dispatch} = props.store;
 
     return (
-        <BrowserRouter>
+        <>
             <Navbar items={navbar.menuItems}/>
             <Header />
 
@@ -31,7 +31,7 @@ const App = (props) => {
                 <Route path="/settings" render={() => <Settings/>}/>
             </div>
 
-        </BrowserRouter>
+        </>
     );
 }
 
