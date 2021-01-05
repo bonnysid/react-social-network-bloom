@@ -23,6 +23,8 @@ const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_MESSAGE:
+            const stateCopy = {...state};
+            let msgText = stateCopy.newMessageText;
             stateCopy.dialogs = [...state.dialogs];
             const activeDialog = stateCopy.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
@@ -37,15 +39,19 @@ const dialogsReducer = (state = initialState, action) => {
             return stateCopy;
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newMessageText: action.newText
+            };
 
         case SELECT_DIALOG:
-            stateCopy.dialogs = [...state.dialogs];
-            stateCopy.dialogs.forEach(d => {
+            state.dialogs.forEach(d => {
                 d.isActive = d.id === action.dialogId;
             });
-            return stateCopy;
+            return {
+                ...state,
+                dialogs: [...state.dialogs]
+            };
 
         default: return state;
     }
