@@ -1,42 +1,41 @@
 import React from 'react';
 import Dialog from './Dialog';
 import s from './Dialogs.module.css';
-import Messages from './Messages';
+import MessagesContainer from './Messages';
+import {connect} from "react-redux";
 
-const Dialogs = ({state: {dialogs, newMessageText}, dispatch, joinedUser}) => {
-
-    const dialogsElements = dialogs.map(dialog => (
-        <Dialog
-            id={dialog.id}
-            key={dialog.id}
-            name={dialog.user.name}
-            time={dialog.time}
-            lastMsg={dialog.messages.length !== 0 ? dialog.messages[dialog.messages.length - 1].message : 'nothing'}
-            avatarLink={dialog.user.avatarLink}
-            isActive={dialog.isActive}
-            dispatch={dispatch}
-        />
-    ));
-
-    const activeDialog = dialogs.find(dialog => dialog.isActive === true);
+const Dialogs = ({dialogs}) => {
 
     return (
         <main className={`${s.content}`}>
             <div className={`${s.header} block`}>
                 <h1 className={s.title}>messages</h1>
-                {/* <div className="underline"></div> */}
             </div>
             <aside className={s.people}>
-                {dialogsElements}
+                {dialogs}
             </aside>
-            <Messages
-                dialog={activeDialog}
-                dispatch={dispatch}
-                joinedUser={joinedUser}
-                newMessageText={newMessageText}
-            />
+            <MessagesContainer />
         </main>
     );
 }
 
-export default Dialogs;
+const mapStateToProps = (state) => {
+    return {
+        dialogs: state.dialogsPage.dialogs.map(dialog => (
+            <Dialog
+                id={dialog.id}
+                key={dialog.id}
+                name={dialog.user.name}
+                time={dialog.time}
+                lastMsg={dialog.messages.length !== 0 ? dialog.messages[dialog.messages.length - 1].message : 'nothing'}
+                avatarLink={dialog.user.avatarLink}
+                isActive={dialog.isActive}
+            />
+        )),
+
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps)(Dialogs);
+
+export default DialogsContainer;

@@ -5,7 +5,7 @@ import s from './Dialog.module.css';
 
 // import AvatarLower;
 
-const Dialog = ({name, avatarLink, lastMsg, time, id, isActive, dispatch}) => {
+const Dialog = ({name, avatarLink, lastMsg, time, id, isActive}) => {
     return (
         <NavLink to={`/messages/${id}`} className={`${s.content} block ${isActive ? s.active : ''}`} activeClassName={s.active}>
             <AvatarLower url={avatarLink}/>

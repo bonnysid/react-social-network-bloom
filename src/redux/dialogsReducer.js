@@ -19,32 +19,36 @@ export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_ME
 export const selectDialogActionCreator = (id) => ({type: SELECT_DIALOG, dialogId: id});
 
 const dialogsReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const stateCopy = {
+        ...state,
+        dialogs: [...state.dialogs]
+    };
 
+    switch (action.type) {
         case ADD_MESSAGE:
-            const activeDialog = state.dialogs.find(dialog => dialog.isActive);
+            const activeDialog = stateCopy.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
             const msg = {
                 id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
                 time: new Date().toTimeString().substr(0, 9),
-                message: state.newMessageText,
+                message: stateCopy.newMessageText,
                 author: action.authorInfo
             };
             activeDialog.messages.push(msg);
-            state.newMessageText = '';
-            return state;
+            stateCopy.newMessageText = '';
+            return stateCopy;
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText;
-            return state;
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
 
         case SELECT_DIALOG:
-            state.dialogs.forEach(d => {
+            stateCopy.dialogs.forEach(d => {
                 d.isActive = d.id === action.dialogId;
             });
-            return state;
+            return stateCopy;
 
-        default: return state;
+        default: return stateCopy;
     }
 }
 

@@ -3,47 +3,29 @@ import Message from './Message';
 import s from './Messages.module.css';
 import PostForm from "../../PostForm";
 import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/dialogsReducer.js";
+import {connect} from "react-redux";
 
-const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
-
-    const addMessage = () => {
-        dispatch(addMessageActionCreator(joinedUser));
-    };
-
-    const updateNewMessageText = (e) => {
-        const text = e.target.value;
-        dispatch(updateNewMessageTextActionCreator(text))
-    };
+const Messages = ({messages, dialogName, newMessageText, addMessage, updateNewMessageText, joinedUser}) => {
 
     return (
         <aside className={`${s.content} block`}>
             <div className={s.header}>
-                <h2 className={s.title}>{dialog.name}</h2>
+                <h2 className={s.title}>{dialogName}</h2>
                 <div className="underline"/>
             </div>
 
             
             <div className={s.messages}>
-                {dialog.messages.map(msg => (
-                    <Message
-                        key={msg.id}
-                        avatarLink={msg.author.avatarLink}
-                        message={msg.message}
-                        name={msg.author.name}
-                        time={msg.time}
-                        dispatch={dispatch}
-                    />
-                ))}
+                {messages}
             </div>
 
             <div className={s.input__msg}>
                 <PostForm
                     id={2}
                     isLine={true}
-                    dispatch={dispatch}
                     newPostText={newMessageText}
                     updateInputFieldText={updateNewMessageText}
-                    addData={addMessage}
+                    addData={() => addMessage(joinedUser)}
                     placeholderBtn='Send'
                     rows={1}
                     isResize={false}
@@ -53,4 +35,37 @@ const Messages = ({dialog, dispatch, newMessageText, joinedUser}) => {
     );
 }
 
-export default Messages;
+const mapStateToProps = (state) => {
+    const selectedDialog = state.dialogsPage.dialogs.find(dialog => dialog.isActive);
+
+    return {
+        dialogName: selectedDialog.user.name,
+        newMessageText: state.dialogsPage.newMessageText,
+        messages: selectedDialog.messages.map(msg => (
+            <Message
+                key={msg.id}
+                avatarLink={msg.author.avatarLink}
+                message={msg.message}
+                name={msg.author.name}
+                time={msg.time}
+            />
+        )),
+        joinedUser: state.users.joinedUser
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: (joinedUser) => {
+            dispatch(addMessageActionCreator(joinedUser));
+        },
+        updateNewMessageText: (e) => {
+            const text = e.target.value;
+            dispatch(updateNewMessageTextActionCreator(text))
+        }
+    }
+}
+
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
+
+export default MessagesContainer;

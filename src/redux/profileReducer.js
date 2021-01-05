@@ -15,30 +15,35 @@ export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_
 export const deletePostActionCreator = (id) => ({type: DELETE_POST, postId: id});
 
 const profileReducer = (state = initialState, action) => {
+    const stateCopy = {
+        ...state,
+        posts: [...state.posts]
+    };
+
     switch (action.type) {
 
         case ADD_POST:
             const post = {
-                id: state.posts[state.posts.length - 1].id++,
+                id: stateCopy.posts[stateCopy.posts.length - 1].id++,
                 author: action.authorInfo.name,
-                comment: state.newPostText,
+                comment: stateCopy.newPostText,
                 likeCount: 0
             }
-            state.posts.push(post);
-            state.newPostText = '';
-            return state;
+            stateCopy.posts.push(post);
+            stateCopy.newPostText = '';
+            return stateCopy;
 
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
 
         case DELETE_POST:
-            state.posts.forEach((item, index) => {
+            stateCopy.posts.forEach((item, index) => {
                 if (item.id === action.postId) state.posts.splice(index, 1);
             });
-            return state;
+            return stateCopy;
 
-        default: return state;
+        default: return stateCopy;
     }
 }
 

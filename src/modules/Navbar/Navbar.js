@@ -1,11 +1,9 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import SvgLink from './SvgLink';
-import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
 
 const Navbar = ({items}) => {
-    const menuItems = items.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>))
-
     return (
         <nav className={`${s.block}`}>
             <a href='/' className={`${s.logo}`}>
@@ -13,7 +11,7 @@ const Navbar = ({items}) => {
             </a>
 
             <div className={s.main__nav}>
-                {menuItems}
+                {items}
             </div>
 
             <SvgLink title={"exit"} link={"/"} isExit={true}/>
@@ -21,5 +19,13 @@ const Navbar = ({items}) => {
         </nav>       
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        items: state.navbar.menuItems.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>))
+    }
+}
 
-export default Navbar;
+const NavbarContainer = connect(mapStateToProps)(Navbar);
+
+
+export default NavbarContainer;
