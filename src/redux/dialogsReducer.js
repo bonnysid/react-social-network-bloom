@@ -19,12 +19,10 @@ export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_ME
 export const selectDialogActionCreator = (id) => ({type: SELECT_DIALOG, dialogId: id});
 
 const dialogsReducer = (state = initialState, action) => {
-    const stateCopy = {...state};
 
     switch (action.type) {
         case ADD_MESSAGE:
             const stateCopy = {...state};
-            let msgText = stateCopy.newMessageText;
             stateCopy.dialogs = [...state.dialogs];
             const activeDialog = stateCopy.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
