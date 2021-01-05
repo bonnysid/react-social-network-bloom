@@ -4,18 +4,21 @@ import App from './App';
 // import store from './redux/store';
 import store from './redux/reduxStore';
 import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 const rerenderEntireTree = (state) => {
     ReactDOM.render(
         <Provider store={store}>
-            <App
-                state={state}
-                store={store}
-                dispatch={store.dispatch.bind(store)}
-                dialogsPage={state.dialogsPage}
-                navbar={state.navbar}
-                joinedUser={state.users.joinedUser}
-            />
+            <BrowserRouter>
+                <App
+                    state={state}
+                    store={store}
+                    dispatch={store.dispatch.bind(store)}
+                    dialogsPage={state.dialogsPage}
+                    navbar={state.navbar}
+                    joinedUser={state.users.joinedUser}
+                />
+            </BrowserRouter>
         </Provider>,
         document.getElementById('app-wrapper')
     );
