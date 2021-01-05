@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
                 author={post.author}
                 comment={post.comment}
                 likeCount={post.likeCount}
+                key={post.id}
             />
         )),
         newPostText: state.profilePage.newPostText

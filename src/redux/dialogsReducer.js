@@ -19,13 +19,11 @@ export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_ME
 export const selectDialogActionCreator = (id) => ({type: SELECT_DIALOG, dialogId: id});
 
 const dialogsReducer = (state = initialState, action) => {
-    const stateCopy = {
-        ...state,
-        dialogs: [...state.dialogs]
-    };
+    const stateCopy = {...state};
 
     switch (action.type) {
         case ADD_MESSAGE:
+            stateCopy.dialogs = [...state.dialogs];
             const activeDialog = stateCopy.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
             const msg = {
@@ -43,12 +41,13 @@ const dialogsReducer = (state = initialState, action) => {
             return stateCopy;
 
         case SELECT_DIALOG:
+            stateCopy.dialogs = [...state.dialogs];
             stateCopy.dialogs.forEach(d => {
                 d.isActive = d.id === action.dialogId;
             });
             return stateCopy;
 
-        default: return stateCopy;
+        default: return state;
     }
 }
 
