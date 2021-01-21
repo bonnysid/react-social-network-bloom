@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Message.module.css';
-import AvatarLower from '../../../AvatarLower';
+import AvatarLower from '../../../HelpfulComponents/AvatarLower';
 
 const Message = ({message, avatarLink, time, name}) => {
 

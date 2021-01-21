@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
-import PostForm from "../../PostForm";
+import PostForm from "../../HelpfulComponents/PostForm";
 import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/dialogsReducer.js";
 import {connect} from "react-redux";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
-import PostForm from "../../PostForm";
+import PostForm from "../../HelpfulComponents/PostForm";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
 import {connect} from "react-redux";
 

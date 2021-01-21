@@ -1,0 +1,38 @@
+.block {
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+            "avatar name sendBtn addBtn"
+            "avatar status sendBtn addBtn";
+}
+
+.name {
+    grid-area: name;
+}
+
+.avatar {
+    grid-area: avatar;
+}
+
+.addBtn {
+    grid-area: addBtn;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    width: 100px;
+}
+
+.status {
+    grid-area: status;
+}
+
+.sendBtn {
+    grid-area: sendBtn;
+}
+.send_button {
+    display: flex;
+    align-items: center;
+}
