@@ -18,6 +18,7 @@
     --navbar-icon2: rgb(246, 246, 250);
     --navbar-bg: var(--main-color);
     --navbar-exit: rgb(240, 71, 71);
+    --navbar-exit-hover: rgb(238, 114, 114);
     --navbar-exit-bg: #413338;
 
     --block-bg: #2f3136;

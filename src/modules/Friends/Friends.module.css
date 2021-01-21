@@ -1,0 +1,12 @@
+.content {
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--text);
+}
+
+.friendList {
+    display: grid;
+    grid-gap: 1em;
+}

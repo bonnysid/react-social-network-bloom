@@ -1,6 +1,6 @@
 .block {
     display: grid;
-    grid-template-columns: 1fr 7fr 1fr 1fr;
+    grid-template-columns: 70px 7fr 40px 40px;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
             "avatar name sendBtn addBtn"
@@ -9,6 +9,9 @@
 
 .name {
     grid-area: name;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-light);
 }
 
 .avatar {
@@ -22,7 +25,9 @@
 }
 
 .btn {
-    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .status {
@@ -32,7 +37,24 @@
 .sendBtn {
     grid-area: sendBtn;
 }
-.send_button {
-    display: flex;
-    align-items: center;
+.svg {
+    fill: var(--navbar-icon);
+    cursor: pointer;
+    transition: .3s fill;
+    width: 25px;
+    height: 25px;
+}
+
+.svg:hover {
+    fill: var(--navbar-icon2);
+}
+
+.svgRed {
+    fill: var(--navbar-exit);
+    cursor: pointer;
+    transition: .3s fill;
+}
+
+.svgRed:hover {
+    fill: var(--navbar-exit-hover);
 }
