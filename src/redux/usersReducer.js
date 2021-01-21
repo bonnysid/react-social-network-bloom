@@ -21,11 +21,13 @@ const ADD_USER = "ADD_USER";
 const DELETE_USER = "DELETE_USER";
 const SET_USERS = "SET_USERS";
 const OPEN_MSGS = "OPEN_MSGS";
+const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
 
-const addUserAC = (id) => ({type: ADD_USER, userId: id});
-const deleteUserAC = (id) => ({type: DELETE_USER, userId: id});
-const setUsersAC = (users) => ({type: SET_USERS, usersData: users});
-const openMessagesAC = (id) => ({type: OPEN_MSGS, userId: id});
+export const addUserAC = (id) => ({type: ADD_USER, userId: id});
+export const deleteUserAC = (id) => ({type: DELETE_USER, userId: id});
+export const setUsersAC = (users) => ({type: SET_USERS, usersData: users});
+export const openMessagesAC = (id) => ({type: OPEN_MSGS, userId: id});
+export const onSearchChangeAC = (text) => ({type: CHANGE_SEARCH_TEXT, text: text});
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -53,6 +55,11 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 all: action.usersData
+            }
+        case CHANGE_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.text
             }
         default: return state;
     }
