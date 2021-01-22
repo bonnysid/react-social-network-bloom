@@ -3,7 +3,7 @@ const initialState = {
         {title: 'My Profile', link: 'profile'},
         {title: 'Messages', link: 'messages'},
         {title: 'News', link: 'news'},
-        {title: 'Friends', link: 'friends'},
+        {title: 'Users', link: 'users'},
         {title: 'Music', link: 'music'},
         {title: 'Settings', link: 'settings'}
     ]

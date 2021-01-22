@@ -28,7 +28,7 @@ const store = {
                 {title: 'My Profile', link: 'profile'},
                 {title: 'Messages', link: 'messages'},
                 {title: 'News', link: 'news'},
-                {title: 'Friends', link: 'friends'},
+                {title: 'Users', link: 'friends'},
                 {title: 'Music', link: 'music'},
                 {title: 'Settings', link: 'settings'}
             ]
