@@ -3,19 +3,21 @@ import Dialog from './Dialog';
 import s from './Dialogs.module.css';
 import MessagesContainer from './Messages';
 import {connect} from "react-redux";
+import Header from "../Header";
 
 const Dialogs = ({dialogs}) => {
 
     return (
-        <main className={`${s.content}`}>
-            <div className={`${s.header} block`}>
-                <h1 className={s.title}>messages</h1>
-            </div>
-            <aside className={s.people}>
-                {dialogs}
-            </aside>
-            <MessagesContainer />
-        </main>
+        <>
+            <Header title={'Messages'}/>
+            <main className={`${s.content}`}>
+                <aside className={s.people}>
+                    {dialogs}
+                </aside>
+                <MessagesContainer />
+            </main>
+        </>
+
     );
 }
 

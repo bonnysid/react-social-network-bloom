@@ -1,22 +1,13 @@
 .content {
+    padding-top: 120px;
     display: grid;
     grid-template-columns: 2fr 4fr;
-    grid-template-rows: 1fr 10fr;
-    grid-template-areas: 
-    "header header"
+    grid-template-rows: 1fr;
+    grid-template-areas:
     "people messages";
     grid-gap: 1em;
     height: 100%;
     color: var(--text);
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    grid-area: header;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 
 .title {

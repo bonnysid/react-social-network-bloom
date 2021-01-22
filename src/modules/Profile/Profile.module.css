@@ -1,5 +1,6 @@
 .content {
     display: grid;
+    padding-top: 120px;
     grid-template-areas: 
     "avatar description"
     "photos photos"

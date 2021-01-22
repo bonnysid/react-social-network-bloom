@@ -6,7 +6,7 @@ import SvgLink from "../../Navbar/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
 
-const User = ({id, status, followed, name, avatarLink, onFollowUser, onUnfollowUser, onSendMsg}) => {
+const User = ({id, status, followed, name, avatarLink, onFollowUser, onUnfollowUser}) => {
     return (
         <div className={`${s.block} block`}>
             <AvatarLower url={avatarLink ? avatarLink : userPng}/>
