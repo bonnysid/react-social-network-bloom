@@ -1,6 +1,6 @@
 import Friends from "./Friends";
 import {connect} from "react-redux";
-import {addUserAC, deleteUserAC, onSearchChangeAC, setUsersAC} from "../../redux/usersReducer";
+import {followUserAC, unfollowUserAC, onSearchChangeAC, setUsersAC} from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => {
             const text = e.target.value;
             dispatch(onSearchChangeAC(text))
         },
-        onAddFriend: (id) => dispatch(addUserAC(id)),
-        onDeleteFriend: (id) => dispatch(deleteUserAC(id)),
+        onFollowUser: (id) => dispatch(followUserAC(id)),
+        onUnfollowUser: (id) => dispatch(unfollowUserAC(id)),
         setUsers: (users) => dispatch(setUsersAC(users))
     }
 }
