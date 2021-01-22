@@ -6,10 +6,10 @@ import axios from "axios";
 
 const Friends = ({users, setUsers, searchText, onFollowUser, onUnfollowUser, onSendMessage, onSearchChange}) => {
 
-    if(users.length === 0) {
+    if(users.length === 3) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
-                setUsers(response.items);
+                setUsers(response.data.items);
             });
     }
 
@@ -22,7 +22,7 @@ const Friends = ({users, setUsers, searchText, onFollowUser, onUnfollowUser, onS
             onSendMsg={onSendMessage}
             followed={u.followed}
             status={u.status} name={u.name}
-            avatarLink={u.avatarLink}
+            avatarLink={u.photos.small}
         />)
 
 
