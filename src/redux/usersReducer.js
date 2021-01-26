@@ -15,18 +15,23 @@ const initialState = {
         {id: 3, followed: false, isOnline: false, name: 'Nikita Brekhov', photos: {
             small: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b', large: null}, status: 'go cs!?'},
     ],
-    searchText: ''
+    searchText: '',
+    totalCountUsers: 0,
+    pageSize: 5,
+    countOfPages: 0
 }
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
+const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
 
 export const followUserAC = (id) => ({type: FOLLOW, userId: id});
 export const unfollowUserAC = (id) => ({type: UNFOLLOW, userId: id});
 export const setUsersAC = (users) => ({type: SET_USERS, usersData: users});
 export const onSearchChangeAC = (text) => ({type: CHANGE_SEARCH_TEXT, text: text});
+export const setTotalCountUsers = (count) => ({type: SET_TOTAL_COUNT_USERS, count});
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -59,6 +64,11 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchText: action.text
+            }
+        case SET_TOTAL_COUNT_USERS:
+            return {
+                ...state,
+                totalCountUsers: action.count
             }
         default: return state;
     }
