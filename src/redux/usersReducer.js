@@ -18,7 +18,7 @@ const initialState = {
     searchText: '',
     totalCountUsers: 0,
     pageSize: 5,
-    countOfPages: 0
+    page: 1
 }
 
 const FOLLOW = "FOLLOW";

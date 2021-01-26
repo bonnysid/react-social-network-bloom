@@ -7,12 +7,12 @@ import axios from "axios";
 export default class Users extends React.Component {
 
     getUsers = () => {
-        if(this.props.users.length === 3) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    this.props.setUsers(response.data.items);
-                });
-        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCountUsers(response.data.totalCount);
+            });
+
     }
 
     componentDidMount() {

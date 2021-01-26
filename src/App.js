@@ -5,8 +5,8 @@ import News from './modules/News';
 import Settings from './modules/Settings';
 import Music from './modules/Music';
 import {Route} from 'react-router-dom';
-import './App.css';
-import './Nullstyle.css';
+import './app.css';
+import './nullstyle.css';
 import UsersContainer from "./modules/Users/UsersContainer";
 import ProfileContainer from "./modules/Profile/ProfileContainer";
 
