@@ -26,12 +26,14 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
 const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
+const SET_PAGE = 'SET_PAGE';
 
 export const followUserAC = (id) => ({type: FOLLOW, userId: id});
 export const unfollowUserAC = (id) => ({type: UNFOLLOW, userId: id});
 export const setUsersAC = (users) => ({type: SET_USERS, usersData: users});
 export const onSearchChangeAC = (text) => ({type: CHANGE_SEARCH_TEXT, text: text});
-export const setTotalCountUsers = (count) => ({type: SET_TOTAL_COUNT_USERS, count});
+export const setTotalCountUsersAC = (count) => ({type: SET_TOTAL_COUNT_USERS, count});
+export const setPageAC = (page) => ({type: SET_PAGE, page});
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -69,6 +71,11 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 totalCountUsers: action.count
+            }
+        case SET_PAGE:
+            return {
+                ...state,
+                page: action.page
             }
         default: return state;
     }

@@ -1,6 +1,13 @@
 import Users from "./Users";
 import {connect} from "react-redux";
-import {followUserAC, unfollowUserAC, onSearchChangeAC, setUsersAC, setTotalCountUsers} from "../../redux/usersReducer";
+import {
+    followUserAC,
+    unfollowUserAC,
+    onSearchChangeAC,
+    setUsersAC,
+    setTotalCountUsersAC,
+    setPageAC
+} from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -21,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
         onFollowUser: (id) => dispatch(followUserAC(id)),
         onUnfollowUser: (id) => dispatch(unfollowUserAC(id)),
         setUsers: (users) => dispatch(setUsersAC(users)),
-        setTotalCountUsers: (count) => dispatch(setTotalCountUsers(count))
+        setTotalCountUsers: (count) => dispatch(setTotalCountUsersAC(count)),
+        setPage: (page) => dispatch(setPageAC(page))
     }
 }
 

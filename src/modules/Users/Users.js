@@ -7,7 +7,7 @@ import axios from "axios";
 export default class Users extends React.Component {
 
     getUsers = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCountUsers(response.data.totalCount);
@@ -16,7 +16,12 @@ export default class Users extends React.Component {
     }
 
     componentDidMount() {
+        this.props.setPage(1);
         this.getUsers();
+    }
+
+    componentDidUpdate() {
+        console.log(1)
     }
 
     render() {
@@ -37,10 +42,14 @@ export default class Users extends React.Component {
             <>
                 <Header title={'Users'}/>
                 <main className={s.content}>
-                    <div></div>
+                    <div className={s.search}></div>
                     <section className={s.friendList}>
                         {usersElements}
                     </section>
+                    <div className={s.buttonContainer}>
+                        <button onClick={() => this.props.setPage(this.props.page+1)} className={`btn ${s.button}`}>Load more</button>
+                    </div>
+
                 </main>
             </>
         )
