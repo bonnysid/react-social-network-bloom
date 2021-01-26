@@ -10,7 +10,7 @@ export default class Users extends React.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items);
-                this.props.setTotalCountUsers(response.data.totalCount);
+                // this.props.setTotalCountUsers(response.data.totalCount);
             });
 
     }
@@ -20,8 +20,13 @@ export default class Users extends React.Component {
         this.getUsers();
     }
 
-    componentDidUpdate() {
-        console.log(1)
+    onLoadUsers = () => {
+        this.props.setPage(this.props.page + 1);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page + 1}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                // this.props.setTotalCountUsers(response.data.totalCount);
+            });
     }
 
     render() {
@@ -47,7 +52,7 @@ export default class Users extends React.Component {
                         {usersElements}
                     </section>
                     <div className={s.buttonContainer}>
-                        <button onClick={() => this.props.setPage(this.props.page+1)} className={`btn ${s.button}`}>Load more</button>
+                        <button onClick={() => this.onLoadUsers()} className={`btn ${s.button}`}>Load more</button>
                     </div>
 
                 </main>
