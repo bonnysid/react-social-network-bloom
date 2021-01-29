@@ -10,8 +10,8 @@ const Users = (props) => {
         <User
             id={u.id}
             key={u.id}
-            onFollowUser={props.onFollowUser}
-            onUnfollowUser={props.onUnfollowUser}
+            followUser={props.followUser}
+            unfollowUser={props.unfollowUser}
             followed={u.followed}
             status={u.status} name={u.name}
             avatarLink={u.photos.small}
