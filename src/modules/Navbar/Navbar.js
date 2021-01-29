@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
 const Navbar = ({items}) => {
+    const menuElements = items.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>));
+
     return (
         <nav className={`${s.block}`}>
             <NavLink to='/' className={`${s.logo}`}>
@@ -12,7 +14,7 @@ const Navbar = ({items}) => {
             </NavLink>
 
             <div className={s.main__nav}>
-                {items}
+                {menuElements}
             </div>
 
             <SvgLink title={'exit'} link={'/'} isExit={true}/>
@@ -22,7 +24,7 @@ const Navbar = ({items}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        items: state.navbar.menuItems.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>))
+        items: state.navbar.menuItems
     }
 }
 

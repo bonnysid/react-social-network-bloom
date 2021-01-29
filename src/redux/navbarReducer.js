@@ -1,11 +1,11 @@
 const initialState = {
     menuItems: [
-        {title: 'My Profile', link: 'profile'},
-        {title: 'Messages', link: 'messages'},
-        {title: 'News', link: 'news'},
-        {title: 'Users', link: 'users'},
-        {title: 'Music', link: 'music'},
-        {title: 'Settings', link: 'settings'}
+        {title: 'My Profile', link: '/profile'},
+        {title: 'Messages', link: '/messages'},
+        {title: 'News', link: '/news'},
+        {title: 'Users', link: '/users'},
+        {title: 'Music', link: '/music'},
+        {title: 'Settings', link: '/settings'}
     ]
 };
 
