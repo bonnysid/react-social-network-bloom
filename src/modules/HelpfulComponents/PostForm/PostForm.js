@@ -8,7 +8,7 @@ const PostForm = ({placeholderBtn, title, id, newPostText, addData, updateInputF
         <div className={isLine ? s.block_line : s.block}>
             {!title ? null : <h1 className={s.title}>{title}</h1>}
             <textarea
-                onChange={(event) => updateInputFieldText(event)}
+                onChange={(event) => updateInputFieldText(event.target.value)}
                 placeholder={'Input your text'}
                 rows={rows}
                 className={`${s.text}  ${!isResize ? s.notRes : ''}`}

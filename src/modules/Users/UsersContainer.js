@@ -46,7 +46,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-        if(this.props.users) return <Preloader/>;
+        if(!this.props.users) return <Preloader/>;
 
         return (
             <>
@@ -72,21 +72,6 @@ const mapStateToProps = (state) => {
         isFetching: state.users.isFetching
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onSearchChange: (e) => {
-//             const text = e.target.value;
-//             dispatch(onSearchChange(text))
-//         },
-//         followUser: (id) => dispatch(followUser(id)),
-//         unfollowUser: (id) => dispatch(unfollowUser(id)),
-//         setUsers: (users) => dispatch(setUsers(users)),
-//         setTotalCountUsers: (count) => dispatch(setTotalCountUsers(count)),
-//         setPage: (page) => dispatch(setPage(page)),
-//         clearUsers: () => dispatch(resetUsers())
-//     }
-// }
 
 export default connect(mapStateToProps, {
     followUser, unfollowUser, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching
