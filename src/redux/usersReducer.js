@@ -10,7 +10,7 @@ const initialState = {
     pageSize: 8,
     page: 1,
     isFetching: false,
-    isFollowingProcess: false
+    followingProcess: []
 }
 
 const FOLLOW = "FOLLOW";
@@ -31,7 +31,7 @@ export const setTotalCountUsers = (count) => ({type: SET_TOTAL_COUNT_USERS, coun
 export const setPage = (page) => ({type: SET_PAGE, page});
 export const resetUsers = () => ({type: RESET_USERS});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
-export const toggleFollowingProcess= (isFollowing) => ({type: TOGGLE_FOLLOWING_PROCESS, isFollowing});
+export const toggleFollowingProcess= (isFollowing, userId) => ({type: TOGGLE_FOLLOWING_PROCESS, isFollowing, userId});
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -88,7 +88,10 @@ const usersReducer = (state = initialState, action) => {
         case TOGGLE_FOLLOWING_PROCESS:
             return {
                 ...state,
-                isFollowingProcess: action.isFollowing
+                followingProcess: action.isFollowing ?
+                    [...state.followingProcess, action.userId]
+                    :
+                    state.followingProcess.filter(id => id !== action.userId)
             }
         default: return state;
     }

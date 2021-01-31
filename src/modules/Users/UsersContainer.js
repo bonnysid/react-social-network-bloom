@@ -46,7 +46,7 @@ class UsersContainer extends React.Component {
     }
 
     onFollow = (id) => {
-        this.props.toggleFollowingProcess(true);
+        this.props.toggleFollowingProcess(true, id);
         API.followUser(id)
             .then(data => {
                 this.props.toggleFollowingProcess(false);
@@ -55,7 +55,7 @@ class UsersContainer extends React.Component {
     }
 
     onUnfollow = (id) => {
-        this.props.toggleFollowingProcess(true);
+        this.props.toggleFollowingProcess(true, id);
         API.unfollowUser(id)
             .then(data => {
                 this.props.toggleFollowingProcess(false);
@@ -73,7 +73,7 @@ class UsersContainer extends React.Component {
                     unfollowUser={this.onUnfollow}
                     users={this.props.users}
                     onLoadUsers={this.onLoadUsers}
-                    isFollowingProcess={isFollowingProcess}
+                    followingProcess={this.props.followingProcess}
                 />
                 {this.props.isFetching ? <Preloader /> : null}
             </>
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
         totalCountUsers: state.users.totalCountUsers,
         page: state.users.page,
         isFetching: state.users.isFetching,
-        isFollowingProcess: state.users.isFollowingProcess
+        followingProcess: state.users.followingProcess
     }
 }
 
