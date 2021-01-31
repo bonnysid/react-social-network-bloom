@@ -2,7 +2,18 @@ import React from 'react';
 import s from './Description.module.css';
 import SocialLink from "./SocialLink";
 
-const Description = ({name, status, instaLink, gitHubLink}) => {
+const Description = ({name, status, contacts}) => {
+
+    const contactsLinks = [];
+
+    for(let key in contacts) {
+        if (contacts[key]) {
+            contactsLinks.push(<SocialLink key={key} link={contacts[key]} urlId={key} hoverTitle={key} width={'35px'} height={'35px'}/>);
+        }
+    }
+
+    console.log(contactsLinks)
+
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
@@ -11,21 +22,7 @@ const Description = ({name, status, instaLink, gitHubLink}) => {
                 <div className="underline"></div>
             </div>
             <section className={s.about}>
-                <SocialLink
-                    link={instaLink}
-                    urlId='instagram'
-                    hoverTitle="instagram"
-                    width='35px'
-                    height='35px'
-                />
-                <SocialLink
-                    link={gitHubLink}
-                    urlId='github'
-                    hoverTitle="github"
-                    width='35px'
-                    height='35px'
-                />
-
+                {contactsLinks}
             </section>
         </main>
     );

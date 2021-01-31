@@ -4,20 +4,23 @@ import Profile from "./Profile";
 import axios from "axios";
 import {setUserPageInfo, toggleFetching} from "../../redux/profileReducer";
 import {withRouter} from "react-router";
+import Preloader from "../HelpfulComponents/Preloader";
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        console.log(this.props);
         this.props.toggleFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`)
             .then(response => {
                 this.props.toggleFetching(false);
-                setUserPageInfo(response);
+                this.props.setUserPageInfo(response.data);
             })
     }
 
     render() {
+
+        if (!Object.keys(this.props.userInfo).length) return <Preloader/>
+
         return (
             <Profile userInfo={this.props.userInfo}/>
         )

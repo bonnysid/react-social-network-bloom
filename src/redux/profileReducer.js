@@ -10,16 +10,7 @@ const initialState = {
         {id: 2, author: 'Nikita Bortsov', comment: 'First post!', likeCount: 5}
     ],
     newPostText: '',
-    userPageInfo: {
-        id: 4,
-        name: 'Nikita Bortsov',
-        avatarLink: 'https://sun9-52.userapi.com/VbuS5diiKVWIdt37_zJ5Qdj99TQclDM8IfHkPA/VpKVDBLkFJ8.jpg',
-        status: 'inst: bonnysid',
-        links: {
-            instagram: 'https://instagram.com/bonnysid',
-            github: 'https://github.com/bonnysid'
-        }
-    },
+    userPageInfo: {},
     isFetching: false
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './User.module.css';
 import AvatarLower from "../../HelpfulComponents/AvatarLower";
 import SvgItem from "../../HelpfulComponents/SvgItem";
-import SvgLink from "../../Navbar/SvgLink";
+import SvgLink from "../../HelpfulComponents/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
 

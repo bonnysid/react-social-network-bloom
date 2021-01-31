@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Navbar.module.css';
-import SvgLink from './SvgLink';
+import SvgLink from '../HelpfulComponents/SvgLink';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
