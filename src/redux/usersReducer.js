@@ -7,7 +7,7 @@ const initialState = {
     all: [],
     searchText: '',
     totalCountUsers: 0,
-    pageSize: 5,
+    pageSize: 8,
     page: 1,
     isFetching: false
 }

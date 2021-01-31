@@ -10,7 +10,7 @@ const User = ({id, status, followed, name, avatarLink, followUser, unfollowUser}
     return (
         <div className={`${s.block} block`}>
             <AvatarLower url={avatarLink ? avatarLink : userPng}/>
-            <NavLink to={`${id}`} className={s.name}>{name}</NavLink>
+            <NavLink to={`profile/${id}`} className={s.name}>{name}</NavLink>
             <p className={s.status}>{status}</p>
             <SvgLink link={`messages/${id}`} title={'send'} className={`${s.btn} ${s.sendBtn}`} svgClassName={s.svg}/>
             {followed ?
