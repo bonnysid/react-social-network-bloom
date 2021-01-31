@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Description.module.css';
-import SocialLink from "./SocialLink";
+import SocialLink from "../../HelpfulComponents/SocialLink";
 
-const Description = ({name, status, contacts}) => {
+const Description = ({name, status, contacts, about}) => {
 
     const contactsLinks = [];
 
@@ -12,8 +12,6 @@ const Description = ({name, status, contacts}) => {
         }
     }
 
-    console.log(contactsLinks)
-
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
@@ -21,9 +19,10 @@ const Description = ({name, status, contacts}) => {
                 <p className={s.status}>{status}</p>
                 <div className="underline"></div>
             </div>
-            <section className={s.about}>
+            <section className={s.links}>
                 {contactsLinks}
             </section>
+
         </main>
     );
 }

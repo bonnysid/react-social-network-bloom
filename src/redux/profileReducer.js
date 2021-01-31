@@ -3,6 +3,7 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const DELETE_POST = 'DELETE_POST';
 const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const SET_USER_STATUS = '';
 
 const initialState = {
     posts: [

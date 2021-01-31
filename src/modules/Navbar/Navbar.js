@@ -16,14 +16,14 @@ const Navbar = ({items}) => {
                 {items}
             </div>
 
-            <SvgLink title={'exit'} link={'/'} isExit={true}/>
+            <SvgLink title={'exit'} link={'/'} isExit={true} urlId={'exit'}/>
 
         </nav>       
     )
 }
 const mapStateToProps = (state) => {
     return {
-        items: state.navbar.menuItems.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>))
+        items: state.navbar.menuItems.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link} urlId={item.title} />))
     }
 }
 

@@ -9,16 +9,25 @@ import Preloader from "../HelpfulComponents/Preloader";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
+        this.getProfileInfo();
+        console.log(this.getUserStatus());
+    }
+
+    getProfileInfo = async () => {
         this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`)
+        await axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`)
             .then(response => {
                 this.props.toggleFetching(false);
                 this.props.setUserPageInfo(response.data);
             })
     }
 
-    render() {
+    getUserStatus = () => {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${this.props.match.params.id}`)
+            .then(response => response.data);
+    }
 
+    render() {
         if (!Object.keys(this.props.userInfo).length) return <Preloader/>
 
         return (

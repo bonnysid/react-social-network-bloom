@@ -9,7 +9,6 @@ const SvgLink = ({title, link, isExit, className, svgClassName}) => {
             <svg className={svgClassName ? svgClassName : s.icon + (isExit ? " " + s.exit_icon : "")}>
                 <use xlinkHref={`${icons}#${title.toLowerCase().replace(/ /g, '_')}`} />
             </svg>
-            {/*<p className={s.item}>{title}</p>*/}
         </NavLink> 
     );
 }
