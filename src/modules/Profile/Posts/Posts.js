@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
 import PostForm from "../../HelpfulComponents/PostForm";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
+import {addPost, updateNewPostText} from "../../../redux/profileReducer";
 import {connect} from "react-redux";
 
 const Posts = ({posts, newPostText, addPost, updateNewPostText, joinedUser}) => {
@@ -41,18 +41,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: (joinedUser) => {
-            dispatch(addPostActionCreator(joinedUser));
-        },
-        updateNewPostText: (e) => {
-            const text = e.target.value;
-            dispatch(updateNewPostTextActionCreator(text));
-        }
-    }
-}
-
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
+const PostsContainer = connect(mapStateToProps, {addPost, updateNewPostText})(Posts);
 
 export default PostsContainer;

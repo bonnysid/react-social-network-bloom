@@ -14,9 +14,9 @@ const initialState = {
      newMessageText: ''
 };
 
-export const addMessageActionCreator = (authorInfo) => ({type: ADD_MESSAGE, authorInfo: authorInfo});
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
-export const selectDialogActionCreator = (id) => ({type: SELECT_DIALOG, dialogId: id});
+export const addMessage = (authorInfo) => ({type: ADD_MESSAGE, authorInfo: authorInfo});
+export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
+export const selectDialog = (id) => ({type: SELECT_DIALOG, dialogId: id});
 
 const dialogsReducer = (state = initialState, action) => {
 

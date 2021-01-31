@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import SvgLink from './SvgLink';
-import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 const Navbar = ({items}) => {
     return (
@@ -15,7 +15,7 @@ const Navbar = ({items}) => {
                 {items}
             </div>
 
-            <SvgLink title={"exit"} link={"/"} isExit={true}/>
+            <SvgLink title={'exit'} link={'/'} isExit={true}/>
 
         </nav>       
     )

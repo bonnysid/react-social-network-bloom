@@ -20,9 +20,9 @@ const initialState = {
     }
 };
 
-export const addPostActionCreator = (authorInfo) => ({type: ADD_POST, authorInfo: authorInfo});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const deletePostActionCreator = (id) => ({type: DELETE_POST, postId: id});
+export const addPost = (authorInfo) => ({type: ADD_POST, authorInfo: authorInfo});
+export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const deletePost = (id) => ({type: DELETE_POST, postId: id});
 
 const profileReducer = (state = initialState, action) => {
 

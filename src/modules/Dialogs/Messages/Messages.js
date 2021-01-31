@@ -2,7 +2,7 @@ import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
 import PostForm from "../../HelpfulComponents/PostForm";
-import {updateNewMessageTextActionCreator, addMessageActionCreator} from "../../../redux/dialogsReducer.js";
+import {updateNewMessageText, addMessage} from "../../../redux/dialogsReducer.js";
 import {connect} from "react-redux";
 
 const Messages = ({messages, dialogName, newMessageText, addMessage, updateNewMessageText, joinedUser}) => {
@@ -54,18 +54,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: (joinedUser) => {
-            dispatch(addMessageActionCreator(joinedUser));
-        },
-        updateNewMessageText: (e) => {
-            const text = e.target.value;
-            dispatch(updateNewMessageTextActionCreator(text))
-        }
-    }
-}
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
+const MessagesContainer = connect(mapStateToProps, {addMessage, updateNewMessageText})(Messages)
 
 export default MessagesContainer;
