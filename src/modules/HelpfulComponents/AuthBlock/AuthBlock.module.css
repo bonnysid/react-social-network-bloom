@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    margin: 0 1em;
+}
+
+.login {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-light);
+}
