@@ -15,7 +15,8 @@ class ProfileContainer extends React.Component {
 
     getProfileInfo = async () => {
         this.props.toggleFetching(true);
-        await axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`)
+        const userId = this.props.match.params.id ? this.props.match.params.id : 2;
+        await axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.toggleFetching(false);
                 this.props.setUserPageInfo(response.data);
@@ -23,7 +24,8 @@ class ProfileContainer extends React.Component {
     }
 
     getUserStatus = () => {
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${this.props.match.params.id}`)
+        const userId = this.props.match.params.id ? this.props.match.params.id : 2;
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${userId}`)
             .then(response => response.data);
     }
 
