@@ -9,7 +9,8 @@ const initialState = {
     totalCountUsers: 0,
     pageSize: 8,
     page: 1,
-    isFetching: false
+    isFetching: false,
+    isFollowingProcess: false
 }
 
 const FOLLOW = "FOLLOW";
@@ -20,6 +21,7 @@ const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
 const SET_PAGE = 'SET_PAGE';
 const RESET_USERS = 'RESET_USERS';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const TOGGLE_FOLLOWING_PROCESS = 'TOGGLE_FOLLOWING_PROCESS'
 
 export const followUser = (userId) => ({type: FOLLOW, userId});
 export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
@@ -29,6 +31,7 @@ export const setTotalCountUsers = (count) => ({type: SET_TOTAL_COUNT_USERS, coun
 export const setPage = (page) => ({type: SET_PAGE, page});
 export const resetUsers = () => ({type: RESET_USERS});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+export const toggleFollowingProcess= (isFollowing) => ({type: TOGGLE_FOLLOWING_PROCESS, isFollowing});
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -81,6 +84,11 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        case TOGGLE_FOLLOWING_PROCESS:
+            return {
+                ...state,
+                isFollowingProcess: action.isFollowing
             }
         default: return state;
     }

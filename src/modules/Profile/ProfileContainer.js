@@ -5,7 +5,7 @@ import axios from "axios";
 import {setUserPageInfo, toggleFetching} from "../../redux/profileReducer";
 import {withRouter} from "react-router";
 import Preloader from "../HelpfulComponents/Preloader";
-import API from "../../API/api";
+import API from "../../API/API";
 
 class ProfileContainer extends React.Component {
 

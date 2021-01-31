@@ -6,11 +6,11 @@ import {
     onSearchChange,
     setUsers,
     setTotalCountUsers,
-    setPage, resetUsers, toggleFetching
+    setPage, resetUsers, toggleFetching, toggleFollowingProcess
 } from "../../redux/usersReducer";
 import React from "react";
 import Preloader from "../HelpfulComponents/Preloader";
-import API from "../../API/api";
+import API from "../../API/API";
 
 class UsersContainer extends React.Component {
 
@@ -45,16 +45,35 @@ class UsersContainer extends React.Component {
             });
     }
 
+    onFollow = (id) => {
+        this.props.toggleFollowingProcess(true);
+        API.followUser(id)
+            .then(data => {
+                this.props.toggleFollowingProcess(false);
+                if(data.resultCode === 0) followUser(id);
+            })
+    }
+
+    onUnfollow = (id) => {
+        this.props.toggleFollowingProcess(true);
+        API.unfollowUser(id)
+            .then(data => {
+                this.props.toggleFollowingProcess(false);
+                if(data.resultCode === 0) unfollowUser(id);
+            })
+    }
+
     render() {
         if(!this.props.users) return <Preloader/>;
 
         return (
             <>
                 <Users
-                    followUser={this.props.followUser}
-                    unfollowUser={this.props.unfollowUser}
+                    followUser={this.onFollow}
+                    unfollowUser={this.onUnfollow}
                     users={this.props.users}
                     onLoadUsers={this.onLoadUsers}
+                    isFollowingProcess={isFollowingProcess}
                 />
                 {this.props.isFetching ? <Preloader /> : null}
             </>
@@ -69,10 +88,11 @@ const mapStateToProps = (state) => {
         pageSize: state.users.pageSize,
         totalCountUsers: state.users.totalCountUsers,
         page: state.users.page,
-        isFetching: state.users.isFetching
+        isFetching: state.users.isFetching,
+        isFollowingProcess: state.users.isFollowingProcess
     }
 }
 
 export default connect(mapStateToProps, {
-    followUser, unfollowUser, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching
+    followUser, unfollowUser, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching, toggleFollowingProcess
 })(UsersContainer);

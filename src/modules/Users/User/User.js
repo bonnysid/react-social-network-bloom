@@ -5,23 +5,8 @@ import SvgItem from "../../HelpfulComponents/SvgItem";
 import SvgLink from "../../HelpfulComponents/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
-import API from "../../../API/api";
 
-const User = ({id, status, followed, name, avatarLink, followUser, unfollowUser}) => {
-
-    const onFollow = () => {
-        API.followUser(id)
-            .then(data => {
-                if(data.resultCode === 0) followUser(id);
-            })
-    }
-
-    const onUnfollow = () => {
-        API.unfollowUser(id)
-            .then(data => {
-                if(data.resultCode === 0) unfollowUser(id);
-            })
-    }
+const User = ({id, status, followed, name, avatarLink, followUser, unfollowUser, isFollowingProcess}) => {
 
     return (
         <div className={`${s.block} block`}>
@@ -30,11 +15,11 @@ const User = ({id, status, followed, name, avatarLink, followUser, unfollowUser}
             <p className={s.status}>{status}</p>
             <SvgLink link={`messages/${id}`} title={'send'} className={`${s.btn} ${s.sendBtn}`} svgClassName={s.svg}/>
             {followed ?
-                <button onClick={() => onUnfollow()} className={`${s.btn} ${s.addBtn}`}>
+                <button disabled={isFollowingProcess} onClick={() => unfollowUser(id)} className={`${s.btn} ${s.addBtn}`}>
                     <SvgItem width={'25px'} height={'25px'} className={s.svgRed} urlId={'close'}/>
                 </button>
                 :
-                <button onClick={() => onFollow()} className={`${s.btn} ${s.addBtn}`}>
+                <button disabled={isFollowingProcess} onClick={() => followUser(id)} className={`${s.btn} ${s.addBtn}`}>
                     <SvgItem width={'25px'} height={'25px'} className={s.svg} urlId={'add-friend'}/>
                 </button>
             }
