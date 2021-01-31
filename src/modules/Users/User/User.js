@@ -5,31 +5,21 @@ import SvgItem from "../../HelpfulComponents/SvgItem";
 import SvgLink from "../../HelpfulComponents/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
-import axios from "axios";
+import API from "../../../API/api";
 
 const User = ({id, status, followed, name, avatarLink, followUser, unfollowUser}) => {
 
     const onFollow = () => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, null, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "0e19ce1b-03e5-4caa-9644-e65156a21dcd",
-            }
-        })
-            .then(response => {
-                if(response.data.resultCode === 0) followUser(id);
+        API.followUser(id)
+            .then(data => {
+                if(data.resultCode === 0) followUser(id);
             })
     }
 
     const onUnfollow = () => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "0e19ce1b-03e5-4caa-9644-e65156a21dcd",
-            }
-        })
-            .then(response => {
-                if(response.data.resultCode === 0) unfollowUser(id);
+        API.unfollowUser(id)
+            .then(data => {
+                if(data.resultCode === 0) unfollowUser(id);
             })
     }
 

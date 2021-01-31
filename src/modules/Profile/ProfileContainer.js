@@ -5,6 +5,7 @@ import axios from "axios";
 import {setUserPageInfo, toggleFetching} from "../../redux/profileReducer";
 import {withRouter} from "react-router";
 import Preloader from "../HelpfulComponents/Preloader";
+import API from "../../API/api";
 
 class ProfileContainer extends React.Component {
 
@@ -16,17 +17,16 @@ class ProfileContainer extends React.Component {
     getProfileInfo = () => {
         this.props.toggleFetching(true);
         const userId = this.props.match.params.id ? this.props.match.params.id : 2;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
+        API.getUserInfo(userId)
+            .then(data => {
                 this.props.toggleFetching(false);
-                this.props.setUserPageInfo(response.data);
+                this.props.setUserPageInfo(data);
             })
     }
 
     getUserStatus = () => {
         const userId = this.props.match.params.id ? this.props.match.params.id : 2;
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${userId}`)
-            .then(response => response.data);
+        return API.getUserStatus(userId);
     }
 
     render() {
