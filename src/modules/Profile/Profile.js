@@ -11,7 +11,7 @@ const Profile = ({userInfo}) => {
         <>
             <Header title={userInfo.fullName}/>
             <main className={s.content}>
-                <Avatar url={userInfo.photos.small}/>
+                <Avatar url={userInfo.photos.large}/>
                 <Description
                     name={userInfo.fullName}
                     status={userInfo.aboutMe}

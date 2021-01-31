@@ -3,12 +3,13 @@ import s from './Navbar.module.css';
 import SvgLink from '../HelpfulComponents/SvgLink';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import logo from '../../assets/img/logo.svg'
 
 const Navbar = ({items}) => {
     return (
         <nav className={`${s.block}`}>
             <NavLink to='/' className={`${s.logo}`}>
-                <img src='img/logo.svg' className={`${s.logo__img}`} alt='logo' />
+                <img src={logo} className={`${s.logo__img}`} alt='logo' />
             </NavLink>
 
             <div className={s.main__nav}>
