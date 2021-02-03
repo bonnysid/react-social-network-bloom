@@ -1,4 +1,5 @@
 import API from "../API";
+import {usersAPI} from "../API/API";
 
 const initialState = {
     joinedUser: {
@@ -37,7 +38,7 @@ export const toggleFollowingProcess= (isFollowing, userId) => ({type: TOGGLE_FOL
 
 export const getUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleFetching(true));
-    API.getUsers(currentPage, pageSize)
+    usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleFetching(false));
             dispatch(setUsers(data.items));
@@ -47,7 +48,7 @@ export const getUsers = (currentPage, pageSize) => (dispatch) => {
 
 export const follow = (id) => (dispatch) => {
     dispatch(toggleFollowingProcess(true, id));
-    API.followUser(id)
+    usersAPI.followUser(id)
         .then(data => {
             dispatch(toggleFollowingProcess(false));
             if(data.resultCode === 0) dispatch(followSuccess(id));
@@ -56,7 +57,7 @@ export const follow = (id) => (dispatch) => {
 
 export const unfollow = (id) => (dispatch) => {
     dispatch(toggleFollowingProcess(true, id));
-    API.unfollowUser(id)
+    usersAPI.unfollowUser(id)
         .then(data => {
             dispatch(toggleFollowingProcess(false));
             if(data.resultCode === 0) dispatch(unfollowSuccess(id));

@@ -1,4 +1,5 @@
 import API from "../API";
+import {usersAPI} from "../API/API";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -25,7 +26,7 @@ export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetchin
 
 export const getUserInfo = (userId) => (dispatch) => {
     dispatch(toggleFetching(true));
-    API.getUserInfo(userId)
+    usersAPI.getUserInfo(userId)
         .then(data => {
             dispatch(toggleFetching(false));
             dispatch(setUserPageInfo(data));
