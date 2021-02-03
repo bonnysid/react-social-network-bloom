@@ -1,9 +1,11 @@
+import API from "../API";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const DELETE_POST = 'DELETE_POST';
 const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-const SET_USER_STATUS = '';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 const initialState = {
     posts: [
@@ -20,6 +22,15 @@ export const updateNewPostText = (newText) => ({type: UPDATE_NEW_POST_TEXT, newT
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, userPageInfo});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+
+export const getUserInfo = (userId) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    API.getUserInfo(userId)
+        .then(data => {
+            dispatch(toggleFetching(false));
+            dispatch(setUserPageInfo(data));
+        })
+}
 
 const profileReducer = (state = initialState, action) => {
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import API from "../API";
 
 const SET_AUTH_USER_INFO = 'SET_AUTH_USER_INFO';
