@@ -25,6 +25,10 @@ const API = {
 
     unfollowUser(id) {
         return this._instance.delete( `/follow/${id})`).then(response => response.data);
+    },
+
+    getAuth() {
+        return this._instance.get('/auth/me').then(response => response.data);
     }
 }
 
