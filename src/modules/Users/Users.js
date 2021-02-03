@@ -9,12 +9,12 @@ const Users = (props) => {
         <User
             id={u.id}
             key={u.id}
-            followUser={props.followUser}
-            unfollowUser={props.unfollowUser}
+            follow={props.follow}
+            unfollow={props.unfollow}
             followed={u.followed}
             status={u.status} name={u.name}
             avatarLink={u.photos.small}
-            followingProcess={props.followingProcess}
+            followingProcess={this.props.followingProcess}
         />)
 
 

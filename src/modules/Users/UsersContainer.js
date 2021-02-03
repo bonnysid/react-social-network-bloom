@@ -1,16 +1,13 @@
 import Users from "./Users";
 import {connect} from "react-redux";
 import {
-    followSuccess,
-    unfollowSuccess,
+    follow,
+    unfollow,
     onSearchChange,
-    setUsers,
-    setTotalCountUsers,
-    setPage, resetUsers, toggleFetching, toggleFollowingProcess
+    setPage, resetUsers
 } from "../../redux/usersReducer";
 import React from "react";
 import Preloader from "../HelpfulComponents/Preloader";
-import API from "../../API/API";
 
 class UsersContainer extends React.Component {
 
@@ -27,27 +24,14 @@ class UsersContainer extends React.Component {
         this.props.getUsers(this.props.page + 1, this.props.pageSize)
     }
 
-    onFollow = (id) => {
-
-    }
-
-    onUnfollow = (id) => {
-        this.props.toggleFollowingProcess(true, id);
-        API.unfollowUser(id)
-            .then(data => {
-                this.props.toggleFollowingProcess(false);
-                if(data.resultCode === 0) unfollowSuccess(id);
-            })
-    }
-
     render() {
         if(!this.props.users) return <Preloader/>;
 
         return (
             <>
                 <Users
-                    followUser={this.onFollow}
-                    unfollowUser={this.onUnfollow}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
                     users={this.props.users}
                     onLoadUsers={this.onLoadUsers}
                     followingProcess={this.props.followingProcess}
@@ -71,5 +55,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    followUser: followSuccess, unfollowUser: unfollowSuccess, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching, toggleFollowingProcess
+    follow, unfollow, setPage, resetUsers, onSearchChange
 })(UsersContainer);
