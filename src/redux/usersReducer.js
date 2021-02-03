@@ -1,3 +1,5 @@
+import API from "../API";
+
 const initialState = {
     joinedUser: {
         id: 4,
@@ -23,8 +25,8 @@ const RESET_USERS = 'RESET_USERS';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 const TOGGLE_FOLLOWING_PROCESS = 'TOGGLE_FOLLOWING_PROCESS'
 
-export const followUser = (userId) => ({type: FOLLOW, userId});
-export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
+export const followSuccess = (userId) => ({type: FOLLOW, userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (usersData) => ({type: SET_USERS, usersData});
 export const onSearchChange = (text) => ({type: CHANGE_SEARCH_TEXT, text});
 export const setTotalCountUsers = (count) => ({type: SET_TOTAL_COUNT_USERS, count});
@@ -32,6 +34,34 @@ export const setPage = (page) => ({type: SET_PAGE, page});
 export const resetUsers = () => ({type: RESET_USERS});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const toggleFollowingProcess= (isFollowing, userId) => ({type: TOGGLE_FOLLOWING_PROCESS, isFollowing, userId});
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    API.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(toggleFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalCountUsers(data.totalCount));
+        });
+}
+
+export const follow = (id) => (dispatch) => {
+    dispatch(toggleFollowingProcess(true, id));
+    API.followUser(id)
+        .then(data => {
+            dispatch(toggleFollowingProcess(false));
+            if(data.resultCode === 0) dispatch(followSuccess(id));
+        })
+}
+
+export const unfollow = (id) => (dispatch) => {
+    dispatch(toggleFollowingProcess(true, id));
+    API.unfollowUser(id)
+        .then(data => {
+            dispatch(toggleFollowingProcess(false));
+            if(data.resultCode === 0) dispatch(unfollowSuccess(id));
+        })
+}
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {

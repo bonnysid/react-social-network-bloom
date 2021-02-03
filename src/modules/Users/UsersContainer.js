@@ -1,8 +1,8 @@
 import Users from "./Users";
 import {connect} from "react-redux";
 import {
-    followUser,
-    unfollowUser,
+    followSuccess,
+    unfollowSuccess,
     onSearchChange,
     setUsers,
     setTotalCountUsers,
@@ -14,19 +14,8 @@ import API from "../../API/API";
 
 class UsersContainer extends React.Component {
 
-    getUsers = () => {
-        this.props.toggleFetching(true);
-        API.getUsers(this.props.page, this.props.pageSize)
-            .then(data => {
-                this.props.toggleFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCountUsers(data.totalCount);
-            });
-
-    }
-
     componentDidMount() {
-        this.getUsers();
+        this.props.getUsers(this.props.page, this.props.pageSize);
     }
 
     componentWillUnmount() {
@@ -35,23 +24,11 @@ class UsersContainer extends React.Component {
     }
 
     onLoadUsers = () => {
-        this.props.toggleFetching(true);
-        this.props.setPage(this.props.page + 1);
-        API.getUsers(this.props.page + 1, this.props.pageSize)
-            .then(data => {
-                this.props.toggleFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCountUsers(data.totalCount);
-            });
+        this.props.getUsers(this.props.page + 1, this.props.pageSize)
     }
 
     onFollow = (id) => {
-        this.props.toggleFollowingProcess(true, id);
-        API.followUser(id)
-            .then(data => {
-                this.props.toggleFollowingProcess(false);
-                if(data.resultCode === 0) followUser(id);
-            })
+
     }
 
     onUnfollow = (id) => {
@@ -59,7 +36,7 @@ class UsersContainer extends React.Component {
         API.unfollowUser(id)
             .then(data => {
                 this.props.toggleFollowingProcess(false);
-                if(data.resultCode === 0) unfollowUser(id);
+                if(data.resultCode === 0) unfollowSuccess(id);
             })
     }
 
@@ -94,5 +71,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    followUser, unfollowUser, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching, toggleFollowingProcess
+    followUser: followSuccess, unfollowUser: unfollowSuccess, setUsers, setTotalCountUsers, setPage, resetUsers, onSearchChange, toggleFetching, toggleFollowingProcess
 })(UsersContainer);
