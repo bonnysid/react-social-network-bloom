@@ -1,8 +1,17 @@
 import React from 'react';
 import s from './Description.module.css';
-import SocialLink from "./SocialLink";
+import SocialLink from "../../HelpfulComponents/SocialLink";
 
-const Description = ({name, status, instaLink, gitHubLink}) => {
+const Description = ({name, status, contacts, about}) => {
+
+    const contactsLinks = [];
+
+    for(let key in contacts) {
+        if (contacts[key]) {
+            contactsLinks.push(<SocialLink key={key} link={contacts[key]} urlId={key} hoverTitle={key} width={'35px'} height={'35px'}/>);
+        }
+    }
+
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
@@ -10,23 +19,10 @@ const Description = ({name, status, instaLink, gitHubLink}) => {
                 <p className={s.status}>{status}</p>
                 <div className="underline"></div>
             </div>
-            <section className={s.about}>
-                <SocialLink
-                    link={instaLink}
-                    urlId='instagram'
-                    hoverTitle="instagram"
-                    width='35px'
-                    height='35px'
-                />
-                <SocialLink
-                    link={gitHubLink}
-                    urlId='github'
-                    hoverTitle="github"
-                    width='35px'
-                    height='35px'
-                />
-
+            <section className={s.links}>
+                {contactsLinks}
             </section>
+
         </main>
     );
 }

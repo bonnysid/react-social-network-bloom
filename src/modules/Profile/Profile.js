@@ -10,14 +10,13 @@ const Profile = (props) => {
     const {userInfo} = props;
     return (
         <>
-            <Header title={userInfo.name}/>
+            <Header title={userInfo.fullName}/>
             <main className={s.content}>
-                <Avatar url={userInfo.avatarLink}/>
+                <Avatar url={userInfo.photos.large}/>
                 <Description
-                    name={userInfo.name}
-                    status={userInfo.status}
-                    gitHubLink={userInfo.links.github}
-                    instaLink={userInfo.links.instagram}
+                    name={userInfo.fullName}
+                    status={userInfo.aboutMe}
+                    contacts={userInfo.contacts}
                 />
                 <Photos/>
                 <PostsContainer />

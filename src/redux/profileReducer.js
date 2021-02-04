@@ -1,6 +1,12 @@
+import API from "../API";
+import {usersAPI} from "../API/API";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const DELETE_POST = 'DELETE_POST';
+const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 const initialState = {
     posts: [
@@ -8,21 +14,24 @@ const initialState = {
         {id: 2, author: 'Nikita Bortsov', comment: 'First post!', likeCount: 5}
     ],
     newPostText: '',
-    userPageInfo: {
-        id: 4,
-        name: 'Nikita Bortsov',
-        avatarLink: 'https://sun9-52.userapi.com/VbuS5diiKVWIdt37_zJ5Qdj99TQclDM8IfHkPA/VpKVDBLkFJ8.jpg',
-        status: 'inst: bonnysid',
-        links: {
-            instagram: 'https://instagram.com/bonnysid',
-            github: 'https://github.com/bonnysid'
-        }
-    }
+    userPageInfo: {},
+    isFetching: false
 };
 
-export const addPost = (authorInfo) => ({type: ADD_POST, authorInfo: authorInfo});
-export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const deletePost = (id) => ({type: DELETE_POST, postId: id});
+export const addPost = (authorInfo) => ({type: ADD_POST, authorInfo});
+export const updateNewPostText = (newText) => ({type: UPDATE_NEW_POST_TEXT, newText});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
+export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, userPageInfo});
+export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+
+export const getUserInfo = (userId) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    usersAPI.getUserInfo(userId)
+        .then(data => {
+            dispatch(toggleFetching(false));
+            dispatch(setUserPageInfo(data));
+        })
+}
 
 const profileReducer = (state = initialState, action) => {
 
@@ -57,7 +66,16 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts]
             };
-
+        case SET_USER_PAGE_INFO:
+            return {
+                ...state,
+                userPageInfo: action.userPageInfo
+            }
+        case TOGGLE_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
         default: return state;
     }
 }

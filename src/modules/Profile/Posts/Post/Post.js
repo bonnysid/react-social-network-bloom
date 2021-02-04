@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
+import SvgItem from "../../../HelpfulComponents/SvgItem";
 
 const Post = ({author, comment, likeCount}) => {
     const date = new Date();
@@ -19,9 +20,10 @@ const Post = ({author, comment, likeCount}) => {
             <p className={s.comment}>{comment}</p>
             <div className="underline"></div>
             <section className={s.footer}>
-                    <svg className={s.icon}>
-                        <use xlinkHref={`img/icons.svg#like`} />
-                    </svg>
+                    {/*<svg className={s.icon}>*/}
+                    {/*    <use xlinkHref={`img/icons.svg#like`} />*/}
+                    {/*</svg>*/}
+                    <SvgItem className={s.icon} urlId={'like'}/>
                     <p className={s.count}>{likeCount}</p>
 
             </section>

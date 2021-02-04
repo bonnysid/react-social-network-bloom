@@ -3,18 +3,18 @@ import User from "./User";
 import Header from "../Header";
 import s from "./Users.module.css";
 
-
 const Users = (props) => {
 
     const usersElements = props.users.map(u =>
         <User
             id={u.id}
             key={u.id}
-            followUser={props.followUser}
-            unfollowUser={props.unfollowUser}
+            follow={props.follow}
+            unfollow={props.unfollow}
             followed={u.followed}
             status={u.status} name={u.name}
             avatarLink={u.photos.small}
+            followingProcess={this.props.followingProcess}
         />)
 
 

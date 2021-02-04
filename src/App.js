@@ -9,6 +9,7 @@ import './app.css';
 import './nullstyle.css';
 import UsersContainer from './modules/Users/UsersContainer';
 import ProfileContainer from './modules/Profile/ProfileContainer';
+import AuthBlockContainer from "./modules/HelpfulComponents/AuthBlock/AuthBlockContainer";
 
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
             <NavbarContainer />
 
             <div className='container'>
-                <Route path='/profile/:userId' render={() => <ProfileContainer />}/>
+
                 <Route path='/messages' render={() => <Dialogs />}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>
