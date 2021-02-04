@@ -6,7 +6,8 @@ import Description from './Description';
 import PostsContainer from "./Posts";
 import Header from "../Header";
 
-const Profile = ({userInfo}) => {
+const Profile = (props) => {
+    const {userInfo} = props;
     return (
         <>
             <Header title={userInfo.name}/>
