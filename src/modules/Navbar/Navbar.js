@@ -25,7 +25,7 @@ const Navbar = ({items}) => {
 }
 const mapStateToProps = (state) => {
     return {
-
+        items: state.navbar.menuItems
     }
 }
 

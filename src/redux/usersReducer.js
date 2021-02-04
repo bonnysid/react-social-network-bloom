@@ -1,4 +1,4 @@
-import API from "../API";
+
 import {usersAPI} from "../API/API";
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
     all: [],
     searchText: '',
     totalCountUsers: 0,
-
+    pageSize: 8,
     page: 1,
     isFetching: false,
     followingProcess: []

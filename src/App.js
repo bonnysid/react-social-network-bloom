@@ -10,6 +10,7 @@ import './nullstyle.css';
 import UsersContainer from './modules/Users/UsersContainer';
 import ProfileContainer from './modules/Profile/ProfileContainer';
 import AuthBlockContainer from "./modules/HelpfulComponents/AuthBlock/AuthBlockContainer";
+import Login from "./modules/Login/Login";
 
 
 const App = () => {
@@ -19,7 +20,9 @@ const App = () => {
             <NavbarContainer />
 
             <div className='container'>
-
+                <Route path='/login' render={() => <Login/>}/>
+                <Route exact={true} path='/' render={() => <AuthBlockContainer />}/>
+                <Route path='/profile/:id?' render={() => <ProfileContainer />}/>
                 <Route path='/messages' render={() => <Dialogs />}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>

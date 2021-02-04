@@ -4,6 +4,8 @@ import s from './Dialogs.module.css';
 import MessagesContainer from './Messages';
 import {connect} from "react-redux";
 import Header from "../Header";
+import {compose} from "redux";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 const Dialogs = ({dialogs}) => {
 
@@ -38,6 +40,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps)
+)(Dialogs);

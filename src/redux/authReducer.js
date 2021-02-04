@@ -1,4 +1,4 @@
-import API from "../API";
+
 import {authAPI} from "../API/API";
 
 const SET_AUTH_USER_INFO = 'SET_AUTH_USER_INFO';
