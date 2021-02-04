@@ -11,6 +11,7 @@ import UsersContainer from './modules/Users/UsersContainer';
 import ProfileContainer from './modules/Profile/ProfileContainer';
 import AuthBlockContainer from "./modules/HelpfulComponents/AuthBlock/AuthBlockContainer";
 import Login from "./modules/Login/Login";
+import StartPage from "./modules/StartPage/StartPage";
 
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
 
             <div className='container'>
                 <Route path='/login' render={() => <Login/>}/>
-                <Route exact={true} path='/' render={() => <AuthBlockContainer />}/>
+                <Route exact={true} path='/' render={() => <StartPage/>}/>
                 <Route path='/profile/:id?' render={() => <ProfileContainer />}/>
                 <Route path='/messages' render={() => <Dialogs />}/>
                 <Route path='/news' render={() => <News/>}/>
