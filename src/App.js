@@ -22,7 +22,7 @@ const App = () => {
 
             <div className='container'>
                 <Route path='/login' render={() => <Login/>}/>
-                <Route exact={true} path='/' render={() => <StartPage/>}/>
+                <Route exact={true} path='/' render={() => <AuthBlockContainer/>}/>
                 <Route path='/profile/:id?' render={() => <ProfileContainer />}/>
                 <Route path='/messages' render={() => <Dialogs />}/>
                 <Route path='/news' render={() => <News/>}/>

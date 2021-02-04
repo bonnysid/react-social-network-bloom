@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Description.module.css';
 import SocialLink from "../../HelpfulComponents/SocialLink";
+import ProfileStatus from "./ProfileStatus";
 
 const Description = ({name, status, contacts, about}) => {
 
@@ -16,7 +17,7 @@ const Description = ({name, status, contacts, about}) => {
         <main className={`${s.content} block`}>
             <div className={s.header}>
                 <h1 className={s.name}>{name}</h1>
-                <p className={s.status}>{status}</p>
+                <ProfileStatus status={status}/>
                 <div className="underline"></div>
             </div>
             <section className={s.links}>

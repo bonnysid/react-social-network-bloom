@@ -21,7 +21,8 @@ class StartPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: state.auth.isFetching
+        isFetching: state.auth.isFetching,
+        isAuth: state.auth.isAuth
     }
 }
 
