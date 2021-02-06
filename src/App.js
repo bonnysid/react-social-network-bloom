@@ -12,6 +12,7 @@ import ProfileContainer from './modules/Profile/ProfileContainer';
 import AuthBlockContainer from "./modules/HelpfulComponents/AuthBlock/AuthBlockContainer";
 import Login from "./modules/Login/Login";
 import StartPage from "./modules/StartPage/StartPage";
+import Header from "./modules/Header/Header";
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     return (
         <>
             <NavbarContainer />
-
+            <Header />
             <div className='container'>
                 <Route path='/login' render={() => <Login/>}/>
                 <Route exact={true} path='/' render={() => <AuthBlockContainer/>}/>

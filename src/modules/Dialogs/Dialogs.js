@@ -3,7 +3,6 @@ import Dialog from './Dialog';
 import s from './Dialogs.module.css';
 import MessagesContainer from './Messages';
 import {connect} from "react-redux";
-import Header from "../Header";
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
@@ -11,7 +10,6 @@ const Dialogs = ({dialogs}) => {
 
     return (
         <>
-            <Header title={'Messages'}/>
             <main className={`${s.content}`}>
                 <aside className={s.people}>
                     {dialogs}

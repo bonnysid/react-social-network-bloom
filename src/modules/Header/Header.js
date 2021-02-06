@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './Header.module.css';
-import Navbar from "../Navbar";
 import AuthBlockContainer from "../HelpfulComponents/AuthBlock/AuthBlockContainer";
+import {connect} from "react-redux";
+
 
 const Header = ({title}) => (
     <header className={s.header}>
@@ -10,4 +11,8 @@ const Header = ({title}) => (
     </header>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+    title: state.navbar.headerTitle
+})
+
+export default connect(mapStateToProps)(Header);

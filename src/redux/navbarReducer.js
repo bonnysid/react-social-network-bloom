@@ -1,4 +1,7 @@
+const SET_HEADER_TITLE = 'SET_HEADER_TITLE';
+
 const initialState = {
+    headerTitle: '',
     menuItems: [
         {title: 'My Profile', link: '/profile'},
         {title: 'Messages', link: '/messages'},
@@ -9,8 +12,17 @@ const initialState = {
     ]
 };
 
+export const setHeaderTitle = (headerTitle) => ({type: SET_HEADER_TITLE, headerTitle});
+
 const navbarReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case SET_HEADER_TITLE:
+            return {
+                ...state,
+                headerTitle: action.headerTitle
+            }
+        default: return state
+    }
 }
 
 export default navbarReducer;

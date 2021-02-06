@@ -4,9 +4,10 @@ import SvgLink from '../HelpfulComponents/SvgLink';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/img/logo.svg'
+import {setHeaderTitle} from "../../redux/navbarReducer";
 
-const Navbar = ({items}) => {
-    const menuElements = items.map((item, id) => (<SvgLink key={id} title={item.title} link={item.link}/>));
+const Navbar = ({items, setHeaderTitle}) => {
+    const menuElements = items.map((item, id) => (<SvgLink setHeaderTitle={setHeaderTitle} key={id} title={item.title} link={item.link}/>));
 
     return (
         <nav className={`${s.block}`}>
@@ -29,7 +30,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const NavbarContainer = connect(mapStateToProps)(Navbar);
+const NavbarContainer = connect(mapStateToProps, {setHeaderTitle})(Navbar);
 
 
 export default NavbarContainer;

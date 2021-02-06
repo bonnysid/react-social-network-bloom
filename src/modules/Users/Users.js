@@ -14,7 +14,7 @@ const Users = (props) => {
             followed={u.followed}
             status={u.status} name={u.name}
             avatarLink={u.photos.small}
-            followingProcess={this.props.followingProcess}
+            followingProcess={props.followingProcess}
         />)
 
 

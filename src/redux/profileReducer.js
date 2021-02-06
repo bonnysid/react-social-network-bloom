@@ -1,4 +1,5 @@
 import {profileAPI} from "../API/API";
+import {setHeaderTitle} from "./navbarReducer";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -31,15 +32,25 @@ export const getUserInfo = (userId) => (dispatch) => {
         .then(data => {
             dispatch(toggleFetching(false));
             dispatch(setUserPageInfo(data));
+            dispatch(setHeaderTitle(data.fullName))
         })
 }
 
 export const getUserStatus = (userID) => (dispatch) => {
-    dispatch(toggleFetching(true));
     profileAPI.getUserStatus(userID)
         .then(data => {
-            dispatch(toggleFetching(false));
             dispatch(setUserStatus(data))
+        })
+}
+
+export const updateUserStatus = (status) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    profileAPI.updateUserStatus(status)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(toggleFetching(false));
+                dispatch(setUserStatus(status));
+            }
         })
 }
 

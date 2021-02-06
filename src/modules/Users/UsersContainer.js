@@ -4,17 +4,19 @@ import {
     follow,
     unfollow,
     onSearchChange,
-    setPage, resetUsers
+    setPage, resetUsers, getUsers
 } from "../../redux/usersReducer";
 import React from "react";
 import Preloader from "../HelpfulComponents/Preloader";
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {setHeaderTitle} from "../../redux/navbarReducer";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(this.props.page, this.props.pageSize);
+        this.props.setHeaderTitle('Users');
     }
 
     componentWillUnmount() {
@@ -59,6 +61,6 @@ const mapStateToProps = (state) => {
 export default compose(
     withAuthRedirect,
     connect(mapStateToProps, {
-        follow, unfollow, setPage, resetUsers, onSearchChange
+        follow, unfollow, setPage, resetUsers, onSearchChange, getUsers, setHeaderTitle
     })
 )(UsersContainer);

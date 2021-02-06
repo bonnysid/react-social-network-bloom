@@ -36,7 +36,7 @@ class ProfileAPI extends API {
     }
 
     updateUserStatus(status) {
-        return this._instance.put((`profile/status`), {status}).then(response => response.data);
+        return this._instance.put((`profile/status`), {status});
     }
 }
 
