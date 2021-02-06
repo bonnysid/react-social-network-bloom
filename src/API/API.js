@@ -34,6 +34,10 @@ class ProfileAPI extends API {
     getUserStatus(id) {
         return this._instance.get((`profile/status/${id}`)).then(response => response.data);
     }
+
+    updateUserStatus(status) {
+        return this._instance.put((`profile/status`), {status}).then(response => response.data);
+    }
 }
 
 class AuthAPI extends API {

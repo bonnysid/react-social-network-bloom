@@ -38,6 +38,7 @@ export const getUserStatus = (userID) => (dispatch) => {
     dispatch(toggleFetching(true));
     profileAPI.getUserStatus(userID)
         .then(data => {
+            dispatch(toggleFetching(false));
             dispatch(setUserStatus(data))
         })
 }

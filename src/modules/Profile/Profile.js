@@ -15,7 +15,7 @@ const Profile = (props) => {
                 <Avatar url={userInfo.photos.large}/>
                 <Description
                     name={userInfo.fullName}
-                    status={userInfo.aboutMe}
+                    status={props.status}
                     contacts={userInfo.contacts}
                 />
                 <Photos/>
