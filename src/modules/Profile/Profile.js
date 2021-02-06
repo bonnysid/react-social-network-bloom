@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css';
 import Avatar from './Avatar';
-import Photos from './Photos';
 import Description from './Description';
 import PostsContainer from "./Posts";
 
@@ -17,7 +16,6 @@ const Profile = (props) => {
                     contacts={userInfo.contacts}
                     updateUserStatus={props.updateUserStatus}
                 />
-                <Photos/>
                 <PostsContainer />
             </main>
         </>

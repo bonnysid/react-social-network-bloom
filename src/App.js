@@ -21,9 +21,10 @@ const App = () => {
         <>
             <NavbarContainer />
             <Header />
+            <AuthBlockContainer right={0}/>
             <div className='container'>
                 <Route path='/login' render={() => <Login/>}/>
-                <Route exact={true} path='/' render={() => <AuthBlockContainer/>}/>
+                <Route exact={true} path='/' render={() => <StartPage/>}/>
                 <Route path='/profile/:id?' render={() => <ProfileContainer />}/>
                 <Route path='/messages' render={() => <Dialogs />}/>
                 <Route path='/news' render={() => <News/>}/>

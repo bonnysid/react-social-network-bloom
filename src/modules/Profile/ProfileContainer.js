@@ -6,7 +6,6 @@ import {withRouter} from "react-router";
 import Preloader from "../HelpfulComponents/Preloader";
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
-import {setHeaderTitle} from "../../redux/navbarReducer";
 
 class ProfileContainer extends React.Component {
 
@@ -15,7 +14,7 @@ class ProfileContainer extends React.Component {
     }
 
     getProfileInfo = () => {
-        const userId = this.props.match.params.id ? this.props.match.params.id : 2;
+        const userId = this.props.match.params.id ? this.props.match.params.id : this.props.yourId;
         this.props.getUserInfo(userId);
         this.props.getUserStatus(userId);
     }
@@ -32,6 +31,7 @@ class ProfileContainer extends React.Component {
 
 const mapPropsToState = (state) => ({
     userInfo: state.profilePage.userPageInfo,
+    yourId: state.auth.userId,
     userStatus: state.profilePage.userStatus
 });
 

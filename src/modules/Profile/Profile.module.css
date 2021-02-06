@@ -3,11 +3,10 @@
     padding-top: 120px;
     grid-template-areas: 
     "avatar description"
-    "photos photos"
     "posts-header posts-header"
     "posts posts";
     grid-template-columns: 4fr 10fr;
-    grid-template-rows: 3fr 1fr auto;
+    grid-template-rows: 1.5fr 1fr auto;
     grid-area: content;
     grid-row: 1;
     grid-column: 2 / -1;
