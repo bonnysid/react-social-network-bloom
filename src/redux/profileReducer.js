@@ -1,11 +1,11 @@
-import {usersAPI} from "../API/API";
+import {profileAPI} from "../API/API";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const DELETE_POST = 'DELETE_POST';
 const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-// const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 const initialState = {
     posts: [
@@ -14,7 +14,8 @@ const initialState = {
     ],
     newPostText: '',
     userPageInfo: {},
-    isFetching: false
+    isFetching: false,
+    userStatus: ''
 };
 
 export const addPost = (authorInfo) => ({type: ADD_POST, authorInfo});
@@ -22,13 +23,22 @@ export const updateNewPostText = (newText) => ({type: UPDATE_NEW_POST_TEXT, newT
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, userPageInfo});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
 export const getUserInfo = (userId) => (dispatch) => {
     dispatch(toggleFetching(true));
-    usersAPI.getUserInfo(userId)
+    profileAPI.getProfileInfo(userId)
         .then(data => {
             dispatch(toggleFetching(false));
             dispatch(setUserPageInfo(data));
+        })
+}
+
+export const getUserStatus = (userID) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    profileAPI.getUserStatus(userID)
+        .then(data => {
+            dispatch(setUserStatus(data))
         })
 }
 
@@ -74,6 +84,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                userStatus: action.status
             }
         default: return state;
     }
