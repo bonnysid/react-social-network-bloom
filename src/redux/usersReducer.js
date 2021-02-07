@@ -2,11 +2,6 @@
 import {usersAPI} from "../API/API";
 
 const initialState = {
-    joinedUser: {
-        id: 4,
-        name: 'Nikita Bortsov',
-        avatarLink: 'https://sun9-52.userapi.com/VbuS5diiKVWIdt37_zJ5Qdj99TQclDM8IfHkPA/VpKVDBLkFJ8.jpg',
-    },
     all: [],
     searchText: '',
     totalCountUsers: 0,

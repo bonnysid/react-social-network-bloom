@@ -2,8 +2,9 @@ import React from 'react';
 import LoginForm from "./LoginForm";
 import s from './Login.module.css'
 import {connect} from "react-redux";
-import {Redirect} from "react-router";
+import {Redirect, withRouter} from "react-router";
 import {setHeaderTitle} from "../../redux/navbarReducer";
+import {compose} from "redux";
 
 const Login = (props) => {
 
@@ -27,4 +28,7 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {setHeaderTitle})(Login);
+export default compose(
+    connect(mapStateToProps, {setHeaderTitle}),
+    withRouter
+)(Login);

@@ -3,13 +3,12 @@ import Message from './Message';
 import s from './Messages.module.css';
 import {addMessage} from "../../../redux/dialogsReducer.js";
 import {connect} from "react-redux";
-import PostForm from "../../HelpfulComponents/PostForm";
 import MessageForm from "./MessageForm";
 
-const Messages = ({messages, dialogName, addMessage, joinedUser}) => {
+const Messages = ({messages, dialogName, addMessage, loggedUser}) => {
 
     const onMessageSend = ({message}) => {
-        addMessage(joinedUser, message);
+        addMessage(loggedUser, message);
     }
 
     return (
@@ -45,7 +44,7 @@ const mapStateToProps = (state) => {
                 time={msg.time}
             />
         )),
-        joinedUser: state.users.joinedUser
+        loggedUser: state.auth.loggedUser
     }
 }
 

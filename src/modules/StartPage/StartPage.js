@@ -1,7 +1,6 @@
 import React from 'react';
 import {Redirect} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
-import {useEffect} from "react/cjs/react.production.min";
 import {connect} from "react-redux";
 import {loginRequest} from "../../redux/authReducer";
 import {compose} from "redux";

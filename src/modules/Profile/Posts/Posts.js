@@ -6,11 +6,11 @@ import {connect} from "react-redux";
 import InputPostForm from "./PostsForm";
 import {reset} from "redux-form";
 
-const Posts = ({posts, addPost, joinedUser, reset}) => {
+const Posts = ({posts, addPost, loggedUser, reset}) => {
 
     const onAddPost = ({message}) => {
         reset('posts');
-        addPost(joinedUser, message);
+        addPost(loggedUser, message);
     }
 
     return (
@@ -27,7 +27,7 @@ const Posts = ({posts, addPost, joinedUser, reset}) => {
 
 const mapStateToProps = (state) => {
     return {
-        joinedUser: state.users.joinedUser,
+        loggedUser: state.auth.loggedUser,
         posts: state.profilePage.posts.map(post => (
             <Post
                 id={post.id}
