@@ -38,6 +38,23 @@ button {
     background: none;
 }
 
+.input {
+    border-radius: 5px;
+    border: 1px solid var(--underline);
+    padding: 0.7em;
+}
+
+.form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 0.3fr 1fr;
+    grid-gap: 1em;
+    background: var(--header-bg);
+    padding: 1em;
+    min-width: 450px;
+    border-radius: 5px;
+}
+
+
 #app-wrapper {
     /*display: grid;*/
     /*grid-template-areas:*/
@@ -67,6 +84,18 @@ body {
     grid-area: container;
     padding: 1.5em;
     height: 100%;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.label {
+    padding-left: 0.7em;
+}
+
+.formTitle {
+    margin: 0 auto;
+    font-size: 20px;
 }
 
 .block {
