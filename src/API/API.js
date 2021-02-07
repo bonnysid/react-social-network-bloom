@@ -17,11 +17,11 @@ class UsersAPI extends API {
     }
 
     followUser(id) {
-        return this._instance.post( `follow/${id})`).then(response => response.data);
+        return this._instance.post( `follow/${id}`).then(response => response.data);
     }
 
     unfollowUser(id) {
-        return this._instance.delete( `follow/${id})`).then(response => response.data);
+        return this._instance.delete( `follow/${id}`).then(response => response.data);
     }
 }
 
@@ -49,7 +49,7 @@ class AuthAPI extends API {
 const config = {
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    key: "0e19ce1b-03e5-4caa-9644-e65156a21dcd"
+    key: "4d9b271f-9cf4-4f81-8b4d-581142592afa"
 }
 
 export const usersAPI = new UsersAPI(config);

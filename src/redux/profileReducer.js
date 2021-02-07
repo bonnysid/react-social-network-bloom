@@ -2,7 +2,6 @@ import {profileAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const DELETE_POST = 'DELETE_POST';
 const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
@@ -19,8 +18,7 @@ const initialState = {
     userStatus: ''
 };
 
-export const addPost = (authorInfo) => ({type: ADD_POST, authorInfo});
-export const updateNewPostText = (newText) => ({type: UPDATE_NEW_POST_TEXT, newText});
+export const addPost = (authorInfo, message) => ({type: ADD_POST, authorInfo, message});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, userPageInfo});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
@@ -63,7 +61,7 @@ const profileReducer = (state = initialState, action) => {
             const post = {
                 id: state.posts[state.posts.length - 1].id++,
                 author: action.authorInfo.name,
-                comment: state.newPostText,
+                comment: action.message,
                 likeCount: 0
             }
 
@@ -71,12 +69,6 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts, post],
                 newPostText: ''
-            };
-
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
             };
 
         case DELETE_POST:

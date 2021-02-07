@@ -1,11 +1,16 @@
 import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
-import PostForm from "../../HelpfulComponents/PostForm";
-import {updateNewMessageText, addMessage} from "../../../redux/dialogsReducer.js";
+import {addMessage} from "../../../redux/dialogsReducer.js";
 import {connect} from "react-redux";
+import PostForm from "../../HelpfulComponents/PostForm";
+import MessageForm from "./MessageForm";
 
-const Messages = ({messages, dialogName, newMessageText, addMessage, updateNewMessageText, joinedUser}) => {
+const Messages = ({messages, dialogName, addMessage, joinedUser}) => {
+
+    const onMessageSend = ({message}) => {
+        addMessage(joinedUser, message);
+    }
 
     return (
         <aside className={`${s.content} block`}>
@@ -20,16 +25,7 @@ const Messages = ({messages, dialogName, newMessageText, addMessage, updateNewMe
             </div>
 
             <div className={s.input__msg}>
-                <PostForm
-                    id={2}
-                    isLine={true}
-                    newPostText={newMessageText}
-                    updateInputFieldText={updateNewMessageText}
-                    addData={() => addMessage(joinedUser)}
-                    placeholderBtn='Send'
-                    rows={1}
-                    isResize={false}
-                />
+                <MessageForm onSubmit={onMessageSend}/>
             </div>
         </aside>
     );
@@ -40,7 +36,6 @@ const mapStateToProps = (state) => {
 
     return {
         dialogName: selectedDialog.user.name,
-        newMessageText: state.dialogsPage.newMessageText,
         messages: selectedDialog.messages.map(msg => (
             <Message
                 key={msg.id}
@@ -54,6 +49,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const MessagesContainer = connect(mapStateToProps, {addMessage, updateNewMessageText})(Messages)
+const MessagesContainer = connect(mapStateToProps, {addMessage})(Messages)
 
 export default MessagesContainer;

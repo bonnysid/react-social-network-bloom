@@ -1,22 +1,22 @@
 import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
-import PostForm from "../../HelpfulComponents/PostForm";
-import {addPost, updateNewPostText} from "../../../redux/profileReducer";
+import {addPost} from "../../../redux/profileReducer";
 import {connect} from "react-redux";
+import InputPostForm from "./PostsForm";
+import {reset} from "redux-form";
 
-const Posts = ({posts, newPostText, addPost, updateNewPostText, joinedUser}) => {
+const Posts = ({posts, addPost, joinedUser, reset}) => {
+
+    const onAddPost = ({message}) => {
+        reset('posts');
+        addPost(joinedUser, message);
+    }
+
     return (
         <>
             <section className={`${s.content} block`}>
-                <PostForm
-                    title='posts'
-                    placeholderBtn='Post'
-                    id={1}
-                    newPostText={newPostText}
-                    addData={() => addPost(joinedUser)}
-                    updateInputFieldText={updateNewPostText}
-                />
+                <InputPostForm onSubmit={onAddPost}/>
             </section>
             <section className={s.posts}>
                 {posts}
@@ -37,10 +37,9 @@ const mapStateToProps = (state) => {
                 key={post.id}
             />
         )),
-        newPostText: state.profilePage.newPostText
     };
 };
 
-const PostsContainer = connect(mapStateToProps, {addPost, updateNewPostText})(Posts);
+const PostsContainer = connect(mapStateToProps, {addPost, reset})(Posts);
 
 export default PostsContainer;

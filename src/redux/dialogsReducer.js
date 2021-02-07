@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const SELECT_DIALOG = 'SELECT_DIALOG';
 
@@ -11,11 +10,9 @@ const initialState = {
          {id: 2, isActive: false, user: {id: 2, name: 'Ira Pauchok', avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f'}, time: new Date().toTimeString().substr(0, 9),  messages: []},
          {id: 3, isActive: false, user: {id: 3, name: 'Nikita Brekhov', avatarLink: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b'}, time: new Date().toTimeString().substr(0, 9), messages: []}
      ],
-     newMessageText: ''
 };
 
-export const addMessage = (authorInfo) => ({type: ADD_MESSAGE, authorInfo: authorInfo});
-export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
+export const addMessage = (authorInfo, message) => ({type: ADD_MESSAGE, authorInfo, message});
 export const selectDialog = (id) => ({type: SELECT_DIALOG, dialogId: id});
 
 const dialogsReducer = (state = initialState, action) => {
@@ -29,18 +26,12 @@ const dialogsReducer = (state = initialState, action) => {
             const msg = {
                 id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
                 time: new Date().toTimeString().substr(0, 9),
-                message: stateCopy.newMessageText,
+                message: action.message,
                 author: action.authorInfo
             };
             activeDialog.messages.push(msg);
             stateCopy.newMessageText = '';
             return stateCopy;
-
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText
-            };
 
         case SELECT_DIALOG:
             state.dialogs.forEach(d => {
