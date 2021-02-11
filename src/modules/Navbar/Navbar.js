@@ -5,9 +5,10 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/img/logo.svg'
 import {setHeaderTitle} from "../../redux/navbarReducer";
+import {logout} from "../../redux/authReducer";
 
-const Navbar = ({items, setHeaderTitle}) => {
-    const menuElements = items.map((item, id) => (<SvgLink setHeaderTitle={setHeaderTitle} key={id} title={item.title} link={item.link}/>));
+const Navbar = ({items, setHeaderTitle, logout}) => {
+    const menuElements = items.map((item, id) => (<SvgLink onClick={() => setHeaderTitle(item.title)} key={id} title={item.title} link={item.link}/>));
 
     return (
         <nav className={`${s.block}`}>
@@ -19,7 +20,7 @@ const Navbar = ({items, setHeaderTitle}) => {
                 {menuElements}
             </div>
 
-            <SvgLink title={'exit'} link={'/'} isExit={true} urlId={'exit'}/>
+            <SvgLink onClick={logout} title={'exit'} link={'/'} isExit={true} urlId={'exit'}/>
 
         </nav>       
     )
@@ -30,7 +31,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const NavbarContainer = connect(mapStateToProps, {setHeaderTitle})(Navbar);
+const NavbarContainer = connect(mapStateToProps, {setHeaderTitle, logout})(Navbar);
 
 
 export default NavbarContainer;

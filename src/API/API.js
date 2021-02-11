@@ -44,6 +44,14 @@ class AuthAPI extends API {
     getAuth() {
         return this._instance.get('auth/me').then(response => response.data);
     }
+
+    login(email, password, rememberMe = false) {
+        return this._instance.post('auth/login', {email, password, rememberMe}).then(response => response.data);
+    }
+
+    logout() {
+        return this._instance.delete('auth/login').then(response => response.data);
+    }
 }
 
 const config = {

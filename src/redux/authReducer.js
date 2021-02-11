@@ -14,20 +14,42 @@ const initialState = {
     loggedUser: null
 }
 
-export const setAuthUserInfo = (userId, email, login) => ({type: SET_AUTH_USER_INFO, userId, email, login});
+export const setAuthUserInfo = (userId, email, login, isAuth) => ({type: SET_AUTH_USER_INFO, userId, email, login, isAuth});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const setLoggedUser = (user) => ({type: SET_LOGGED_USER, user})
 
 export const loginRequest = () => (dispatch) => {
     dispatch(toggleFetching(true));
     authAPI.getAuth().then(data => {
+        dispatch(toggleFetching(false));
         if(data.resultCode === 0) {
-            dispatch(toggleFetching(false));
             const {id, email, login} = data.data;
-            dispatch(setAuthUserInfo(id, email, login));
+            dispatch(setAuthUserInfo(id, email, login, true));
             profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
         }
     })
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    authAPI.login(email,password,rememberMe)
+        .then(data => {
+            dispatch(toggleFetching(false));
+            if(data.resultCode === 0) {
+                dispatch(loginRequest());
+            }
+        })
+}
+
+export const logout = () => (dispatch) => {
+    dispatch(toggleFetching(true));
+    authAPI.logout()
+        .then(data => {
+            dispatch(toggleFetching(false));
+            if(data.resultCode === 0) {
+                dispatch(setAuthUserInfo(null, null, null, false));
+            }
+        })
 }
 
 const authReducer = (state = initialState, action) => {
@@ -38,7 +60,7 @@ const authReducer = (state = initialState, action) => {
                 userId: action.userId,
                 email: action.email,
                 login: action.login,
-                isAuth: true
+                isAuth: action.isAuth
             }
         case TOGGLE_FETCHING:
             return {

@@ -6,7 +6,7 @@ const Input = ({input, meta, ...props}) => {
 
     return (
         <>
-            {/*{hasError && <span className={'error-text'}>{meta.error}</span>}*/}
+            {hasError && <span className={'error-text'}>{meta.error}</span>}
             <input {...input} {...props} className={`input ${hasError ? 'error' : ''}`}/>
         </>
     )

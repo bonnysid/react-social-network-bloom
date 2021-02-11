@@ -5,14 +5,16 @@ import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router";
 import {setHeaderTitle} from "../../redux/navbarReducer";
 import {compose} from "redux";
+import {login} from "../../redux/authReducer";
 
 const Login = (props) => {
 
     const onSubmit = (data) => {
-        console.log(data);
+        const {isRemember, login, password} = data;
+        props.login(login, password, isRemember);
     }
 
-    if(props.isAuth) {
+    if (props.isAuth) {
         props.setHeaderTitle('news')
         return <Redirect to={'/news'}/>
     }
@@ -29,6 +31,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {setHeaderTitle}),
+    connect(mapStateToProps, {setHeaderTitle, login}),
     withRouter
 )(Login);
