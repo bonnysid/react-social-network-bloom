@@ -2,6 +2,9 @@ import React from 'react';
 import s from "../../Profile/Posts/Posts.module.css";
 import {Field, reduxForm} from "redux-form";
 import SvgItem from "../../HelpfulComponents/SvgItem";
+import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
+
+const maxLength200 = maxLengthValidateCreator(200);
 
 const MessageForm = (props) => {
     return (
@@ -12,6 +15,7 @@ const MessageForm = (props) => {
                 rows={1}
                 className={`${s.text} ${s.notRes}`}
                 name={"message"}
+                validate={[maxLength200, required]}
             />
 
             <Field name={"file"} component={"input"} type='file' id={`post-1`} className={s.file} accept="image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp"/>
