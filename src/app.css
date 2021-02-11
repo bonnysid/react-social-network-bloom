@@ -7,6 +7,10 @@
     --gray-light: #f7f7f7;
     --text: rgb(165, 170, 176);
     --text-light: #f6f6f6;
+    --red: #bf5050;
+    --green: #70b35f;
+    --red-light: #c36e6e;
+    --green-light: #9ac38f;
 
     --header-bg: var(--main-color-extralight);
     --header-text: var(--text);
@@ -42,6 +46,14 @@ button {
     border-radius: 5px;
     border: 1px solid var(--underline);
     padding: 0.7em;
+}
+
+.error-text {
+    color: var(--red);
+}
+
+.error {
+    border: 2px solid var(--red);
 }
 
 .form {

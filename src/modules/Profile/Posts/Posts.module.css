@@ -45,18 +45,6 @@
     align-items: center;
 }
 
-.text {
-    grid-area: input;
-    border-radius: 5px;
-    border: 1px solid var(--underline);
-    resize: vertical;
-    padding: 0.7em;
-}
-
-.notRes {
-    resize: none;
-}
-
 .btn {
     grid-area: btn;
     justify-self: end;

@@ -3,6 +3,7 @@ import s from "../../Profile/Posts/Posts.module.css";
 import {Field, reduxForm} from "redux-form";
 import SvgItem from "../../HelpfulComponents/SvgItem";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
+import Textarea from "../../HelpfulComponents/Textarea/Textarea";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
@@ -10,10 +11,10 @@ const MessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.block_line}>
             <Field
-                component={"textarea"}
+                component={Textarea}
                 placeholder={'Input your text'}
                 rows={1}
-                className={`${s.text} ${s.notRes}`}
+                isResize={false}
                 name={"message"}
                 validate={[maxLength200, required]}
             />
