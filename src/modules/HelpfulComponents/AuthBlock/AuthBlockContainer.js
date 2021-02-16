@@ -1,14 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import AuthBlock from "./AuthBlock";
-import {loginRequest} from "../../../redux/authReducer";
 import Preloader from "../Preloader";
 
 class AuthBlockContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.loginRequest();
-    }
 
     render() {
         if (this.props.isFetching) return <Preloader/>
@@ -23,4 +18,4 @@ const mapStateToProps = (state) => ({
     login: state.auth.login
 })
 
-export default connect(mapStateToProps, {loginRequest})(AuthBlockContainer);
+export default connect(mapStateToProps)(AuthBlockContainer);

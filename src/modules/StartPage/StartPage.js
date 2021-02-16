@@ -2,15 +2,11 @@ import React from 'react';
 import {Redirect} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {connect} from "react-redux";
-import {loginRequest} from "../../redux/authReducer";
 import {compose} from "redux";
 import Preloader from "../HelpfulComponents/Preloader";
 import {setHeaderTitle} from "../../redux/navbarReducer";
 
 class StartPage extends React.Component {
-    componentDidMount() {
-        this.props.loginRequest();
-    }
 
     render() {
         if(this.props.isFetching) return <Preloader/>
@@ -28,5 +24,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, {loginRequest, setHeaderTitle})
+    connect(mapStateToProps, {setHeaderTitle})
 )(StartPage);

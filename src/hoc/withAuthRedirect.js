@@ -1,10 +1,11 @@
 import React from 'react';
 import {Redirect} from "react-router";
 import {connect} from "react-redux";
+import {initialized} from "../redux/appReducer";
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
     }
 }
 

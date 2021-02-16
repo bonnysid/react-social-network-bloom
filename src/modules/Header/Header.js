@@ -3,6 +3,7 @@ import s from './Header.module.css';
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {compose} from "redux";
+import AuthBlockContainer from "../HelpfulComponents/AuthBlock/AuthBlockContainer";
 
 const Header = (props) => {
 
@@ -11,6 +12,7 @@ const Header = (props) => {
     return (
         <header className={s.header}>
             <h1 className={s.title}>{title}</h1>
+            <AuthBlockContainer right={0}/>
         </header>
     )
 };

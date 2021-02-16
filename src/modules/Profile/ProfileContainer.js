@@ -5,7 +5,6 @@ import {getUserInfo, getUserStatus, updateUserStatus} from "../../redux/profileR
 import {withRouter} from "react-router";
 import Preloader from "../HelpfulComponents/Preloader";
 import {compose} from "redux";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
 
@@ -15,6 +14,7 @@ class ProfileContainer extends React.Component {
 
     getProfileInfo = () => {
         const userId = this.props.match.params.id ? this.props.match.params.id : this.props.yourId;
+        if (!userId) this.props.history.push('/login');
         this.props.getUserInfo(userId);
         this.props.getUserStatus(userId);
     }
@@ -36,7 +36,6 @@ const mapPropsToState = (state) => ({
 });
 
 export default compose(
-    withAuthRedirect,
     withRouter,
     connect(mapPropsToState, {getUserInfo, getUserStatus, updateUserStatus})
 )(ProfileContainer);

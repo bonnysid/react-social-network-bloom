@@ -21,7 +21,7 @@ export const setLoggedUser = (user) => ({type: SET_LOGGED_USER, user})
 
 export const loginRequest = () => (dispatch) => {
     dispatch(toggleFetching(true));
-    authAPI.getAuth().then(data => {
+    return authAPI.getAuth().then(data => {
         dispatch(toggleFetching(false));
         if(data.resultCode === 0) {
             const {id, email, login} = data.data;

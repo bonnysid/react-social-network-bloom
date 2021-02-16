@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
-import RedirectWithChangeHeader from "../HelpfulComponents/RedirectWithHeader/RedirectWithChangeHeader";
 
 const Login = (props) => {
 
@@ -13,9 +12,6 @@ const Login = (props) => {
         const {isRemember, login, password} = data;
         props.login(login, password, isRemember);
     }
-
-    if (props.isAuth) return <RedirectWithChangeHeader title={'news'} to={'/news'}/>
-
 
     return (
         <div className={s.container}>
