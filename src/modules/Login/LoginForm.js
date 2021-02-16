@@ -11,6 +11,7 @@ const LoginForm = (props) => {
     return (
         <form className={'form'} onSubmit={props.handleSubmit}>
             <h2 className='formTitle'>Sign in</h2>
+            {props.error && <h3 className={s.error}>{props.error}</h3>}
             <Field component={Input} type={'text'} name={"login"} placeholder={'Login'} validate={[maxLength50, required]}/>
             <Field component={Input} type={'password'} name={"password"} placeholder={'Password'} validate={[maxLength50, required]}/>
             <div>

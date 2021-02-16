@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './Input.module.css';
 
 const Input = ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error;

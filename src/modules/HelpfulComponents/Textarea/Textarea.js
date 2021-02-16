@@ -6,7 +6,7 @@ const Textarea = ({input, meta, ...props}) => {
 
     return (
         <>
-            <textarea {...input} {...props} className={`${s.text} ${hasError ? 'error' : ''} ${props.isResize ? '' : s.nonResize}`}/>
+            <textarea {...input} {...props} className={`${s.text} ${hasError ? 'error' : ''} ${props.isresize ? '' : s.nonResize}`}/>
             {/*{hasError && <span className={'error-text'}>{meta.error}</span>}*/}
         </>
     )

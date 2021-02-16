@@ -16,14 +16,14 @@ const InputPostForm = (props) => {
                 component={Textarea}
                 placeholder={'Input your text'}
                 rows={5}
-                isResize={true}
+                isresize={true}
                 name={"message"}
                 validate={[required, maxLength200]}
             />
 
             <Field name={"file"} component={"input"} type='file' id={`post-1`} className={s.file} accept="image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp"/>
             <label htmlFor={`post-1`} className={`${s.file_btn}`}>
-                <SvgItem width={'25px'} height={'25px'} className={s.icon} urlId={'add'} />
+                <SvgItem width={'25px'} height={'25px'} className={s.icon} urlid={'add'} />
             </label>
             <button className={`${s.btn} btn`}>Post</button>
         </form>

@@ -2,10 +2,10 @@ import React from 'react';
 import LoginForm from "./LoginForm";
 import s from './Login.module.css'
 import {connect} from "react-redux";
-import {Redirect, withRouter} from "react-router";
-import {setHeaderTitle} from "../../redux/navbarReducer";
+import {withRouter} from "react-router";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
+import RedirectWithChangeHeader from "../HelpfulComponents/RedirectWithHeader/RedirectWithChangeHeader";
 
 const Login = (props) => {
 
@@ -14,10 +14,8 @@ const Login = (props) => {
         props.login(login, password, isRemember);
     }
 
-    if (props.isAuth) {
-        props.setHeaderTitle('news')
-        return <Redirect to={'/news'}/>
-    }
+    if (props.isAuth) return <RedirectWithChangeHeader title={'news'} to={'/news'}/>
+
 
     return (
         <div className={s.container}>
@@ -31,6 +29,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {setHeaderTitle, login}),
+    connect(mapStateToProps, {login}),
     withRouter
 )(Login);

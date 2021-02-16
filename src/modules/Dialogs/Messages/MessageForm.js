@@ -14,7 +14,7 @@ const MessageForm = (props) => {
                 component={Textarea}
                 placeholder={'Input your text'}
                 rows={1}
-                isResize={false}
+                isresize={false}
                 name={"message"}
                 validate={[maxLength200, required]}
             />

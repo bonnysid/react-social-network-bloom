@@ -1,5 +1,4 @@
 import React from 'react';
-import s from "../PostForm/PostForm.module.css";
 import icons from '../../../assets/img/icons.svg';
 
 const SvgItem = ({width = '25px', height = '25px', fillColor = '#000000', urlId, fullUrl, className}) => {
