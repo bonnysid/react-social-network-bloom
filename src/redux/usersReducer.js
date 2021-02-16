@@ -31,7 +31,7 @@ export const resetUsers = () => ({type: RESET_USERS});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const toggleFollowingProcess= (isFollowing, userId) => ({type: TOGGLE_FOLLOWING_PROCESS, isFollowing, userId});
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleFetching(true));
     usersAPI.getUsers(currentPage, pageSize)
         .then(data => {

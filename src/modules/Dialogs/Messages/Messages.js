@@ -48,6 +48,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const MessagesContainer = connect(mapStateToProps, {addMessage})(Messages)
-
-export default MessagesContainer;
+export default connect(mapStateToProps, {addMessage})(Messages);

@@ -4,11 +4,11 @@ import {useEffect, useState} from "react";
 
 const ProfileStatus = (props) => {
     const [isEditMode, toggleEditMode] = useState(false);
-    const [status, editStatus] = useState('');
+    const [status, editStatus] = useState(props.status);
 
     useEffect(() =>  {
-        if (status !== props.status && !isEditMode) editStatus(props.status);
-    }, [status, props.status, isEditMode])
+        editStatus(props.status);
+    }, [props.status])
 
 
     const activateEditMode = () => {
