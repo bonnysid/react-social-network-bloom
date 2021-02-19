@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import InputPostForm from "./PostsForm";
 import {reset} from "redux-form";
 
-const Posts = ({posts, addPost, loggedUser, reset}) => {
+const Posts = React.memo(({posts, addPost, loggedUser, reset}) => {
 
     const onAddPost = ({message}) => {
         reset('posts');
@@ -23,7 +23,7 @@ const Posts = ({posts, addPost, loggedUser, reset}) => {
             </section>
         </>
     );
-}
+})
 
 const mapStateToProps = (state) => {
     return {
