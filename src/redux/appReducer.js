@@ -4,7 +4,7 @@ const initialState = {
     initialized: false
 }
 
-const INITIALIZED_SUCCESSFUL = 'INITIALIZED_SUCCESSFUL';
+const INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL';
 
 const initializedSuccessful = () => ({type: INITIALIZED_SUCCESSFUL});
 

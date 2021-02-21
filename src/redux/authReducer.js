@@ -2,9 +2,9 @@
 import {authAPI, profileAPI} from "../API/API";
 import {stopSubmit} from "redux-form";
 
-const SET_AUTH_USER_INFO = 'SET_AUTH_USER_INFO';
-const SET_LOGGED_USER = 'SET_LOGGED_USER';
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const SET_AUTH_USER_INFO = 'app/auth/SET_AUTH_USER_INFO';
+const SET_LOGGED_USER = 'app/auth/SET_LOGGED_USER';
+const TOGGLE_FETCHING = 'app/auth/TOGGLE_FETCHING';
 
 const initialState = {
     userId: null,

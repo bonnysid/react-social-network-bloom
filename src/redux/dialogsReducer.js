@@ -1,5 +1,5 @@
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const SELECT_DIALOG = 'SELECT_DIALOG';
+const ADD_MESSAGE = 'app/dialogs/ADD_MESSAGE';
+const SELECT_DIALOG = 'app/dialogs/SELECT_DIALOG';
 
 const initialState = {
      dialogs : [

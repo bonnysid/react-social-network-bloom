@@ -1,11 +1,11 @@
 import {profileAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
 
-const ADD_POST = 'ADD_POST';
-const DELETE_POST = 'DELETE_POST';
-const SET_USER_PAGE_INFO = 'SET_USER_PAGE_INFO';
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const ADD_POST = 'app/profile/ADD_POST';
+const DELETE_POST = 'app/profile/DELETE_POST';
+const SET_USER_PAGE_INFO = 'app/profile/SET_USER_PAGE_INFO';
+const TOGGLE_FETCHING = 'app/profile/TOGGLE_FETCHING';
+const SET_USER_STATUS = 'app/profile/SET_USER_STATUS';
 
 const initialState = {
     posts: [

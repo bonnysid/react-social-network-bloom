@@ -1,4 +1,4 @@
-const SET_HEADER_TITLE = 'SET_HEADER_TITLE';
+const SET_HEADER_TITLE = 'app/navbar/SET_HEADER_TITLE';
 
 const initialState = {
     headerTitle: '',
