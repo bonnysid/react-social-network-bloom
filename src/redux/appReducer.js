@@ -1,5 +1,4 @@
 import {loginRequest} from "./authReducer";
-import {usersAPI} from "../API/API";
 
 const initialState = {
     initialized: false
