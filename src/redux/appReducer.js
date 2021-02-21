@@ -1,4 +1,5 @@
 import {loginRequest} from "./authReducer";
+import {usersAPI} from "../API/API";
 
 const initialState = {
     initialized: false
@@ -8,11 +9,9 @@ const INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL';
 
 const initializedSuccessful = () => ({type: INITIALIZED_SUCCESSFUL});
 
-export const initializeApp = () => (dispatch) => {
-    Promise.all([dispatch(loginRequest())])
-        .then(() => {
-            dispatch(initializedSuccessful());
-        })
+export const initializeApp = () => async (dispatch) => {
+    await Promise.all([dispatch(loginRequest())])
+    dispatch(initializedSuccessful());
 }
 
 const appReducer = (state = initialState, action) => {
@@ -22,7 +21,8 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 initialized: true
             }
-        default: return state;
+        default:
+            return state;
     }
 }
 
