@@ -39,23 +39,16 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(setTotalCountUsers(data.totalCount));
 }
 
-export const follow = (id) => async (dispatch) => {
+const followUnfollowFlow = async (dispatch, id, apiMethod, actionCreator) => {
     dispatch(toggleFollowingProcess(true, id));
-    const data = await usersAPI.followUser(id)
-
+    const data = await apiMethod(id)
     dispatch(toggleFollowingProcess(false));
-    if (data.resultCode === 0) dispatch(followSuccess(id));
-
+    if (data.resultCode === 0) dispatch(actionCreator(id));
 }
 
-export const unfollow = (id) => async (dispatch) => {
-    dispatch(toggleFollowingProcess(true, id));
-    const data = await usersAPI.unfollowUser(id)
+export const follow = (id) => async (dispatch) => followUnfollowFlow(dispatch, id, usersAPI.followUser.bind(usersAPI), followSuccess);
 
-    dispatch(toggleFollowingProcess(false));
-    if (data.resultCode === 0) dispatch(unfollowSuccess(id));
-
-}
+export const unfollow = (id) => async (dispatch) => followUnfollowFlow(dispatch, id, usersAPI.unfollowUser.bind(usersAPI), unfollowSuccess);
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
