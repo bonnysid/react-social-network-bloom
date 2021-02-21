@@ -1,4 +1,4 @@
-import {profileAPI} from "../API/API";
+import {profileAPI, usersAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
 
 const ADD_POST = 'app/profile/ADD_POST';
@@ -9,7 +9,12 @@ const SET_USER_STATUS = 'app/profile/SET_USER_STATUS';
 
 const initialState = {
     posts: [
-        {id: 1, author: 'Nikita Bortsov', comment: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.', likeCount: 90},
+        {
+            id: 1,
+            author: 'Nikita Bortsov',
+            comment: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.',
+            likeCount: 90
+        },
         {id: 2, author: 'Nikita Bortsov', comment: 'First post!', likeCount: 5}
     ],
     userPageInfo: {},
@@ -23,32 +28,32 @@ export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, use
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
-export const getUserInfo = (userId) => (dispatch) => {
+export const getUserInfo = (userId) => async (dispatch) => {
     dispatch(toggleFetching(true));
-    profileAPI.getProfileInfo(userId)
-        .then(data => {
-            dispatch(toggleFetching(false));
-            dispatch(setUserPageInfo(data));
-            dispatch(setHeaderTitle(data.fullName))
-        })
+    const data = await profileAPI.getProfileInfo(userId)
+
+    dispatch(toggleFetching(false));
+    dispatch(setUserPageInfo(data));
+    dispatch(setHeaderTitle(data.fullName))
+
 }
 
-export const getUserStatus = (userID) => (dispatch) => {
-    profileAPI.getUserStatus(userID)
-        .then(data => {
-            dispatch(setUserStatus(data))
-        })
+export const getUserStatus = (userID) => async (dispatch) => {
+    const data = await profileAPI.getUserStatus(userID)
+
+    dispatch(setUserStatus(data))
+
 }
 
-export const updateUserStatus = (status) => (dispatch) => {
+export const updateUserStatus = (status) => async (dispatch) => {
     dispatch(toggleFetching(true));
-    profileAPI.updateUserStatus(status)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(toggleFetching(false));
-                dispatch(setUserStatus(status));
-            }
-        })
+    const data = await profileAPI.updateUserStatus(status)
+
+    if (data.resultCode === 0) {
+        dispatch(toggleFetching(false));
+        dispatch(setUserStatus(status));
+    }
+
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -93,7 +98,8 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 userStatus: action.status
             }
-        default: return state;
+        default:
+            return state;
     }
 }
 
