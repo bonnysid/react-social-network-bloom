@@ -6,7 +6,7 @@ const initialState = {
 
 const INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL';
 
-const initializedSuccessful = () => ({type: INITIALIZED_SUCCESSFUL});
+export const initializedSuccessful = () => ({type: INITIALIZED_SUCCESSFUL});
 
 export const initializeApp = () => async (dispatch) => {
     await Promise.all([dispatch(loginRequest())])
