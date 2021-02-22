@@ -24,7 +24,7 @@ const dialogsReducer = (state = initialState, action) => {
             const activeDialog = stateCopy.dialogs.find(dialog => dialog.isActive);
             const dialogMessages = activeDialog.messages;
             const msg = {
-                id: dialogMessages ? dialogMessages[dialogMessages.length - 1].id++ : 1,
+                id: dialogMessages.length ? dialogMessages[dialogMessages.length - 1].id++ : 1,
                 time: new Date().toTimeString().substr(0, 9),
                 message: action.message,
                 author: action.authorInfo
