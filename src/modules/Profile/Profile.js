@@ -9,7 +9,7 @@ const Profile = (props) => {
     return (
         <>
             <main className={s.content}>
-                <Avatar url={userInfo.photos.large}/>
+                <Avatar isOwner={props.isOwner} url={userInfo.photos.large}/>
                 <Description
                     name={userInfo.fullName}
                     status={props.status}

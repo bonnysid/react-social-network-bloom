@@ -24,7 +24,7 @@ class ProfileContainer extends React.Component {
         if (!Object.keys(this.props.userInfo).length) return <Preloader/>
 
         return (
-            <Profile updateUserStatus={this.props.updateUserStatus} userInfo={this.props.userInfo} status={this.props.userStatus}/>
+            <Profile isOwner={!this.props.match.params.id} updateUserStatus={this.props.updateUserStatus} userInfo={this.props.userInfo} status={this.props.userStatus}/>
         )
     }
 }

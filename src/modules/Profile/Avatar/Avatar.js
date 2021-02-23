@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Avatar.module.css';
 import defaultAvatar from '../../../assets/img/user.png';
 
-const Avatar = ({url}) => {
+const Avatar = ({url, isOwner}) => {
     return (
         <section className='block'>
             <aside className={s.content}>
@@ -10,7 +10,7 @@ const Avatar = ({url}) => {
             </aside>
             
             <aside className={s.btn_block}>
-                <button className={`${s.btn} btn`}>Change photo</button>
+                {isOwner && <input type='file' className={`${s.btn} btn`} placeholder={'Change photo'}/>}
             </aside>
         </section>
     );
