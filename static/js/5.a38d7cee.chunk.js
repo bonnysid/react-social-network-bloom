@@ -1,0 +1,2 @@
+(this.webpackJsonpbloom=this.webpackJsonpbloom||[]).push([[5],{307:function(t,n,c){},314:function(t,n,c){"use strict";c.r(n);var e=c(0),o=(c(1),c(307),c(7)),s=c(35),i=Object(o.d)(s.a)((function(){return Object(e.jsx)("p",{children:"Settings"})}));n.default=i}}]);
+//# sourceMappingURL=5.a38d7cee.chunk.js.map
