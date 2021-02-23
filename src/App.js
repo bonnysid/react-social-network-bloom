@@ -2,13 +2,10 @@ import React from 'react';
 import NavbarContainer from './modules/Navbar';
 import Dialogs from './modules/Dialogs';
 import News from './modules/News';
-import Settings from './modules/Settings';
-import Music from './modules/Music';
 import {Route} from 'react-router-dom';
 import './app.css';
 import './nullstyle.css';
 import UsersContainer from './modules/Users/UsersContainer';
-import ProfileContainer from './modules/Profile/ProfileContainer';
 import Login from "./modules/Login/Login";
 import StartPage from "./modules/StartPage/StartPage";
 import Header from "./modules/Header/Header";
@@ -17,6 +14,9 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./modules/HelpfulComponents/Preloader";
+const Settings = React.lazy(() => import('./modules/Settings'))
+const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
+const Music = React.lazy(() => import('./modules/Music'))
 
 
 class App extends React.Component {
