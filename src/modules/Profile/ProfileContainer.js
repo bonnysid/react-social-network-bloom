@@ -5,6 +5,7 @@ import {getUserInfo, getUserStatus, updateUserStatus} from "../../redux/profileR
 import {withRouter} from "react-router";
 import Preloader from "../HelpfulComponents/Preloader";
 import {compose} from "redux";
+import withSuspense from "../../hoc/withSuspense";
 
 class ProfileContainer extends React.Component {
 
@@ -36,6 +37,7 @@ const mapPropsToState = (state) => ({
 });
 
 export default compose(
+    withSuspense,
     withRouter,
     connect(mapPropsToState, {getUserInfo, getUserStatus, updateUserStatus})
 )(ProfileContainer);

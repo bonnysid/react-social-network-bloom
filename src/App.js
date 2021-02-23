@@ -14,6 +14,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./modules/HelpfulComponents/Preloader";
+import withSuspense from "./hoc/withSuspense";
 
 const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
@@ -37,31 +38,12 @@ class App extends React.Component {
                 <div className='container'>
                     <Route path='/login' render={() => <Login/>}/>
                     <Route exact={true} path='/' render={() => <StartPage/>}/>
-                    <Route path='/profile/:id?' render={() => {
-                        return (
-                            <React.Suspense fallback={<Preloader/>}>
-                                <ProfileContainer/>
-                            </React.Suspense>
-
-                        );
-                    }}/>
+                    <Route path='/profile/:id?' render={withSuspense(ProfileContainer)}/>
                     <Route path='/messages' render={() => <Dialogs/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/music' render={() => {
-                        return (
-                            <React.Suspense fallback={<Preloader/>}>
-                                <Music/>
-                            </React.Suspense>
-                        );
-                    }}/>
-                    <Route path='/settings' render={() => {
-                        return (
-                            <React.Suspense fallback={<Preloader/>}>
-                                <Settings/>
-                            </React.Suspense>
-                        );
-                    }}/>
+                    <Route path='/music' render={withSuspense(Music)}/>
+                    <Route path='/settings' render={withSuspense(Settings)}/>
                 </div>
 
             </>
