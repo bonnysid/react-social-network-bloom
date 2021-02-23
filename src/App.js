@@ -14,6 +14,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./modules/HelpfulComponents/Preloader";
+
 const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
 const Music = React.lazy(() => import('./modules/Music'))
@@ -25,7 +26,7 @@ class App extends React.Component {
     }
 
     render() {
-        if(!this.props.initialized) {
+        if (!this.props.initialized) {
             return <Preloader/>
         }
 
@@ -36,12 +37,31 @@ class App extends React.Component {
                 <div className='container'>
                     <Route path='/login' render={() => <Login/>}/>
                     <Route exact={true} path='/' render={() => <StartPage/>}/>
-                    <Route path='/profile/:id?' render={() => <ProfileContainer/>}/>
+                    <Route path='/profile/:id?' render={() => {
+                        return (
+                            <React.Suspense fallback={<Preloader/>}>
+                                <ProfileContainer/>
+                            </React.Suspense>
+
+                        );
+                    }}/>
                     <Route path='/messages' render={() => <Dialogs/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
+                    <Route path='/music' render={() => {
+                        return (
+                            <React.Suspense fallback={<Preloader/>}>
+                                <Music/>
+                            </React.Suspense>
+                        );
+                    }}/>
+                    <Route path='/settings' render={() => {
+                        return (
+                            <React.Suspense fallback={<Preloader/>}>
+                                <Settings/>
+                            </React.Suspense>
+                        );
+                    }}/>
                 </div>
 
             </>
