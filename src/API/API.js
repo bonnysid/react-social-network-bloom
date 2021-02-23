@@ -57,7 +57,7 @@ class AuthAPI extends API {
 const config = {
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    key: "4d9b271f-9cf4-4f81-8b4d-581142592afa"
+    key: "eca71e62-40e5-487f-ace5-c7bb6153f79f"
 }
 
 export const usersAPI = new UsersAPI(config);
