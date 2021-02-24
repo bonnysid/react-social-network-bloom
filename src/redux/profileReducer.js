@@ -1,4 +1,4 @@
-import {profileAPI, usersAPI} from "../API/API";
+import {profileAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
 
 const ADD_POST = 'app/profile/ADD_POST';
@@ -6,6 +6,7 @@ const DELETE_POST = 'app/profile/DELETE_POST';
 const SET_USER_PAGE_INFO = 'app/profile/SET_USER_PAGE_INFO';
 const TOGGLE_FETCHING = 'app/profile/TOGGLE_FETCHING';
 const SET_USER_STATUS = 'app/profile/SET_USER_STATUS';
+const SET_PHOTOS = 'app/profile/SET_PHOTOS';
 
 const initialState = {
     posts: [
@@ -27,6 +28,7 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserPageInfo = (userPageInfo) => ({type: SET_USER_PAGE_INFO, userPageInfo});
 export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
+export const setPhotos = (photos) => ({type: SET_PHOTOS, photos});
 
 export const getUserInfo = (userId) => async (dispatch) => {
     dispatch(toggleFetching(true));
@@ -54,6 +56,12 @@ export const updateUserStatus = (status) => async (dispatch) => {
         dispatch(setUserStatus(status));
     }
 
+}
+
+export const savePhoto = (photo) => async (dispatch) => {
+    const data = await profileAPI.savePhoto(photo);
+
+    dispatch(setPhotos(data.data.photos));
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -97,6 +105,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userStatus: action.status
+            }
+        case SET_PHOTOS:
+            return {
+                ...state,
+                userPageInfo: {...state.userPageInfo, photos: action.photos}
             }
         default:
             return state;

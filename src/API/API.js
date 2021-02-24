@@ -28,15 +28,25 @@ class UsersAPI extends API {
 class ProfileAPI extends API {
 
     getProfileInfo(id) {
-        return this._instance.get((`profile/${id}`)).then(response => response.data);
+        return this._instance.get(`profile/${id}`).then(response => response.data);
     }
 
     getUserStatus(id) {
-        return this._instance.get((`profile/status/${id}`)).then(response => response.data);
+        return this._instance.get(`profile/status/${id}`).then(response => response.data);
     }
 
     updateUserStatus(status) {
-        return this._instance.put((`profile/status`), {status});
+        return this._instance.put(`profile/status`, {status});
+    }
+
+    savePhoto(photo) {
+        const form = new FormData();
+        form.append('image', photo);
+        return this._instance.put('profile/photo', form, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
     }
 }
 
