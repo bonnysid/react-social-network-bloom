@@ -2,15 +2,24 @@ import React from 'react';
 import s from './Description.module.css';
 import SocialLink from "../../common/SocialLink";
 import ProfileStatus from "./ProfileStatus";
-import SingleDescription from "./SingleDescription";
+import DescriptionAbout from "./DescriptionAbout";
+import {useState} from "react";
+import DescriptionAboutForm from "./DescriptionAboutForm";
 
-const Description = ({user, status, about, updateUserStatus}) => {
+const Description = ({user, status, updateUserStatus, saveProfile}) => {
 
+    const [isEdit, setIsEdit] = useState(false);
     const contactsLinks = [];
 
-    for(let key in user.contacts) {
+    const onSubmit = (data) => {
+        saveProfile(data);
+        setIsEdit(false);
+    }
+
+    for (let key in user.contacts) {
         if (user.contacts[key]) {
-            contactsLinks.push(<SocialLink key={key} link={user.contacts[key]} urlId={key} hoverTitle={key} width={'35px'} height={'35px'}/>);
+            contactsLinks.push(<SocialLink key={key} link={user.contacts[key]} urlId={key} hoverTitle={key}
+                                           width={'35px'} height={'35px'}/>);
         }
     }
 
@@ -24,12 +33,10 @@ const Description = ({user, status, about, updateUserStatus}) => {
             <section className={s.links}>
                 {contactsLinks}
             </section>
-            <section className={s.profileInfo}>
-                {user.aboutMe && <SingleDescription title={'About'} value={user.aboutMe}/>}
-                {user.lookingForAJob && <SingleDescription title={'Looking for a job'} value={user.lookingForAJob ? 'Yes' : 'No'}/>}
-                {user.lookingForAJobDescription && <SingleDescription title={'Job description'} value={user.lookingForAJobDescription}/>}
-            </section>
-
+            {isEdit ?
+                <DescriptionAboutForm onSubmit={onSubmit} savePhoto={saveProfile}/> :
+                <DescriptionAbout activateEditMode={setIsEdit} user={user}/>
+            }
         </main>
     );
 }

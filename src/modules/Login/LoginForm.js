@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import s from './Login.module.css'
 import {maxLengthValidateCreator, required} from "../../utils/validators/validators";
 import Input from "../common/Input/Input";

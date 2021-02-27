@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getUserInfo, getUserStatus, savePhoto, updateUserStatus} from "../../redux/profileReducer";
+import {getUserInfo, getUserStatus, savePhoto, saveProfile, updateUserStatus} from "../../redux/profileReducer";
 import {withRouter} from "react-router";
 import Preloader from "../common/Preloader";
 import {compose} from "redux";
@@ -29,7 +29,7 @@ class ProfileContainer extends React.Component {
         if (!Object.keys(this.props.userInfo).length || this.props.isFetching) return <Preloader/>
 
         return (
-            <Profile savePhoto={this.props.savePhoto} isOwner={!this.props.match.params.id} updateUserStatus={this.props.updateUserStatus} userInfo={this.props.userInfo} status={this.props.userStatus}/>
+            <Profile saveProfile={this.props.saveProfile} savePhoto={this.props.savePhoto} isOwner={!this.props.match.params.id} updateUserStatus={this.props.updateUserStatus} userInfo={this.props.userInfo} status={this.props.userStatus}/>
         )
     }
 }
@@ -45,5 +45,5 @@ const mapPropsToState = (state) => ({
 export default compose(
     withSuspense,
     withRouter,
-    connect(mapPropsToState, {getUserInfo, updateUserStatus, savePhoto})
+    connect(mapPropsToState, {getUserInfo, updateUserStatus, savePhoto, saveProfile})
 )(ProfileContainer);

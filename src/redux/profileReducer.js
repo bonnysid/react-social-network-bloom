@@ -1,5 +1,6 @@
 import {profileAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'app/profile/ADD_POST';
 const DELETE_POST = 'app/profile/DELETE_POST';
@@ -43,7 +44,6 @@ export const getUserInfo = (userId) => async (dispatch) => {
 
 export const getUserStatus = (userId) => async (dispatch) => {
     const status = await profileAPI.getUserStatus(userId)
-
     dispatch(setUserStatus(status))
 }
 
@@ -55,7 +55,6 @@ export const updateUserStatus = (status) => async (dispatch) => {
         dispatch(toggleFetching(false));
         dispatch(setUserStatus(status));
     }
-
 }
 
 export const savePhoto = (photo) => async (dispatch) => {
@@ -63,6 +62,18 @@ export const savePhoto = (photo) => async (dispatch) => {
 
     dispatch(setPhotos(data.data.photos));
 }
+
+export const saveProfile = (profile) => async (dispatch) => {
+    // dispatch(toggleFetching(true))
+    const data = await profileAPI.saveProfile(profile);
+    if(data.data.resultCode === 0) {
+        dispatch(getUserInfo());
+    } else {
+        stopSubmit('description', {_error: data.messages[0] || 'Some error!'})
+    }
+    // dispatch(toggleFetching(false))
+}
+
 
 const profileReducer = (state = initialState, action) => {
 

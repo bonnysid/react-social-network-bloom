@@ -48,6 +48,10 @@ class ProfileAPI extends API {
             }
         })
     }
+
+    saveProfile(profile) {
+        return this._instance.put('profile', profile).then(response => response.data);
+    }
 }
 
 class AuthAPI extends API {
