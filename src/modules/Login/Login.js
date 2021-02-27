@@ -9,8 +9,9 @@ import {login} from "../../redux/authReducer";
 const Login = (props) => {
 
     const onSubmit = (data) => {
-        const {isRemember, login, password} = data;
-        props.login(login, password, isRemember);
+        console.log(data)
+        const {isRemember, email, password} = data;
+        props.login(email, password, isRemember);
     }
 
     return (

@@ -3,6 +3,7 @@ import {Field, reduxForm} from "redux-form";
 import s from './Login.module.css'
 import {maxLengthValidateCreator, required} from "../../utils/validators/validators";
 import Input from "../HelpfulComponents/Input/Input";
+import createField from "../../common/createField";
 
 const maxLength50 = maxLengthValidateCreator(50);
 
@@ -12,10 +13,10 @@ const LoginForm = (props) => {
         <form className={'form'} onSubmit={props.handleSubmit}>
             <h2 className='formTitle'>Sign in</h2>
             {props.error && <h3 className={s.error}>{props.error}</h3>}
-            <Field component={Input} type={'text'} name={"login"} placeholder={'Login'} validate={[maxLength50, required]}/>
-            <Field component={Input} type={'password'} name={"password"} placeholder={'Password'} validate={[maxLength50, required]}/>
+            {createField(Input, 'text', 'email', 'Email', [maxLength50, required])}
+            {createField(Input, 'password', 'password', 'Login', [maxLength50, required])}
             <div>
-                <Field className={'checkbox'} component={'input'} type={'checkbox'} name={"isRemember"}/>
+                {createField(Input, 'checkbox', 'isRemember', null, null, {className: 'checkbox'})}
                 <label className={'label'} htmlFor={'isRemember'}>Remember me</label>
             </div>
             <button className={`btn ${s.btn}`}>Login</button>

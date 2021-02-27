@@ -37,6 +37,7 @@ export const loginRequest = () => async (dispatch) => {
 }
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
+    console.log(email)
     dispatch(toggleFetching(true));
     const data = await authAPI.login(email, password, rememberMe)
 
