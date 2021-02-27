@@ -13,7 +13,7 @@ import {compose} from "redux";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
-import Preloader from "./modules/HelpfulComponents/Preloader";
+import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 
 const Settings = React.lazy(() => import('./modules/Settings'))

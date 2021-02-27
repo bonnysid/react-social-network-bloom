@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import {getUserInfo, getUserStatus, savePhoto, updateUserStatus} from "../../redux/profileReducer";
 import {withRouter} from "react-router";
-import Preloader from "../HelpfulComponents/Preloader";
+import Preloader from "../common/Preloader";
 import {compose} from "redux";
 import withSuspense from "../../hoc/withSuspense";
 
@@ -14,21 +14,19 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(!this.props.match.params.id) {
+        if(!this.props.isFetching && prevProps.match.params.id !== this.props.match.params.id) {
             this.getProfileInfo();
         }
     }
 
     getProfileInfo = () => {
-        const userId = this.props.match.params.id ? this.props.match.params.id : this.props.yourId;
+        let userId = this.props.match.params.id ? this.props.match.params.id : this.props.yourId;
         if (!userId) this.props.history.push('/login');
-
         this.props.getUserInfo(userId);
-        this.props.getUserStatus(userId);
     }
 
     render() {
-        if (!Object.keys(this.props.userInfo).length) return <Preloader/>
+        if (!Object.keys(this.props.userInfo).length || this.props.isFetching) return <Preloader/>
 
         return (
             <Profile savePhoto={this.props.savePhoto} isOwner={!this.props.match.params.id} updateUserStatus={this.props.updateUserStatus} userInfo={this.props.userInfo} status={this.props.userStatus}/>
@@ -40,11 +38,12 @@ class ProfileContainer extends React.Component {
 const mapPropsToState = (state) => ({
     userInfo: state.profilePage.userPageInfo,
     yourId: state.auth.userId,
+    isFetching: state.profilePage.isFetching,
     userStatus: state.profilePage.userStatus
 });
 
 export default compose(
     withSuspense,
     withRouter,
-    connect(mapPropsToState, {getUserInfo, getUserStatus, updateUserStatus, savePhoto})
+    connect(mapPropsToState, {getUserInfo, updateUserStatus, savePhoto})
 )(ProfileContainer);

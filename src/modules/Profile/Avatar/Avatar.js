@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Avatar.module.css';
 import defaultAvatar from '../../../assets/img/user.png';
-import InputFile from "../../HelpfulComponents/InputFile/InputFile";
+import InputFile from "../../common/InputFile/InputFile";
 
 const Avatar = ({url, isOwner, savePhoto}) => {
     return (

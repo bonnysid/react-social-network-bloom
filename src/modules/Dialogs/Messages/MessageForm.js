@@ -1,9 +1,9 @@
 import React from 'react';
 import s from "../../Profile/Posts/Posts.module.css";
 import {Field, reduxForm} from "redux-form";
-import SvgItem from "../../HelpfulComponents/SvgItem";
+import SvgItem from "../../common/SvgItem";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
-import Textarea from "../../HelpfulComponents/Textarea/Textarea";
+import Textarea from "../../common/Textarea/Textarea";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
@@ -14,7 +14,7 @@ const MessageForm = (props) => {
                 component={Textarea}
                 placeholder={'Input your text'}
                 rows={1}
-                isresize={false}
+                isResize={true}
                 name={"message"}
                 validate={[maxLength200, required]}
             />

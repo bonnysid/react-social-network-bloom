@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import AvatarLower from '../../HelpfulComponents/AvatarLower';
+import AvatarLower from '../../common/AvatarLower';
 import s from './Dialog.module.css';
 
 // import AvatarLower;

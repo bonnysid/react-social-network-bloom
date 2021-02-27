@@ -3,7 +3,7 @@ import {Redirect} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import Preloader from "../HelpfulComponents/Preloader";
+import Preloader from "../common/Preloader";
 import {setHeaderTitle} from "../../redux/navbarReducer";
 
 class StartPage extends React.Component {

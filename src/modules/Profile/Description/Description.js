@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Description.module.css';
-import SocialLink from "../../HelpfulComponents/SocialLink";
+import SocialLink from "../../common/SocialLink";
 import ProfileStatus from "./ProfileStatus";
 import SingleDescription from "./SingleDescription";
 

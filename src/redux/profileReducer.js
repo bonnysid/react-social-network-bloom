@@ -33,18 +33,18 @@ export const setPhotos = (photos) => ({type: SET_PHOTOS, photos});
 export const getUserInfo = (userId) => async (dispatch) => {
     dispatch(toggleFetching(true));
     const data = await profileAPI.getProfileInfo(userId)
+    const status = await profileAPI.getUserStatus(userId)
 
-    dispatch(toggleFetching(false));
+    dispatch(setUserStatus(status))
     dispatch(setUserPageInfo(data));
     dispatch(setHeaderTitle(data.fullName))
-
+    dispatch(toggleFetching(false));
 }
 
-export const getUserStatus = (userID) => async (dispatch) => {
-    const data = await profileAPI.getUserStatus(userID)
+export const getUserStatus = (userId) => async (dispatch) => {
+    const status = await profileAPI.getUserStatus(userId)
 
-    dispatch(setUserStatus(data))
-
+    dispatch(setUserStatus(status))
 }
 
 export const updateUserStatus = (status) => async (dispatch) => {

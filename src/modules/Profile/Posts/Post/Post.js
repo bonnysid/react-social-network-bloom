@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
-import SvgItem from "../../../HelpfulComponents/SvgItem";
+import SvgItem from "../../../common/SvgItem";
 
 const Post = ({author, comment, likeCount}) => {
     const date = new Date();

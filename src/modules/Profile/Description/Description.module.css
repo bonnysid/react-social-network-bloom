@@ -8,6 +8,16 @@
     color: var(--text-light);
 }
 
+.aboutTitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.aboutText {
+    color: var(--text);
+}
+
 .status {
     font-size: 13px;
     color: var(--text);

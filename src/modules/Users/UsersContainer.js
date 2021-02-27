@@ -7,7 +7,7 @@ import {
     setPage, resetUsers, requestUsers
 } from "../../redux/usersReducer";
 import React from "react";
-import Preloader from "../HelpfulComponents/Preloader";
+import Preloader from "../common/Preloader";
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {setHeaderTitle} from "../../redux/navbarReducer";

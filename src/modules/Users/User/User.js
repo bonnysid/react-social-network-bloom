@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './User.module.css';
-import AvatarLower from "../../HelpfulComponents/AvatarLower";
-import SvgItem from "../../HelpfulComponents/SvgItem";
-import SvgLink from "../../HelpfulComponents/SvgLink";
+import AvatarLower from "../../common/AvatarLower";
+import SvgItem from "../../common/SvgItem";
+import SvgLink from "../../common/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
 

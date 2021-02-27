@@ -30,7 +30,7 @@ const ProfileStatus = (props) => {
                 <input className={s.input} onChange={(e) => onInputChange(e)} autoFocus={true}
                        onBlur={deactivateEditMode} value={status}/>
                 :
-                <p onTouchEnd={activateEditMode}
+                <p className={s.aboutText} onTouchEnd={activateEditMode}
                    onDoubleClick={activateEditMode}>{props.status || 'Click to change it'}</p>
             }
         </div>
