@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.match.params.id === this.props.yourId) {
+        if(!this.props.match.params.id) {
             this.getProfileInfo();
         }
     }
@@ -22,6 +22,7 @@ class ProfileContainer extends React.Component {
     getProfileInfo = () => {
         const userId = this.props.match.params.id ? this.props.match.params.id : this.props.yourId;
         if (!userId) this.props.history.push('/login');
+
         this.props.getUserInfo(userId);
         this.props.getUserStatus(userId);
     }

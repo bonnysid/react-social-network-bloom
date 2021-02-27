@@ -6,14 +6,14 @@ import PostsContainer from "./Posts";
 
 const Profile = (props) => {
     const {userInfo} = props;
+
     return (
         <>
             <main className={s.content}>
                 <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={userInfo.photos.large}/>
                 <Description
-                    name={userInfo.fullName}
+                    user={userInfo}
                     status={props.status}
-                    contacts={userInfo.contacts}
                     updateUserStatus={props.updateUserStatus}
                 />
                 <PostsContainer />
