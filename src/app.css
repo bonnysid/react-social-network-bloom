@@ -58,7 +58,7 @@ button {
 
 .form {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 0.3fr 1fr;
+    /*grid-template-rows: 1fr 1fr 1fr 0.3fr 1fr;*/
     grid-gap: 1em;
     background: var(--header-bg);
     padding: 1em;

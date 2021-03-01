@@ -1,9 +1,10 @@
-import {authAPI, profileAPI, usersAPI} from "../API/API";
+import {authAPI, profileAPI, securityAPI, usersAPI} from "../API/API";
 import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USER_INFO = 'app/auth/SET_AUTH_USER_INFO';
 const SET_LOGGED_USER = 'app/auth/SET_LOGGED_USER';
 const TOGGLE_FETCHING = 'app/auth/TOGGLE_FETCHING';
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 
 const initialState = {
     userId: null,
@@ -11,18 +12,22 @@ const initialState = {
     login: null,
     isAuth: false,
     isFetching: false,
-    loggedUser: null
+    loggedUser: null,
+    captchaUrl: null
 }
 
 export const setAuthUserInfo = (userId, email, login, isAuth) => ({
     type: SET_AUTH_USER_INFO,
-    userId,
-    email,
-    login,
-    isAuth
+    payload: {
+        userId,
+        email,
+        login,
+        isAuth
+    }
 });
-export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
-export const setLoggedUser = (user) => ({type: SET_LOGGED_USER, user})
+export const toggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, payload: {isFetching}});
+export const setLoggedUser = (loggedUser) => ({type: SET_LOGGED_USER, payload: {loggedUser}})
+export const setCaptchaUrl = (captchaUrl) => ({type: SET_CAPTCHA_URL, payload: {captchaUrl}})
 
 export const loginRequest = () => async (dispatch) => {
     dispatch(toggleFetching(true));
@@ -36,14 +41,23 @@ export const loginRequest = () => async (dispatch) => {
     return data;
 }
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
-    console.log(email)
+
+export const getCaptchaUrl = () => async (dispatch) => {
+    const data = await securityAPI.getCaptcha();
+    dispatch(setCaptchaUrl(data.url));
+}
+
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
     dispatch(toggleFetching(true));
-    const data = await authAPI.login(email, password, rememberMe)
+    const data = await authAPI.login(email, password, rememberMe, captcha)
 
     dispatch(toggleFetching(false));
     if (data.resultCode === 0) dispatch(loginRequest());
-    else dispatch(stopSubmit('login', {_error: data.messages[0] || 'Some error!'}))
+    else {
+        if(data.resultCode === 10) dispatch(getCaptchaUrl());
+
+        dispatch(stopSubmit('login', {_error: data.messages[0] || 'Some error!'}))
+    }
 
 }
 
@@ -61,22 +75,12 @@ export const logout = () => async (dispatch) => {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER_INFO:
-            return {
-                ...state,
-                userId: action.userId,
-                email: action.email,
-                login: action.login,
-                isAuth: action.isAuth
-            }
         case TOGGLE_FETCHING:
-            return {
-                ...state,
-                isFetching: action.isFetching
-            }
         case SET_LOGGED_USER:
+        case SET_CAPTCHA_URL:
             return {
                 ...state,
-                loggedUser: action.user
+                ...action.payload
             }
         default:
             return state;

@@ -2,27 +2,29 @@ import React from 'react';
 import LoginForm from "./LoginForm";
 import s from './Login.module.css'
 import {connect} from "react-redux";
-import {withRouter} from "react-router";
+import {Redirect, withRouter} from "react-router";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
 
 const Login = (props) => {
 
     const onSubmit = (data) => {
-        console.log(data)
-        const {isRemember, email, password} = data;
-        props.login(email, password, isRemember);
+        const {isRemember, email, password, captcha} = data;
+        props.login(email, password, isRemember, captcha);
     }
+
+    if(props.isAuth) return <Redirect to={'/news'}/>
 
     return (
         <div className={s.container}>
-            <LoginForm onSubmit={onSubmit}/>
+            <LoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default compose(

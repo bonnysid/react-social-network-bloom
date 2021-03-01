@@ -7,18 +7,23 @@ import createField from "../common/createField";
 
 const maxLength50 = maxLengthValidateCreator(50);
 
-const LoginForm = (props) => {
-
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
+    console.log(captchaUrl)
     return (
-        <form className={'form'} onSubmit={props.handleSubmit}>
+        <form className={'form'} onSubmit={handleSubmit}>
             <h2 className='formTitle'>Sign in</h2>
-            {props.error && <h3 className={s.error}>{props.error}</h3>}
+            {error && <h3 className={s.error}>{error}</h3>}
             {createField(Input, 'text', 'email', 'Email', [maxLength50, required])}
             {createField(Input, 'password', 'password', 'Login', [maxLength50, required])}
             <div>
                 {createField(Input, 'checkbox', 'isRemember', null, null, {className: 'checkbox'})}
                 <label className={'label'} htmlFor={'isRemember'}>Remember me</label>
             </div>
+            {captchaUrl &&
+            <div className={s.captcha}>
+                <img className={s.captchaImg} src={captchaUrl} alt='captcha'/>
+                {createField(Input, 'text', 'captcha', 'Input your captcha', [required])}
+            </div>}
             <button className={`btn ${s.btn}`}>Login</button>
         </form>
     )

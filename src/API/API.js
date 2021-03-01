@@ -59,12 +59,18 @@ class AuthAPI extends API {
         return this._instance.get('auth/me').then(response => response.data);
     }
 
-    login(email, password, rememberMe = false) {
-        return this._instance.post('auth/login', {email, password, rememberMe}).then(response => response.data);
+    login(email, password, rememberMe = false, captcha = null) {
+        return this._instance.post('auth/login', {email, password, rememberMe, captcha}).then(response => response.data);
     }
 
     logout() {
         return this._instance.delete('auth/login').then(response => response.data);
+    }
+}
+
+class SecurityAPI extends API{
+    getCaptcha() {
+        return this._instance.get('security/get-captcha-url').then(response => response.data)
     }
 }
 
@@ -77,6 +83,7 @@ const config = {
 export const usersAPI = new UsersAPI(config);
 export const authAPI = new AuthAPI(config);
 export const profileAPI = new ProfileAPI(config);
+export const securityAPI = new SecurityAPI(config);
 
 
 
