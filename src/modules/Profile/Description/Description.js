@@ -6,7 +6,7 @@ import DescriptionAbout from "./DescriptionAbout";
 import {useState} from "react";
 import DescriptionAboutForm from "./DescriptionAboutForm";
 
-const Description = ({user, status, updateUserStatus, saveProfile}) => {
+const Description = ({user, status, updateUserStatus, saveProfile, isOwner}) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const contactsLinks = [];
@@ -33,9 +33,9 @@ const Description = ({user, status, updateUserStatus, saveProfile}) => {
             <section className={s.links}>
                 {contactsLinks}
             </section>
-            {isEdit ?
+            {isOwner && isEdit ?
                 <DescriptionAboutForm onSubmit={onSubmit} savePhoto={saveProfile}/> :
-                <DescriptionAbout activateEditMode={setIsEdit} user={user}/>
+                <DescriptionAbout isOwner={isOwner} activateEditMode={setIsEdit} user={user}/>
             }
         </main>
     );

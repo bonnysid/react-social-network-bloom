@@ -12,6 +12,7 @@ const Profile = (props) => {
             <main className={s.content}>
                 <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={userInfo.photos.large}/>
                 <Description
+                    isOwner={props.isOwner}
                     saveProfile={props.saveProfile}
                     user={userInfo}
                     status={props.status}

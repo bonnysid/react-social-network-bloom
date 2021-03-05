@@ -93,4 +93,11 @@
     fill: var(--text-light);
 }
 
+.itemEditBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 300px;
+    margin-bottom: 1em;
+}
 
