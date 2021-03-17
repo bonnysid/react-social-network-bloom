@@ -37,14 +37,32 @@ export interface IProfile {
 }
 
 export interface IPhotos {
-    small: string,
-    large: string
+    small: string | null,
+    large: string | null
+}
+
+export interface IAction<T, R> {
+    type: T,
+    payload: R
 }
 
 export interface IData {
     resultCode: number
 }
 
+export interface IUser {
+    name: string,
+    id: number,
+    uniqueUrlName: string | null,
+    photos: IPhotos,
+    status: string | null,
+    followed: boolean
+}
+
+export type ApiMethod = (data: any) => Promise<any>
+
 export type Messages = IMessage[];
+
+export type Users = IUser[];
 
 export type DispatchType = typeof store.dispatch

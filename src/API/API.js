@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ApiMethod} from "../utils/interfaces/interfaces";
 
 class API {
     constructor(props) {
@@ -69,7 +70,7 @@ class AuthAPI extends API {
 }
 
 class SecurityAPI extends API{
-    getCaptcha() {
+    getCaptcha(){
         return this._instance.get('security/get-captcha-url').then(response => response.data)
     }
 }
