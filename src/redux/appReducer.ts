@@ -1,5 +1,5 @@
+import { DispatchType } from "../utils/interfaces/interfaces";
 import {loginRequest} from "./authReducer";
-import {DispatchType} from "./reduxStore";
 
 enum AppActionTypes {
     INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL'

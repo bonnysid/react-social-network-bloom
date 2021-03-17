@@ -1,7 +1,6 @@
 import {authAPI, profileAPI, securityAPI} from "../API/API";
 import {stopSubmit} from "redux-form";
-import {AuthUserInfo} from "../utils/interfaces/interfaces";
-import {DispatchType} from "./reduxStore";
+import {IAuthUserInfo, DispatchType} from "../utils/interfaces/interfaces";
 
 export enum AuthActionTypes {
     SET_AUTH_USER_INFO = 'app/auth/SET_AUTH_USER_INFO',
@@ -16,7 +15,7 @@ const initialState = {
     login: null as null | string,
     isAuth: false,
     isFetching: false,
-    loggedUser: null as null | AuthUserInfo,
+    loggedUser: null as null | IAuthUserInfo,
     captchaUrl: null as null | string
 }
 
@@ -24,7 +23,7 @@ export type AuthStateType = typeof initialState;
 
 export type SetLoggedUserType = {
     type: AuthActionTypes.SET_LOGGED_USER,
-    payload: {loggedUser: AuthUserInfo}
+    payload: {loggedUser: IAuthUserInfo}
 }
 export type ToggleFetchingType = {
     type: AuthActionTypes.TOGGLE_FETCHING,
@@ -63,7 +62,7 @@ export const toggleFetching = (isFetching: boolean): ToggleFetchingType => ({
     type: AuthActionTypes.TOGGLE_FETCHING,
     payload: {isFetching}
 });
-export const setLoggedUser = (loggedUser: AuthUserInfo): SetLoggedUserType => ({
+export const setLoggedUser = (loggedUser: IAuthUserInfo): SetLoggedUserType => ({
     type: AuthActionTypes.SET_LOGGED_USER,
     payload: {loggedUser}
 })
