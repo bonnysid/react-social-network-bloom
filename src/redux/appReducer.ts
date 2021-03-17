@@ -1,7 +1,7 @@
 import {loginRequest} from "./authReducer";
 import {DispatchType} from "./reduxStore";
 
-enum ActionTypes {
+enum AppActionTypes {
     INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL'
 }
 
@@ -12,21 +12,21 @@ const initialState = {
 export type AppState = typeof initialState;
 
 type InitializedSuccessAction = {
-    type: ActionTypes.INITIALIZED_SUCCESSFUL
+    type: AppActionTypes.INITIALIZED_SUCCESSFUL
 }
 
-export type AppActionTypes = InitializedSuccessAction;
+export type AppAction = InitializedSuccessAction;
 
-export const initializedSuccessful = () => ({type: ActionTypes.INITIALIZED_SUCCESSFUL});
+export const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFUL});
 
 export const initializeApp = () => async (dispatch: DispatchType) => {
     await Promise.all([dispatch(loginRequest())])
     dispatch(initializedSuccessful());
 }
 
-const appReducer = (state = initialState, action: AppActionTypes): AppState => {
+const appReducer = (state = initialState, action: AppAction): AppState => {
     switch (action.type) {
-        case ActionTypes.INITIALIZED_SUCCESSFUL:
+        case AppActionTypes.INITIALIZED_SUCCESSFUL:
             return {
                 ...state,
                 initialized: true
