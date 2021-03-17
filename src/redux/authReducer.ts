@@ -114,7 +114,7 @@ export const logout = () => async (dispatch: DispatchType) => {
 
 }
 
-const authReducer = (state = initialState, action: AuthAction) => {
+const authReducer = (state = initialState, action: AuthAction): AuthStateType => {
     switch (action.type) {
         case AuthActionTypes.SET_AUTH_USER_INFO:
         case AuthActionTypes.TOGGLE_FETCHING:
