@@ -13,6 +13,11 @@ export interface IMessage {
     userName: string
 }
 
+export interface IMenuItem {
+    title: string,
+    link: string
+}
+
 export type Messages = IMessage[];
 
 export type DispatchType = typeof store.dispatch

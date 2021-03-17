@@ -1,4 +1,4 @@
-import authReducer, {setAuthUserInfo, setLoggedUser} from "./authReducer";
+import authReducer, {setAuthUserInfo, setLoggedUser} from "../redux/authReducer";
 
 const state = {
     userId: null,
