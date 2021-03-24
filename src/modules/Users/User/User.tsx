@@ -5,8 +5,16 @@ import SvgItem from "../../common/SvgItem";
 import SvgLink from "../../common/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
+import {IUser, ToggleFollowType} from "../../../utils/interfaces/interfaces";
 
-const User = ({id, status, followed, name, avatarLink, follow, unfollow, followingProcess}) => {
+interface UserProps extends IUser{
+    follow: ToggleFollowType,
+    unfollow: ToggleFollowType,
+    avatarLink: string | null,
+    followingProcess: number[]
+}
+
+const User: React.FC<UserProps> = ({id, status, followed, name, avatarLink, follow, unfollow, followingProcess}) => {
 
     return (
         <div className={`${s.block} block`}>

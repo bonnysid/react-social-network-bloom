@@ -2,8 +2,17 @@ import React from 'react';
 import User from "./User";
 import Header from "../Header";
 import s from "./Users.module.css";
+import {Users} from "../../utils/interfaces/interfaces";
 
-const Users = (props) => {
+interface UsersProps {
+    follow: (id: number) => void,
+    unfollow: (id: number) => void,
+    users: Users,
+    followingProcess: number[],
+    onLoadUsers: () => void
+}
+
+const Users: React.FC<UsersProps> = (props) => {
 
     const usersElements = props.users.map(u =>
         <User

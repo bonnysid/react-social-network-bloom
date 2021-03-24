@@ -67,6 +67,8 @@ export interface IUser {
 
 export type ApiMethod = (data: any) => Promise<any>
 
+export type ToggleFollowType = (id: number) => void;
+
 export type Messages = IMessage[];
 
 export type Users = IUser[];
