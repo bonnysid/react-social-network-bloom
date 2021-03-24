@@ -80,9 +80,6 @@ export type SelectDialogType = {
 
 export type DialogsAction = AddMessageType | SelectDialogType
 
-export const addMessage = (messageInfo: IMessage): AddMessageType => ({type: DialogsActionTypes.ADD_MESSAGE, messageInfo});
-export const selectDialog = (id: number): SelectDialogType => ({type: DialogsActionTypes.SELECT_DIALOG, dialogId: id});
-
 const dialogsReducer = (state = initialState, action: DialogsAction): DialogsState => {
 
     switch (action.type) {

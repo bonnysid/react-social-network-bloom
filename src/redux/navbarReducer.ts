@@ -22,7 +22,7 @@ export type SetHeaderTitleAction = {
 
 export type NavbarAction = SetHeaderTitleAction
 
-export const setHeaderTitle = (headerTitle: string): SetHeaderTitleAction => ({type: NavbarActionTypes.SET_HEADER_TITLE, headerTitle});
+
 
 const navbarReducer = (state = initialState, action: NavbarAction): NavbarState => {
     switch (action.type) {

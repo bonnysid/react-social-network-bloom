@@ -16,13 +16,6 @@ type InitializedSuccessAction = {
 
 export type AppAction = InitializedSuccessAction;
 
-const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFUL});
-
-export const initializeApp = () => async (dispatch: any) => {
-    await Promise.all([dispatch(loginRequest())])
-    dispatch(initializedSuccessful());
-}
-
 const appReducer = (state = initialState, action: AppAction): AppState => {
     switch (action.type) {
         case AppActionTypes.INITIALIZED_SUCCESSFUL:
