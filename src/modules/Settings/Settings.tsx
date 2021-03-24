@@ -3,12 +3,10 @@ import s from './Settings.module.css';
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
-const Settings = () => {
+const Settings: React.FC = () => {
     return (
         <p>Settings</p>
     )
 }
 
-export default compose(
-    withAuthRedirect
-)(Settings);
+export default withAuthRedirect(Settings)
