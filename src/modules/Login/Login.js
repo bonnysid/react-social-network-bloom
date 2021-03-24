@@ -4,7 +4,7 @@ import s from './Login.module.css'
 import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router";
 import {compose} from "redux";
-import {login} from "../../redux/authReducer";
+import {login} from "../../redux/reducers/authReducer";
 
 const Login = (props) => {
 

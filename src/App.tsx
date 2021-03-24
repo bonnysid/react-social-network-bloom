@@ -11,8 +11,7 @@ import StartPage from "./modules/StartPage/StartPage";
 import Header from "./modules/Header/Header";
 import {compose} from "redux";
 import {withRouter} from "react-router";
-import {connect, useSelector} from "react-redux";
-import {initializeApp} from "./redux/appReducer";
+import {connect} from "react-redux";
 import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
@@ -22,12 +21,7 @@ const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
 const Music = React.lazy(() => import('./modules/Music'))
 
-interface IAppProps {
-    initializeApp: () => void,
-    initialized: boolean
-}
-
-const App: React.FC<IAppProps> = (props) => {
+const App: React.FC = () => {
 
     const initialized = useTypedSelector(state => state.app.initialized)
     const {initializeApp} = useAction();
@@ -72,5 +66,4 @@ const mapStateToProps = (state: IMapStateToProps) => ({
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {initializeApp})
 )(App);

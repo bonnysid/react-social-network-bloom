@@ -2,7 +2,7 @@ import {AuthActionTypes} from "../action-types/auth";
 import {DispatchType, IAuthUserInfo} from "../../utils/interfaces/interfaces";
 import {authAPI, profileAPI, securityAPI} from "../../API/API";
 import {stopSubmit} from "redux-form";
-import {SetAuthUserInfoType, SetCaptchaUrlType, SetLoggedUserType, ToggleFetchingType} from "../authReducer";
+import {SetAuthUserInfoType, SetCaptchaUrlType, SetLoggedUserType, ToggleFetchingType} from "../reducers/authReducer";
 
 export const setAuthUserInfo = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserInfoType => ({
     type: AuthActionTypes.SET_AUTH_USER_INFO,

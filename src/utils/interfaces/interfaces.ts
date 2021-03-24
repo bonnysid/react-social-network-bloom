@@ -1,10 +1,10 @@
 import store from "../../redux/reduxStore";
-import {AppAction} from "../../redux/appReducer";
-import {AuthAction} from "../../redux/authReducer";
-import {UsersAction} from "../../redux/usersReducer";
-import {DialogsAction} from "../../redux/dialogsReducer";
-import {NavbarAction} from "../../redux/navbarReducer";
-import {ProfileAction} from "../../redux/profileReducer";
+import {AppAction} from "../../redux/reducers/appReducer";
+import {AuthAction} from "../../redux/reducers/authReducer";
+import {UsersAction} from "../../redux/reducers/usersReducer";
+import {DialogsAction} from "../../redux/reducers/dialogsReducer";
+import {NavbarAction} from "../../redux/reducers/navbarReducer";
+import {ProfileAction} from "../../redux/reducers/profileReducer";
 
 export interface IAuthUserInfo {
     id: number | null,

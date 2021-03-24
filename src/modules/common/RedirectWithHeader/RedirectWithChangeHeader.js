@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from "react-router";
 import {connect} from "react-redux";
-import {setHeaderTitle} from "../../../redux/navbarReducer";
+import {setHeaderTitle} from "../../../redux/reducers/navbarReducer";
 
 const RedirectWithChangeHeader = (props) => {
     props.setHeaderTitle(props.title);

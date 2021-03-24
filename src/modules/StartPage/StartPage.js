@@ -4,7 +4,7 @@ import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Preloader from "../common/Preloader";
-import {setHeaderTitle} from "../../redux/navbarReducer";
+import {setHeaderTitle} from "../../redux/reducers/navbarReducer";
 
 class StartPage extends React.Component {
 

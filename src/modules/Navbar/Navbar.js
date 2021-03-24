@@ -4,8 +4,8 @@ import SvgLink from '../common/SvgLink';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/img/logo.svg'
-import {setHeaderTitle} from "../../redux/navbarReducer";
-import {logout} from "../../redux/authReducer";
+import {setHeaderTitle} from "../../redux/reducers/navbarReducer";
+import {logout} from "../../redux/reducers/authReducer";
 
 const Navbar = ({items, setHeaderTitle, logout}) => {
     const menuElements = items.map((item, id) => (<SvgLink onClick={() => setHeaderTitle(item.title)} key={id} title={item.title} link={item.link}/>));

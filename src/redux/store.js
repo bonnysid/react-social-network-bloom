@@ -1,7 +1,7 @@
-import dialogsReducer from "./dialogsReducer";
-import profileReducer from "./profileReducer";
-import usersReducer from "./usersReducer";
-import navbarReducer from "./navbarReducer";
+import dialogsReducer from "./reducers/dialogsReducer";
+import profileReducer from "./reducers/profileReducer";
+import usersReducer from "./reducers/usersReducer";
+import navbarReducer from "./reducers/navbarReducer";
 
 const store = {
     _state: {

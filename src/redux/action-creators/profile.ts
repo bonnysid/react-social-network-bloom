@@ -9,7 +9,7 @@ import {
     SetUserPageInfoAction,
     SetUserStatusAction,
     ToggleFetchingAction
-} from "../profileReducer";
+} from "../reducers/profileReducer";
 
 export const addPost = (authorInfo: IAuthUserInfo, message: string): AddPostAction => ({
     type: ProfileActionTypes.ADD_POST,

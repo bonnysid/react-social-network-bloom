@@ -7,7 +7,7 @@ import {
     SetTotalCountUsersAction,
     SetUsersAction, ToggleFetchingAction, ToggleFollowingProcessAction,
     UnfollowSuccessAction
-} from "../usersReducer";
+} from "../reducers/usersReducer";
 
 export const followSuccess = (userId: number): FollowSuccessAction => ({
     type: UsersActionTypes.FOLLOW,

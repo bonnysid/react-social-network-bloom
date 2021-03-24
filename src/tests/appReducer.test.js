@@ -1,4 +1,4 @@
-import appReducer, {initializedSuccessful} from "../redux/appReducer";
+import appReducer, {initializedSuccessful} from "../redux/reducers/appReducer";
 
 const state = {
     initialized: false

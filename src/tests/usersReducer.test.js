@@ -5,7 +5,7 @@ import usersReducer, {
     setUsers,
     toggleFetching, toggleFollowingProcess,
     unfollowSuccess
-} from "../redux/usersReducer";
+} from "../redux/reducers/usersReducer";
 
 const state = {
     all: [

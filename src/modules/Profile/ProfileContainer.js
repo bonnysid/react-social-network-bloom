@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getUserInfo, savePhoto, saveProfile, updateUserStatus} from "../../redux/profileReducer";
+import {getUserInfo, savePhoto, saveProfile, updateUserStatus} from "../../redux/reducers/profileReducer";
 import {withRouter} from "react-router";
 import Preloader from "../common/Preloader";
 import {compose} from "redux";

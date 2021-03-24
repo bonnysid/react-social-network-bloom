@@ -1,5 +1,5 @@
-import {IAuthUserInfo, IPhotos, IProfile} from "../utils/interfaces/interfaces";
-import {ProfileActionTypes} from "./action-types/profile";
+import {IAuthUserInfo, IPhotos, IProfile} from "../../utils/interfaces/interfaces";
+import {ProfileActionTypes} from "../action-types/profile";
 
 
 const initialState = {
