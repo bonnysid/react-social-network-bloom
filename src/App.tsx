@@ -16,6 +16,7 @@ import {initializeApp} from "./redux/appReducer";
 import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
+import {useAction} from "./hooks/useAction";
 
 const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
@@ -29,7 +30,7 @@ interface IAppProps {
 const App: React.FC<IAppProps> = (props) => {
 
     const initialized = useTypedSelector(state => state.app.initialized)
-    const initializeApp = useSelector((state: {}))
+    const {initializeApp} = useAction();
 
     useEffect(() => {
         initializeApp();
