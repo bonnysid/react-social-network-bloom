@@ -11,7 +11,7 @@ import StartPage from "./modules/StartPage/StartPage";
 import Header from "./modules/Header/Header";
 import {compose} from "redux";
 import {withRouter} from "react-router";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
@@ -27,8 +27,11 @@ interface IAppProps {
 
 const App: React.FC<IAppProps> = (props) => {
 
+    const initializeApp = useSelector((state: {initializeApp: () => void}) => state.initializeApp)
+    const initialized = useSelector((state: {}))
+
     useEffect(() => {
-        props.initializeApp();
+        initializeApp();
     }, [])
 
 
