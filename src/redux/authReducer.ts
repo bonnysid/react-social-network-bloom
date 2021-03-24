@@ -1,13 +1,9 @@
 import {authAPI, profileAPI, securityAPI} from "../API/API";
 import {stopSubmit} from "redux-form";
 import {IAuthUserInfo, DispatchType} from "../utils/interfaces/interfaces";
+import {AuthActionTypes} from "./action-types/auth";
+import {HandleThunkActionCreator} from "react-redux";
 
-export enum AuthActionTypes {
-    SET_AUTH_USER_INFO = 'app/auth/SET_AUTH_USER_INFO',
-    SET_LOGGED_USER = 'app/auth/SET_LOGGED_USER',
-    TOGGLE_FETCHING = 'app/auth/TOGGLE_FETCHING',
-    SET_CAPTCHA_URL = 'SET_CAPTCHA_URL'
-}
 
 const initialState = {
     userId: null as null | number,
@@ -23,7 +19,7 @@ export type AuthStateType = typeof initialState;
 
 export type SetLoggedUserType = {
     type: AuthActionTypes.SET_LOGGED_USER,
-    payload: {loggedUser: IAuthUserInfo}
+    payload: { loggedUser: IAuthUserInfo }
 }
 export type ToggleFetchingType = {
     type: AuthActionTypes.TOGGLE_FETCHING,
@@ -47,7 +43,12 @@ export type SetAuthUserInfoType = {
     }
 }
 
-export type AuthAction = SetLoggedUserType | ToggleFetchingType | SetCaptchaUrlType | SetAuthUserInfoType;
+
+export type AuthAction =
+    SetLoggedUserType
+    | ToggleFetchingType
+    | SetCaptchaUrlType
+    | SetAuthUserInfoType;
 
 export const setAuthUserInfo = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserInfoType => ({
     type: AuthActionTypes.SET_AUTH_USER_INFO,
@@ -88,7 +89,7 @@ export const getCaptchaUrl = () => async (dispatch: DispatchType) => {
     dispatch(setCaptchaUrl(data.url));
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: DispatchType) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
     dispatch(toggleFetching(true));
     const data = await authAPI.login(email, password, rememberMe, captcha)
 

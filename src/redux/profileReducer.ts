@@ -2,15 +2,8 @@ import {profileAPI} from "../API/API";
 import {setHeaderTitle} from "./navbarReducer";
 import {stopSubmit} from "redux-form";
 import {DispatchType, IAuthUserInfo, IPhotos, IProfile} from "../utils/interfaces/interfaces";
+import {ProfileActionTypes} from "./action-types/profile";
 
-export const enum ProfileActionTypes {
-    ADD_POST = 'app/profile/ADD_POST',
-    DELETE_POST = 'app/profile/DELETE_POST',
-    SET_USER_PAGE_INFO = 'app/profile/SET_USER_PAGE_INFO',
-    TOGGLE_FETCHING = 'app/profile/TOGGLE_FETCHING',
-    SET_USER_STATUS = 'app/profile/SET_USER_STATUS',
-    SET_PHOTOS = 'app/profile/SET_PHOTOS'
-}
 
 const initialState = {
     posts: [
@@ -119,7 +112,7 @@ export const savePhoto = (photo: any) => async (dispatch: DispatchType) => {
     dispatch(setPhotos(data.data.photos));
 }
 
-export const saveProfile = (profile: IProfile) => async (dispatch: DispatchType) => {
+export const saveProfile = (profile: IProfile) => async (dispatch: any) => {
     // dispatch(toggleFetching(true))
     const data: any = await profileAPI.saveProfile(profile);
     if (data.data.resultCode === 0) {

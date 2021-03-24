@@ -1,9 +1,7 @@
 import { IMessage } from "../utils/interfaces/interfaces";
+import {DialogsActionTypes} from "./action-types/dialogs";
 
-export enum DialogsActionTypes {
-    ADD_MESSAGE = 'app/dialogs/ADD_MESSAGE',
-    SELECT_DIALOG = 'app/dialogs/SELECT_DIALOG'
-}
+
 
 const initialState = {
     dialogs: [
@@ -23,7 +21,7 @@ const initialState = {
             name: 'Ira Pauchok',
             avatarLink: 'https://sun9-15.userapi.com/impf/Nn3nY4xxOxkBHEW9Ao3_alcZAXgumh2lNlsYpQ/SlcMmc77PaA.jpg?size=936x937&quality=96&proxy=1&sign=42731f0c49c5336fe6618ae48eaa903f',
             time: new Date().toTimeString().substr(0, 9),
-            messages: []
+            messages: [] as IMessage[] | null
         },
         {
             id: 3,
@@ -32,7 +30,7 @@ const initialState = {
             userName: 'Nikita Brekhov',
             photo: 'https://sun7-8.userapi.com/impf/c851036/v851036735/113073/SOiON4aYvpU.jpg?size=844x891&quality=96&proxy=1&sign=87c777a34cb5afd9de8f56293aa79c6b',
             time: new Date().toTimeString().substr(0, 9),
-            messages: []
+            messages: [] as IMessage[] | null
         }
     ],
     activeDialog: {
@@ -55,7 +53,7 @@ const initialState = {
                 id: 2,
                 userId: 1,
                 userName: 'Yana Pros',
-                photo: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg',
+                photo: 'https://sun9-34.userapi.com/3mud1_gH3q-HAdZ7wpn_e5vFP0PqcEpKb9f60Q/2L9tDPWPwbk.jpg' as string | null,
                 time: new Date().toTimeString().substr(0, 9),
                 message: 'How are you?'
             },

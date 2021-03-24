@@ -1,9 +1,8 @@
 import { DispatchType } from "../utils/interfaces/interfaces";
-import {loginRequest} from "./authReducer";
+import {AuthAction, loginRequest} from "./authReducer";
+import {AppActionTypes} from "./action-types/app";
 
-enum AppActionTypes {
-    INITIALIZED_SUCCESSFUL = 'bloom/app/INITIALIZED_SUCCESSFUL'
-}
+
 
 const initialState = {
     initialized: false
@@ -17,9 +16,9 @@ type InitializedSuccessAction = {
 
 export type AppAction = InitializedSuccessAction;
 
-export const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFUL});
+const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFUL});
 
-export const initializeApp = () => async (dispatch: DispatchType) => {
+export const initializeApp = () => async (dispatch: any) => {
     await Promise.all([dispatch(loginRequest())])
     dispatch(initializedSuccessful());
 }

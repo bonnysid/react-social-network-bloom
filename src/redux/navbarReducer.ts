@@ -1,6 +1,5 @@
-enum NavbarActionTypes {
-    SET_HEADER_TITLE = 'app/navbar/SET_HEADER_TITLE'
-}
+import {NavbarActionTypes} from "./action-types/navbar";
+
 
 const initialState = {
     headerTitle: '',

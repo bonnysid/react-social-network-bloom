@@ -1,4 +1,10 @@
 import store from "../../redux/reduxStore";
+import {AppAction} from "../../redux/appReducer";
+import {AuthAction} from "../../redux/authReducer";
+import {UsersAction} from "../../redux/usersReducer";
+import {DialogsAction} from "../../redux/dialogsReducer";
+import {NavbarAction} from "../../redux/navbarReducer";
+import {ProfileAction} from "../../redux/profileReducer";
 
 export interface IAuthUserInfo {
     id: number | null,
@@ -66,3 +72,5 @@ export type Messages = IMessage[];
 export type Users = IUser[];
 
 export type DispatchType = typeof store.dispatch
+
+export type ActionCreator = AppAction | AuthAction | UsersAction | DialogsAction | NavbarAction | ProfileAction;
