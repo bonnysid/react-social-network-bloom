@@ -105,7 +105,7 @@ const profileReducer = (state = initialState, action: ProfileAction): ProfileSta
         case ProfileActionTypes.SET_PHOTOS:
             return {
                 ...state,
-                userPageInfo: {...state.userPageInfo, photos: action.photos}
+                userPageInfo: {...state.userPageInfo, photos: action.photos} as IProfile
             }
         default:
             return state;
