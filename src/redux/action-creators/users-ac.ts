@@ -1,14 +1,19 @@
 import {UsersActionTypes} from "../action-types/users-actions";
-import {ApiMethod, DispatchType} from "../../interfaces/other-interfaces";
+import {ApiMethod} from "../../interfaces/other-interfaces";
 import {usersAPI} from "../../API/API";
 import {
     FollowSuccessAction, ResetUsersAction,
     SetPageAction,
     SetTotalCountUsersAction,
     SetUsersAction, ToggleFetchingAction, ToggleFollowingProcessAction,
-    UnfollowSuccessAction
+    UnfollowSuccessAction, UsersAction
 } from "../reducers/users-reducer";
 import {Users} from "../../interfaces/users-interfaces";
+import {ThunkAction} from "redux-thunk";
+import {State} from "../redux-store";
+import {Dispatch} from "redux";
+
+export type UsersThunk = ThunkAction<Promise<void>, State, undefined, UsersAction>
 
 export const followSuccess = (userId: number): FollowSuccessAction => ({
     type: UsersActionTypes.FOLLOW,
@@ -34,7 +39,7 @@ export const toggleFollowingProcess = (isFollowing: boolean, userId: number): To
     payload: {userId, isFollowing}
 })
 
-export const requestUsers = (currentPage: number, pageSize: number) => async (dispatch: DispatchType) => {
+export const requestUsers = (currentPage: number, pageSize: number): UsersThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true))
     const data = await usersAPI.getUsers(currentPage, pageSize)
 
@@ -43,13 +48,13 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
     dispatch(setTotalCountUsers(data.totalCount))
 }
 
-const followUnfollowFlow = async (dispatch: DispatchType, id: number, apiMethod: ApiMethod, actionCreator: typeof followSuccess | typeof unfollowSuccess) => {
+const followUnfollowFlow = async (dispatch: Dispatch<UsersAction>, id: number, apiMethod: ApiMethod, actionCreator: typeof followSuccess | typeof unfollowSuccess) => {
     dispatch(toggleFollowingProcess(true, id))
     const data = await apiMethod(id)
     dispatch(toggleFollowingProcess(false, id))
     if (data.resultCode === 0) dispatch(actionCreator(id))
 }
 
-export const follow = (id: number) => async (dispatch: DispatchType) => followUnfollowFlow(dispatch, id, usersAPI.followUser.bind(usersAPI), followSuccess)
+export const follow = (id: number): UsersThunk => async (dispatch, getState) => followUnfollowFlow(dispatch, id, usersAPI.followUser.bind(usersAPI), followSuccess)
 
-export const unfollow = (id: number) => async (dispatch: DispatchType) => followUnfollowFlow(dispatch, id, usersAPI.unfollowUser.bind(usersAPI), unfollowSuccess)
+export const unfollow = (id: number): UsersThunk => async (dispatch, getState) => followUnfollowFlow(dispatch, id, usersAPI.unfollowUser.bind(usersAPI), unfollowSuccess)

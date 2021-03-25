@@ -1,17 +1,21 @@
-import {DispatchType} from "../../interfaces/other-interfaces";
 import {ProfileActionTypes} from "../action-types/profile-actions";
 import {profileAPI} from "../../API/API";
 import {setHeaderTitle} from "./navbar-ac";
 import {stopSubmit} from "redux-form";
 import {
     AddPostAction,
-    DeletePostAction, SetPhotosAction,
+    DeletePostAction, ProfileAction, SetPhotosAction,
     SetUserPageInfoAction,
     SetUserStatusAction,
     ToggleFetchingAction
 } from "../reducers/profile-reducer";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
 import {IPhotos, IProfile} from "../../interfaces/profile-interfaces";
+import {ThunkAction} from "redux-thunk";
+import {State} from "../redux-store";
+import {SetHeaderTitleAction} from "../reducers/navbar-reducer";
+
+export type ProfileThunk = ThunkAction<Promise<void>, State, undefined, ProfileAction | SetHeaderTitleAction>
 
 export const addPost = (authorInfo: IAuthUserInfo, message: string): AddPostAction => ({
     type: ProfileActionTypes.ADD_POST,
@@ -33,7 +37,7 @@ export const setUserStatus = (status: string): SetUserStatusAction => ({
 });
 export const setPhotos = (photos: IPhotos): SetPhotosAction => ({type: ProfileActionTypes.SET_PHOTOS, photos});
 
-export const getUserInfo = (userId?: number | string | null) => async (dispatch: DispatchType) => {
+export const getUserInfo = (userId?: number | string | null): ProfileThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true));
     const data = await profileAPI.getProfileInfo(userId)
     const status = await profileAPI.getUserStatus(userId)
@@ -44,12 +48,12 @@ export const getUserInfo = (userId?: number | string | null) => async (dispatch:
     dispatch(toggleFetching(false));
 }
 
-export const getUserStatus = (userId: number) => async (dispatch: DispatchType) => {
+export const getUserStatus = (userId: number): ProfileThunk  => async (dispatch) => {
     const status = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(status))
 }
 
-export const updateUserStatus = (status: string) => async (dispatch: DispatchType) => {
+export const updateUserStatus = (status: string): ProfileThunk  => async (dispatch) => {
     dispatch(toggleFetching(true));
     const data: any = await profileAPI.updateUserStatus(status)
 
@@ -59,13 +63,13 @@ export const updateUserStatus = (status: string) => async (dispatch: DispatchTyp
     }
 }
 
-export const savePhoto = (photo: any) => async (dispatch: DispatchType) => {
+export const savePhoto = (photo: any): ProfileThunk  => async (dispatch) => {
     const data: any = await profileAPI.savePhoto(photo);
 
     dispatch(setPhotos(data.data.photos));
 }
 
-export const saveProfile = (profile: IProfile) => async (dispatch: any) => {
+export const saveProfile = (profile: IProfile): ProfileThunk  => async (dispatch) => {
     // dispatch(toggleFetching(true))
     const data: any = await profileAPI.saveProfile(profile);
     if (data.data.resultCode === 0) {
