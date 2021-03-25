@@ -1,5 +1,4 @@
-import {usersAPI} from "../../API/API"
-import {ApiMethod, DispatchType, IAction} from "../../interfaces/other-interfaces"
+import {IAction} from "../../interfaces/other-interfaces"
 import {UsersActionTypes} from "../action-types/users-actions";
 import {Users} from "../../interfaces/users-interfaces";
 

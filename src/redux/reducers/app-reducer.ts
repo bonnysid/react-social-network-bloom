@@ -1,5 +1,3 @@
-import { DispatchType } from "../../interfaces/other-interfaces";
-import {AuthAction, loginRequest} from "./auth-reducer";
 import {AppActionTypes} from "../action-types/app-actions";
 
 
