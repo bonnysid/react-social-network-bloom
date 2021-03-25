@@ -13,8 +13,7 @@ interface RouteParams {
 const ProfileContainer: React.FC = (props) => {
 
     const {isFetching, userStatus, userPageInfo: userInfo} = useTypedSelector(state => state.profilePage)
-    // @ts-ignore
-    const {userId: yourId} = useTypedSelector(state => state.auth.userId)
+    const yourId = useTypedSelector(state => state.auth.userId)
     const {id} = useParams<RouteParams>();
     const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useActions();
     const history = useHistory();
@@ -37,7 +36,7 @@ const ProfileContainer: React.FC = (props) => {
     return (
         <Profile saveProfile={saveProfile} savePhoto={savePhoto}
                  isOwner={!id} updateUserStatus={updateUserStatus}
-                 userInfo={userInfo} status={userStatus}/>
+                 profileInfo={userInfo} status={userStatus}/>
     )
 
 }

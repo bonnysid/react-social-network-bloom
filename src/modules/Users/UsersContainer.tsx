@@ -1,17 +1,7 @@
 import Users from "./Users";
-import {connect, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import Preloader from "../common/Preloader";
-import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
-import {
-    getFollowingProcess,
-    getIsFetching,
-    getPage,
-    getPageSize,
-    getTotalCountUsers,
-    getUsers
-} from "../../redux/users-selectors";
 import {useActions} from "../../hooks/useActions";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
@@ -41,7 +31,7 @@ const UsersContainer: React.FC = () => {
             <Users
                 follow={follow}
                 unfollow={unfollow}
-                all={all}
+                users={all}
                 onLoadUsers={onLoadUsers}
                 followingProcess={followingProcess}
             />

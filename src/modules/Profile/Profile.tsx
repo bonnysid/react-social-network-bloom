@@ -6,7 +6,7 @@ import PostsContainer from "./Posts";
 import {IProfile} from "../../interfaces/profile-interfaces";
 
 interface ProfileProps {
-    userInfo: IProfile,
+    profileInfo: IProfile,
     savePhoto: (photo: any) => void,
     isOwner: boolean,
     saveProfile: (profile: IProfile) => void,
@@ -15,16 +15,16 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = (props) => {
-    const {userInfo} = props;
+    const {profileInfo} = props;
 
     return (
         <>
             <main className={s.content}>
-                <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={userInfo.photos.large}/>
+                <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={profileInfo.photos.large}/>
                 <Description
                     isOwner={props.isOwner}
                     saveProfile={props.saveProfile}
-                    user={userInfo}
+                    profileInfo={profileInfo}
                     status={props.status}
                     updateUserStatus={props.updateUserStatus}
                 />

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 type UseInputReturn = {
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    reset: () => void
 }
 
 const useInput = (initialValue: string = ''): UseInputReturn => {
@@ -13,12 +12,9 @@ const useInput = (initialValue: string = ''): UseInputReturn => {
         setValue(e.target.value);
     }
 
-    const reset = () => setValue('');
-
     return {
         value,
-        onChange,
-        reset
+        onChange
     }
 }
 

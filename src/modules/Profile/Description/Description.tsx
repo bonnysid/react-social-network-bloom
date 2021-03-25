@@ -5,29 +5,29 @@ import ProfileStatus from "./ProfileStatus";
 import DescriptionAbout from "./DescriptionAbout";
 import {useState} from "react";
 import DescriptionAboutForm from "./DescriptionAboutForm";
-import {IProfile} from "../../../interfaces/profile-interfaces";
+import {IContacts, IProfile} from "../../../interfaces/profile-interfaces";
 
 interface DescriptionProps {
-    user: IProfile
+    profileInfo: IProfile
     status: string
     updateUserStatus: (status: string) => void
     saveProfile: (profile: IProfile) => void
     isOwner: boolean
 }
 
-const Description: React.FC<DescriptionProps> = ({user, status, updateUserStatus, saveProfile, isOwner}) => {
+const Description: React.FC<DescriptionProps> = ({profileInfo, status, updateUserStatus, saveProfile, isOwner}) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const contactsLinks = [];
 
-    const onSubmit = (data: IProfile):void => {
+    const onSubmit = (data: any):void => {
         saveProfile(data);
         setIsEdit(false);
     }
-
-    for (let key in user.contacts) {
-        if (user.contacts[key]) {
-            contactsLinks.push(<SocialLink key={key} link={user.contacts[key]} urlId={key} hoverTitle={key}
+    let key: keyof IContacts;
+    for (key in profileInfo.contacts) {
+        if (profileInfo.contacts[key]) {
+            contactsLinks.push(<SocialLink key={key} link={profileInfo.contacts[key]} urlId={key} hoverTitle={key}
                                            width={'35px'} height={'35px'}/>);
         }
     }
@@ -35,7 +35,7 @@ const Description: React.FC<DescriptionProps> = ({user, status, updateUserStatus
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
-                <h1 className={s.name}>{user.fullName}</h1>
+                <h1 className={s.name}>{profileInfo.fullName}</h1>
                 <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
                 <div className="underline"></div>
             </div>
@@ -43,8 +43,8 @@ const Description: React.FC<DescriptionProps> = ({user, status, updateUserStatus
                 {contactsLinks}
             </section>
             {isOwner && isEdit ?
-                <DescriptionAboutForm onSubmit={onSubmit} savePhoto={saveProfile}/> :
-                <DescriptionAbout isOwner={isOwner} activateEditMode={setIsEdit} user={user}/>
+                <DescriptionAboutForm onSubmit={onSubmit} /> :
+                <DescriptionAbout isOwner={isOwner} activateEditMode={setIsEdit} profileInfo={profileInfo}/>
             }
         </main>
     );

@@ -7,7 +7,11 @@ import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
 import {IUser, ToggleFollowType} from "../../../interfaces/users-interfaces";
 
-interface UserProps extends IUser{
+interface UserProps {
+    id: number,
+    status: string | null,
+    followed: boolean,
+    name:string
     follow: ToggleFollowType,
     unfollow: ToggleFollowType,
     avatarLink: string | null,

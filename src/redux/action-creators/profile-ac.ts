@@ -33,7 +33,7 @@ export const setUserStatus = (status: string): SetUserStatusAction => ({
 });
 export const setPhotos = (photos: IPhotos): SetPhotosAction => ({type: ProfileActionTypes.SET_PHOTOS, photos});
 
-export const getUserInfo = (userId?: number) => async (dispatch: DispatchType) => {
+export const getUserInfo = (userId?: number | string | null) => async (dispatch: DispatchType) => {
     dispatch(toggleFetching(true));
     const data = await profileAPI.getProfileInfo(userId)
     const status = await profileAPI.getUserStatus(userId)

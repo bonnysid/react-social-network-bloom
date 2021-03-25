@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Description.module.css'
 
-const SingleDescription = ({title, value}) => {
+const SingleDescription: React.FC<{title: string, value?: string}> = ({title, value}) => {
     return (
         <div>
             <span className={s.aboutTitle}>{`${title}: `}</span>{value && <span className={s.aboutText}>{value}</span>}

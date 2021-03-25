@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import s from './Description.module.css';
 
-const ProfileStatus = (props) => {
+interface StatusProps {
+    status: string | null
+    updateUserStatus: (status: string) => void
+}
+
+const ProfileStatus: React.FC<StatusProps> = (props) => {
     const [isEditMode, toggleEditMode] = useState(false);
-    const [status, editStatus] = useState(props.status);
+    const [status, editStatus] = useState(props.status ?? '');
 
     useEffect(() => {
-        editStatus(props.status);
+        editStatus(props.status ?? '');
     }, [props.status])
 
 
@@ -19,7 +24,7 @@ const ProfileStatus = (props) => {
         props.updateUserStatus(status);
     }
 
-    const onInputChange = (e) => {
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         editStatus(e.currentTarget.value);
     }
 
@@ -27,7 +32,7 @@ const ProfileStatus = (props) => {
     return (
         <div>
             {isEditMode ?
-                <input className={s.input} onChange={(e) => onInputChange(e)} autoFocus={true}
+                <input className={s.input} onChange={onInputChange} autoFocus={true}
                        onBlur={deactivateEditMode} value={status}/>
                 :
                 <p className={s.aboutText} onTouchEnd={activateEditMode}

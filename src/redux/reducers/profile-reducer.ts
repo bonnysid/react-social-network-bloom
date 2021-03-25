@@ -1,19 +1,17 @@
 import {ProfileActionTypes} from "../action-types/profile-actions";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
-import {IPhotos, IProfile} from "../../interfaces/profile-interfaces";
+import {IPhotos, IPost, IProfile} from "../../interfaces/profile-interfaces";
 
 
 const initialState = {
     posts: [
         {
             id: 1,
-            author: 'Nikita Bortsov' as null | string,
-            comment: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.',
+            text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.',
             likeCount: 90
-        },
-        {id: 2, author: 'Nikita Bortsov', comment: 'First post!', likeCount: 5}
-    ],
-    userPageInfo: null as IProfile | null,
+        }
+    ] as IPost[],
+    userPageInfo: {} as IProfile,
     isFetching: false,
     userStatus: ''
 };
@@ -69,8 +67,7 @@ const profileReducer = (state = initialState, action: ProfileAction): ProfileSta
         case ProfileActionTypes.ADD_POST:
             const post = {
                 id: state.posts[state.posts.length - 1].id++,
-                author: action.authorInfo.login,
-                comment: action.message,
+                text: action.message,
                 likeCount: 0
             }
 
