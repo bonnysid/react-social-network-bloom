@@ -3,11 +3,11 @@ import {Redirect} from "react-router";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import Preloader from "../common/Preloader";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useAction} from "../../hooks/useAction";
+import {useActions} from "../../hooks/useActions";
 
 const StartPage: React.FC = () => {
     const {isFetching} = useTypedSelector(state => state.auth)
-    const {setHeaderTitle} = useAction()
+    const {setHeaderTitle} = useActions()
 
     if (isFetching) return <Preloader/>
     setHeaderTitle('News')

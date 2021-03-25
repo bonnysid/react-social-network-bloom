@@ -12,13 +12,13 @@ import {
     getTotalCountUsers,
     getUsers
 } from "../../redux/usersSelectors";
-import {useAction} from "../../hooks/useAction";
+import {useActions} from "../../hooks/useActions";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 const UsersContainer: React.FC = () => {
 
     const {followingProcess, isFetching, page, all, pageSize} = useTypedSelector(state => state.users);
-    const {setPage, setHeaderTitle, resetUsers, follow, unfollow, requestUsers: getUsers} = useAction();
+    const {setPage, setHeaderTitle, resetUsers, follow, unfollow, requestUsers: getUsers} = useActions();
 
     useEffect(() => {
         getUsers(page, pageSize);

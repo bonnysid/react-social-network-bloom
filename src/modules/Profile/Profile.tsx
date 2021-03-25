@@ -3,8 +3,18 @@ import s from './Profile.module.css';
 import Avatar from './Avatar';
 import Description from './Description';
 import PostsContainer from "./Posts";
+import {IProfile} from "../../utils/interfaces/interfaces";
 
-const Profile = (props) => {
+interface ProfileProps {
+    userInfo: IProfile,
+    savePhoto: (photo: any) => void,
+    isOwner: boolean,
+    saveProfile: (profile: IProfile) => void,
+    status: string,
+    updateUserStatus: (status: string) => void
+}
+
+const Profile: React.FC<ProfileProps> = (props) => {
     const {userInfo} = props;
 
     return (

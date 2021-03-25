@@ -4,7 +4,7 @@ import {useHistory, useParams} from "react-router-dom";
 import Preloader from "../common/Preloader";
 import withSuspense from "../../hoc/withSuspense";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useAction} from "../../hooks/useAction";
+import {useActions} from "../../hooks/useActions";
 
 interface RouteParams {
     id: string
@@ -16,7 +16,7 @@ const ProfileContainer: React.FC = (props) => {
     // @ts-ignore
     const {userId: yourId} = useTypedSelector(state => state.auth.userId)
     const {id} = useParams<RouteParams>();
-    const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useAction();
+    const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useActions();
     const history = useHistory();
 
     useEffect(() => {

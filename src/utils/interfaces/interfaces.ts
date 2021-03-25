@@ -29,6 +29,7 @@ export interface IProfile {
     lookingForAJob: number | null
     lookingForAJobDescription: number | null
     fullName: number | null
+    photos: IPhotos
     contacts: {
         github: string | null
         vk: string | null

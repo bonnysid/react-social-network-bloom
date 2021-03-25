@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
-import {useAction} from "./hooks/useAction";
+import {useActions} from "./hooks/useActions";
 
 const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
@@ -24,7 +24,7 @@ const Music = React.lazy(() => import('./modules/Music'))
 const App: React.FC = () => {
 
     const initialized = useTypedSelector(state => state.app.initialized)
-    const {initializeApp} = useAction();
+    const {initializeApp} = useActions();
 
     useEffect(() => {
         initializeApp();
