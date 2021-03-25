@@ -48,7 +48,7 @@ export const requestUsers = (currentPage: number, pageSize: number): UsersThunk 
     dispatch(setTotalCountUsers(data.totalCount))
 }
 
-const followUnfollowFlow = async (dispatch: Dispatch<UsersAction>, id: number, apiMethod: ApiMethod, actionCreator: typeof followSuccess | typeof unfollowSuccess) => {
+const followUnfollowFlow = async (dispatch: Dispatch<UsersAction>, id: number, apiMethod: ApiMethod, actionCreator:(id: number) => FollowSuccessAction | UnfollowSuccessAction) => {
     dispatch(toggleFollowingProcess(true, id))
     const data = await apiMethod(id)
     dispatch(toggleFollowingProcess(false, id))
