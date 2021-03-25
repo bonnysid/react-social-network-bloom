@@ -37,7 +37,7 @@ export const setUserStatus = (status: string): SetUserStatusAction => ({
 });
 export const setPhotos = (photos: IPhotos): SetPhotosAction => ({type: ProfileActionTypes.SET_PHOTOS, photos});
 
-export const getUserInfo = (userId?: number | string | null): ProfileThunk => async (dispatch, getState) => {
+export const getUserInfo = (userId: number): ProfileThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true));
     const data = await profileAPI.getProfileInfo(userId)
     const status = await profileAPI.getUserStatus(userId)
@@ -73,7 +73,7 @@ export const saveProfile = (profile: IProfile): ProfileThunk  => async (dispatch
     // dispatch(toggleFetching(true))
     const data: any = await profileAPI.saveProfile(profile);
     if (data.data.resultCode === 0) {
-        await dispatch(getUserInfo());
+        await dispatch(getUserInfo(profile.userId));
     } else {
         stopSubmit('description', {_error: data.messages[0] || 'Some error!'})
     }
