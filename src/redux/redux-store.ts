@@ -18,7 +18,8 @@ const rootReducer = combineReducers({
     form: formReducer
 });
 
-export type RootState = ReturnType<typeof rootReducer>
+export type State = typeof rootReducer
+export type RootState = ReturnType<State>
 
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 

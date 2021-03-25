@@ -1,4 +1,4 @@
-import store from "../redux/redux-store";
+import store, {State} from "../redux/redux-store";
 import {AppAction} from "../redux/reducers/app-reducer";
 import {AuthAction} from "../redux/reducers/auth-reducer";
 import {UsersAction} from "../redux/reducers/users-reducer";
@@ -15,8 +15,8 @@ export interface IData {
     resultCode: number
 }
 
-export type ApiMethod = (data: any) => Promise<any>
+export type GetState = () => State
 
-export type DispatchType = typeof store.dispatch
+export type ApiMethod = (data: any) => Promise<any>
 
 export type ActionCreator = AppAction | AuthAction | UsersAction | DialogsAction | NavbarAction | ProfileAction;

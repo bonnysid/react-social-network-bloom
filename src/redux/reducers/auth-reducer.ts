@@ -1,8 +1,4 @@
-import {authAPI, profileAPI, securityAPI} from "../../API/API";
-import {stopSubmit} from "redux-form";
-import {DispatchType} from "../../interfaces/other-interfaces";
 import {AuthActionTypes} from "../action-types/auth-actions";
-import {HandleThunkActionCreator} from "react-redux";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
 
 

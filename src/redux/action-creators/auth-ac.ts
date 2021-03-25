@@ -1,9 +1,20 @@
 import {AuthActionTypes} from "../action-types/auth-actions";
-import {DispatchType} from "../../interfaces/other-interfaces";
+import {GetState} from "../../interfaces/other-interfaces";
 import {authAPI, profileAPI, securityAPI} from "../../API/API";
-import {stopSubmit} from "redux-form";
-import {SetAuthUserInfoType, SetCaptchaUrlType, SetLoggedUserType, ToggleFetchingType} from "../reducers/auth-reducer";
+import {ErrorOther, FormErrors, stopSubmit, StopSubmitAction} from "redux-form";
+import {
+    AuthAction,
+    SetAuthUserInfoType,
+    SetCaptchaUrlType,
+    SetLoggedUserType,
+    ToggleFetchingType
+} from "../reducers/auth-reducer";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
+import {Dispatch} from "redux";
+import {ThunkAction} from "redux-thunk";
+import {State} from "../redux-store";
+
+export type AuthThunk = ThunkAction<Promise<void>, State, unknown, AuthAction>;
 
 export const setAuthUserInfo = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserInfoType => ({
     type: AuthActionTypes.SET_AUTH_USER_INFO,
@@ -27,7 +38,7 @@ export const setCaptchaUrl = (captchaUrl: string): SetCaptchaUrlType => ({
     payload: {captchaUrl}
 })
 
-export const loginRequest = () => async (dispatch: DispatchType) => {
+export const loginRequest = (): AuthThunk => async (dispatch: Dispatch<AuthAction>, getState: GetState) => {
     dispatch(toggleFetching(true));
     const data = await authAPI.getAuth()
     dispatch(toggleFetching(false));
@@ -39,12 +50,12 @@ export const loginRequest = () => async (dispatch: DispatchType) => {
     return data;
 }
 
-export const getCaptchaUrl = () => async (dispatch: DispatchType) => {
+export const getCaptchaUrl = (): AuthThunk => async (dispatch, getState) => {
     const data = await securityAPI.getCaptcha();
     dispatch(setCaptchaUrl(data.url));
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string): AuthThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true));
     const data = await authAPI.login(email, password, rememberMe, captcha)
 
@@ -53,12 +64,13 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     else {
         if (data.resultCode === 10) await dispatch(getCaptchaUrl());
 
+        // @ts-ignore
         dispatch(stopSubmit('login', {_error: data.messages[0] || 'Some error!'}))
     }
 
 }
 
-export const logout = () => async (dispatch: DispatchType) => {
+export const logout = (): AuthThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true));
     const data = await authAPI.logout()
 
