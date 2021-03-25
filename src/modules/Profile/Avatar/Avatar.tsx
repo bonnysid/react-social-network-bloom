@@ -3,7 +3,13 @@ import s from './Avatar.module.css';
 import defaultAvatar from '../../../assets/img/user.png';
 import InputFile from "../../common/InputFile/InputFile";
 
-const Avatar = ({url, isOwner, savePhoto}) => {
+interface Props {
+    url: string,
+    isOwner: boolean,
+    savePhoto: (photo: any) => void
+}
+
+const Avatar: React.FC<Props> = ({url, isOwner, savePhoto}) => {
     return (
         <section className='block'>
             <aside className={s.content}>
