@@ -1,6 +1,6 @@
 import {AuthActionTypes} from "../action-types/auth-actions";
 import {GetState} from "../../interfaces/other-interfaces";
-import {authAPI, profileAPI, securityAPI} from "../../API/API";
+import {authAPI, profileAPI, securityAPI} from "../../api/api";
 import {ErrorOther, FormErrors, stopSubmit, StopSubmitAction} from "redux-form";
 import {
     AuthAction,

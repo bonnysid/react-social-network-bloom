@@ -1,6 +1,6 @@
 import {UsersActionTypes} from "../action-types/users-actions";
 import {ApiMethod} from "../../interfaces/other-interfaces";
-import {usersAPI} from "../../API/API";
+import {usersAPI} from "../../api/api";
 import {
     FollowSuccessAction, ResetUsersAction,
     SetPageAction,

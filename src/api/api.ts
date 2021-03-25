@@ -1,12 +1,22 @@
-import axios from "axios";
-import {ApiMethod} from "../interfaces/other-interfaces";
+import axios, { AxiosInstance } from "axios";
+import {IProfile} from "../interfaces/profile-interfaces";
+
+export interface ApiProps {
+    withCredentials: boolean
+    baseURL: string
+    key: string
+}
 
 class API {
-    constructor(props) {
+    _instance: AxiosInstance
+
+    constructor(props: ApiProps) {
         this._instance = axios.create({
             withCredentials: props.withCredentials,
             baseURL: props.baseURL,
-            "API-KEY": props.key
+            headers: {
+                "API-KEY": props.key
+            }
         })
 
     }
@@ -17,30 +27,30 @@ class UsersAPI extends API {
         return this._instance.get(`users?page=${page}&count=${pageSize}`).then(response => response.data);
     }
 
-    followUser(id) {
+    followUser(id: number) {
         return this._instance.post( `follow/${id}`).then(response => response.data);
     }
 
-    unfollowUser(id) {
+    unfollowUser(id: number) {
         return this._instance.delete( `follow/${id}`).then(response => response.data);
     }
 }
 
 class ProfileAPI extends API {
 
-    getProfileInfo(id) {
+    getProfileInfo(id: number) {
         return this._instance.get(`profile/${id}`).then(response => response.data);
     }
 
-    getUserStatus(id) {
+    getUserStatus(id: number) {
         return this._instance.get(`profile/status/${id}`).then(response => response.data);
     }
 
-    updateUserStatus(status) {
+    updateUserStatus(status: string) {
         return this._instance.put(`profile/status`, {status});
     }
 
-    savePhoto(photo) {
+    savePhoto(photo: any) {
         const form = new FormData();
         form.append('image', photo);
         return this._instance.put('profile/photo', form, {
@@ -50,7 +60,7 @@ class ProfileAPI extends API {
         })
     }
 
-    saveProfile(profile) {
+    saveProfile(profile: IProfile) {
         return this._instance.put('profile', profile).then(response => response.data);
     }
 }
@@ -60,7 +70,7 @@ class AuthAPI extends API {
         return this._instance.get('auth/me').then(response => response.data);
     }
 
-    login(email, password, rememberMe = false, captcha = null) {
+    login(email: string, password: string, rememberMe = false, captcha: string | null = null) {
         return this._instance.post('auth/login', {email, password, rememberMe, captcha}).then(response => response.data);
     }
 

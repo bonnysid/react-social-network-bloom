@@ -1,5 +1,5 @@
 import {ProfileActionTypes} from "../action-types/profile-actions";
-import {profileAPI} from "../../API/API";
+import {profileAPI} from "../../api/api";
 import {setHeaderTitle} from "./navbar-ac";
 import {stopSubmit} from "redux-form";
 import {
