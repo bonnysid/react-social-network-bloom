@@ -5,13 +5,22 @@ import ProfileStatus from "./ProfileStatus";
 import DescriptionAbout from "./DescriptionAbout";
 import {useState} from "react";
 import DescriptionAboutForm from "./DescriptionAboutForm";
+import {IProfile} from "../../../interfaces/profile-interfaces";
 
-const Description = ({user, status, updateUserStatus, saveProfile, isOwner}) => {
+interface DescriptionProps {
+    user: IProfile
+    status: string
+    updateUserStatus: (status: string) => void
+    saveProfile: (profile: IProfile) => void
+    isOwner: boolean
+}
+
+const Description: React.FC<DescriptionProps> = ({user, status, updateUserStatus, saveProfile, isOwner}) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const contactsLinks = [];
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: IProfile):void => {
         saveProfile(data);
         setIsEdit(false);
     }

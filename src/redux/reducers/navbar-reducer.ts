@@ -1,4 +1,4 @@
-import {NavbarActionTypes} from "../action-types/navbar";
+import {NavbarActionTypes} from "../action-types/navbar-actions";
 
 
 const initialState = {

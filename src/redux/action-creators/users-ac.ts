@@ -1,5 +1,5 @@
-import {UsersActionTypes} from "../action-types/users";
-import {ApiMethod, DispatchType, Users} from "../../utils/interfaces/interfaces";
+import {UsersActionTypes} from "../action-types/users-actions";
+import {ApiMethod, DispatchType} from "../../interfaces/other-interfaces";
 import {usersAPI} from "../../API/API";
 import {
     FollowSuccessAction, ResetUsersAction,
@@ -7,7 +7,8 @@ import {
     SetTotalCountUsersAction,
     SetUsersAction, ToggleFetchingAction, ToggleFollowingProcessAction,
     UnfollowSuccessAction
-} from "../reducers/usersReducer";
+} from "../reducers/users-reducer";
+import {Users} from "../../interfaces/users-interfaces";
 
 export const followSuccess = (userId: number): FollowSuccessAction => ({
     type: UsersActionTypes.FOLLOW,

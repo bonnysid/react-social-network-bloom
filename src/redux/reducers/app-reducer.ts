@@ -1,6 +1,6 @@
-import { DispatchType } from "../../utils/interfaces/interfaces";
-import {AuthAction, loginRequest} from "./authReducer";
-import {AppActionTypes} from "../action-types/app";
+import { DispatchType } from "../../interfaces/other-interfaces";
+import {AuthAction, loginRequest} from "./auth-reducer";
+import {AppActionTypes} from "../action-types/app-actions";
 
 
 

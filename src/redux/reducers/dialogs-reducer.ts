@@ -1,5 +1,5 @@
-import { IMessage } from "../../utils/interfaces/interfaces";
-import {DialogsActionTypes} from "../action-types/dialogs";
+import {DialogsActionTypes} from "../action-types/dialogs-actions";
+import {IMessage} from "../../interfaces/profile-interfaces";
 
 
 

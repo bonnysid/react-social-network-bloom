@@ -2,7 +2,7 @@ import React from 'react';
 import User from "./User";
 import Header from "../Header";
 import s from "./Users.module.css";
-import {Users} from "../../utils/interfaces/interfaces";
+import {Users} from "../../interfaces/users-interfaces";
 
 interface UsersProps {
     follow: (id: number) => void,

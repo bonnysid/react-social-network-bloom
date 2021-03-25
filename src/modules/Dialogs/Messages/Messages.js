@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from './Message';
 import s from './Messages.module.css';
-import {addMessage} from "../../../redux/reducers/dialogsReducer.ts";
+import {addMessage} from "../../../redux/reducers/dialogs-reducer.ts";
 import {connect} from "react-redux";
 import MessageForm from "./MessageForm";
 

@@ -1,4 +1,4 @@
-import profileReducer, {addPost} from "../redux/reducers/profileReducer";
+import profileReducer, {addPost} from "../redux/reducers/profile-reducer";
 
 const state = {
     posts: [

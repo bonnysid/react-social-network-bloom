@@ -1,5 +1,5 @@
-import {AppActionTypes} from "../action-types/app";
-import {loginRequest} from "./auth";
+import {AppActionTypes} from "../action-types/app-actions";
+import {loginRequest} from "./auth-ac";
 
 
 const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFUL});

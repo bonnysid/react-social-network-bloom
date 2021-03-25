@@ -3,7 +3,7 @@ import s from './Profile.module.css';
 import Avatar from './Avatar';
 import Description from './Description';
 import PostsContainer from "./Posts";
-import {IProfile} from "../../utils/interfaces/interfaces";
+import {IProfile} from "../../interfaces/profile-interfaces";
 
 interface ProfileProps {
     userInfo: IProfile,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from "react-router";
 import {connect} from "react-redux";
-import {initialized} from "../redux/reducers/appReducer";
+import {initialized} from "../redux/reducers/app-reducer";
 
 const mapStateToProps = (state) => {
     return {

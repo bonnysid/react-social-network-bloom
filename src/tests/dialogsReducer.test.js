@@ -1,4 +1,4 @@
-import dialogsReducer, {addMessage} from "../redux/reducers/dialogsReducer";
+import dialogsReducer, {addMessage} from "../redux/reducers/dialogs-reducer";
 
 const state = {
      dialogs : [

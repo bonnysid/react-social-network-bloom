@@ -1,7 +1,7 @@
-import {DispatchType, IAuthUserInfo, IPhotos, IProfile} from "../../utils/interfaces/interfaces";
-import {ProfileActionTypes} from "../action-types/profile";
+import {DispatchType} from "../../interfaces/other-interfaces";
+import {ProfileActionTypes} from "../action-types/profile-actions";
 import {profileAPI} from "../../API/API";
-import {setHeaderTitle} from "./navbar";
+import {setHeaderTitle} from "./navbar-ac";
 import {stopSubmit} from "redux-form";
 import {
     AddPostAction,
@@ -9,7 +9,9 @@ import {
     SetUserPageInfoAction,
     SetUserStatusAction,
     ToggleFetchingAction
-} from "../reducers/profileReducer";
+} from "../reducers/profile-reducer";
+import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
+import {IPhotos, IProfile} from "../../interfaces/profile-interfaces";
 
 export const addPost = (authorInfo: IAuthUserInfo, message: string): AddPostAction => ({
     type: ProfileActionTypes.ADD_POST,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ApiMethod} from "../utils/interfaces/interfaces";
+import {ApiMethod} from "../interfaces/other-interfaces";
 
 class API {
     constructor(props) {

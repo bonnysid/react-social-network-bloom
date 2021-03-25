@@ -5,7 +5,7 @@ import SvgItem from "../../common/SvgItem";
 import SvgLink from "../../common/SvgLink";
 import {NavLink} from "react-router-dom";
 import userPng from '../../../assets/img/user.png';
-import {IUser, ToggleFollowType} from "../../../utils/interfaces/interfaces";
+import {IUser, ToggleFollowType} from "../../../interfaces/users-interfaces";
 
 interface UserProps extends IUser{
     follow: ToggleFollowType,

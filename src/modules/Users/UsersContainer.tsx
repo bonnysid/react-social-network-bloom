@@ -11,7 +11,7 @@ import {
     getPageSize,
     getTotalCountUsers,
     getUsers
-} from "../../redux/usersSelectors";
+} from "../../redux/users-selectors";
 import {useActions} from "../../hooks/useActions";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 

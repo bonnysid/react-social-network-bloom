@@ -1,5 +1,6 @@
-import {IAuthUserInfo, IPhotos, IProfile} from "../../utils/interfaces/interfaces";
-import {ProfileActionTypes} from "../action-types/profile";
+import {ProfileActionTypes} from "../action-types/profile-actions";
+import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
+import {IPhotos, IProfile} from "../../interfaces/profile-interfaces";
 
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
         },
         {id: 2, author: 'Nikita Bortsov', comment: 'First post!', likeCount: 5}
     ],
-    userPageInfo: {},
+    userPageInfo: null as IProfile | null,
     isFetching: false,
     userStatus: ''
 };
