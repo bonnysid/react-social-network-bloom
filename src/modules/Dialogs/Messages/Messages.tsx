@@ -11,7 +11,7 @@ const Messages: React.FC = (props) => {
     const activeDialog = dialogs.find(d => d.id === idActiveDialog);
     const loggedUser = useTypedSelector(state => state.auth.loggedUser);
     const {addMessage} = useActions();
-    const onMessageSend = ({message}) => {
+    const onMessageSend = (data) => {
         addMessage(loggedUser, message);
     }
 

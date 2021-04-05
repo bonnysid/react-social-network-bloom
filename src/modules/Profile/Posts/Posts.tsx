@@ -11,6 +11,15 @@ const Posts: React.FC = React.memo((props) => {
 
     const {addPost} = useActions()
     const {loggedUser} = useTypedSelector(state => state.auth)
+    const {posts} = useTypedSelector(state => state.profilePage)
+    const postsItems = posts.map(post => (
+        <Post
+            id={post.id}
+            author={post.author}
+            comment={post.comment}
+            likeCount={post.likeCount}
+            key={post.id}
+        />))
 
     const onAddPost = ({message}) => {
         reset('posts');
@@ -23,27 +32,10 @@ const Posts: React.FC = React.memo((props) => {
                 <InputPostForm onSubmit={onAddPost}/>
             </section>
             <section className={s.posts}>
-                {posts}
+                {postsItems}
             </section>
         </>
     );
 })
 
-const mapStateToProps = (state) => {
-    return {
-        loggedUser: state.auth.loggedUser,
-        posts: state.profilePage.posts.map(post => (
-            <Post
-                id={post.id}
-                author={post.author}
-                comment={post.comment}
-                likeCount={post.likeCount}
-                key={post.id}
-            />
-        )),
-    };
-};
-
-const PostsContainer = connect(mapStateToProps, {addPost, reset})(Posts);
-
-export default PostsContainer;
+export default Posts;

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Profile.module.css';
 import Avatar from './Avatar';
 import Description from './Description';
-import PostsContainer from "./Posts";
+import Posts from "./Posts";
 import {IProfile} from "../../interfaces/profile-interfaces";
 
 interface ProfileProps {
@@ -28,7 +28,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
                     status={props.status}
                     updateUserStatus={props.updateUserStatus}
                 />
-                <PostsContainer />
+                <Posts />
             </main>
         </>
 
