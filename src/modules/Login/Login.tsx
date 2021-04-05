@@ -1,11 +1,7 @@
 import React from 'react';
 import LoginForm from "./LoginForm";
 import s from './Login.module.css'
-import {connect} from "react-redux";
-import {Redirect, withRouter} from "react-router";
-import {compose} from "redux";
-import {login} from "../../redux/action-creators/auth-ac";
-import {IData} from "../../interfaces/other-interfaces";
+import {Redirect} from "react-router";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 

@@ -10,7 +10,8 @@ interface SvgLinkProps {
     svgClassName?: string,
     className?: string,
     urlId?: string
-    props?: any
+    props?: any,
+    onClick: any
 }
 
 const SvgLink: React.FC<SvgLinkProps> = ({title, link, isExit, className, svgClassName, urlId, ...props}) => {

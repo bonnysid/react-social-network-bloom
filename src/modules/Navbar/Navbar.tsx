@@ -1,12 +1,15 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import SvgLink from '../common/SvgLink';
-import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/img/logo.svg'
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useActions} from "../../hooks/useActions";
 
-const Navbar = ({items, setHeaderTitle, logout}) => {
-    const menuElements = items.map((item, id) => (<SvgLink onClick={() => setHeaderTitle(item.title)} key={id} title={item.title} link={item.link}/>));
+const Navbar: React.FC = (props) => {
+    const {menuItems} = useTypedSelector(state => state.navbar)
+    const {setHeaderTitle, logout} = useActions()
+    const menuElements = menuItems.map((item, id) => (<SvgLink onClick={() => setHeaderTitle(item.title)} key={id} title={item.title} link={item.link}/>));
 
     return (
         <nav className={`${s.block}`}>
@@ -23,13 +26,5 @@ const Navbar = ({items, setHeaderTitle, logout}) => {
         </nav>       
     )
 }
-const mapStateToProps = (state) => {
-    return {
-        items: state.navbar.menuItems
-    }
-}
 
-const NavbarContainer = connect(mapStateToProps, {setHeaderTitle, logout})(Navbar);
-
-
-export default NavbarContainer;
+export default Navbar;

@@ -4,7 +4,7 @@ import defaultAvatar from '../../../assets/img/user.png';
 import InputFile from "../../common/InputFile/InputFile";
 
 interface Props {
-    url: string,
+    url: string | null,
     isOwner: boolean,
     savePhoto: (photo: any) => void
 }
