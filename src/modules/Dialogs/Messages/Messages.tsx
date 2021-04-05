@@ -3,15 +3,17 @@ import Message from './Message';
 import s from './Messages.module.css';
 import MessageForm from "./MessageForm";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useActions} from "../../../hooks/useActions";
 
 const Messages: React.FC = (props) => {
 
     const {messages, idActiveDialog, dialogs} = useTypedSelector(state => state.dialogsPage)
     const activeDialog = dialogs.find(d => d.id === idActiveDialog);
     const loggedUser = useTypedSelector(state => state.auth.loggedUser);
-    // const onMessageSend = ({message}) => {
-    //     addMessage(loggedUser, message);
-    // }
+    const {addMessage} = useActions();
+    const onMessageSend = ({message}) => {
+        addMessage(loggedUser, message);
+    }
 
     if(!activeDialog) return null;
 
