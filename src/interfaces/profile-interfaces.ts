@@ -1,10 +1,3 @@
-export interface IMessage {
-    message: string,
-    photo: string | null,
-    userId: number,
-    userName: string
-}
-
 export interface IProfile {
     userId: number,
     lookingForAJob: string,

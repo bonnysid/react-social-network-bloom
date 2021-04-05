@@ -2,12 +2,12 @@ import React from 'react';
 import User from "./User";
 import Header from "../Header";
 import s from "./Users.module.css";
-import {Users} from "../../interfaces/users-interfaces";
+import {IUser} from "../../interfaces/users-interfaces";
 
 interface UsersProps {
     follow: (id: number) => void,
     unfollow: (id: number) => void,
-    users: Users,
+    users: IUser[],
     followingProcess: number[],
     onLoadUsers: () => void
 }

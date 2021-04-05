@@ -38,11 +38,11 @@ class UsersAPI extends API {
 
 class ProfileAPI extends API {
 
-    getProfileInfo(id: number) {
+    getProfileInfo(id: number | string | null) {
         return this._instance.get(`profile/${id}`).then(response => response.data);
     }
 
-    getUserStatus(id: number) {
+    getUserStatus(id: number | string | null) {
         return this._instance.get(`profile/status/${id}`).then(response => response.data);
     }
 

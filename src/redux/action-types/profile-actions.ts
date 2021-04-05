@@ -1,4 +1,4 @@
-export const enum ProfileActionTypes {
+export enum ProfileActionTypes {
     ADD_POST = 'app/profile/ADD_POST',
     DELETE_POST = 'app/profile/DELETE_POST',
     SET_USER_PAGE_INFO = 'app/profile/SET_USER_PAGE_INFO',
