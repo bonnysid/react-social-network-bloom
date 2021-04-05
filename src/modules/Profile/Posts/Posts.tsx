@@ -4,8 +4,13 @@ import Post from './Post';
 import {connect} from "react-redux";
 import InputPostForm from "./PostsForm";
 import {reset} from "redux-form";
+import {useActions} from "../../../hooks/useActions";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
-const Posts = React.memo(({posts, addPost, loggedUser, reset}) => {
+const Posts: React.FC = React.memo((props) => {
+
+    const {addPost} = useActions()
+    const {loggedUser} = useTypedSelector(state => state.auth)
 
     const onAddPost = ({message}) => {
         reset('posts');

@@ -17,7 +17,7 @@ import {SetHeaderTitleAction} from "../reducers/navbar-reducer";
 
 export type ProfileThunk = ThunkAction<Promise<void>, State, undefined, ProfileAction | SetHeaderTitleAction>
 
-export const addPost = (authorInfo: IAuthUserInfo, message: string): AddPostAction => ({
+export const addPost = (authorInfo: IAuthUserInfo | null, message: string): AddPostAction => ({
     type: ProfileActionTypes.ADD_POST,
     authorInfo,
     message

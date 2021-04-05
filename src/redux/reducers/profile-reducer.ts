@@ -20,7 +20,7 @@ export type ProfileState = typeof initialState
 
 export type AddPostAction = {
     type: ProfileActionTypes.ADD_POST,
-    authorInfo: IAuthUserInfo,
+    authorInfo: IAuthUserInfo | null,
     message: string
 }
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import s from './Posts.module.css';
 import SvgItem from "../../common/SvgItem";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
 import Textarea from "../../common/Textarea/Textarea";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
-const InputPostForm = (props) => {
+const InputPostForm: React.FC<InjectedFormProps> = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit} className={s.block}>
