@@ -2,7 +2,14 @@ import React from 'react';
 import s from './Message.module.css';
 import AvatarLower from '../../../common/AvatarLower';
 
-const Message = ({message, avatarLink, time, name}) => {
+export interface MessageProps {
+    message: string
+    avatarLink?: string | null
+    time: string,
+    name: string
+}
+
+const Message: React.FC<MessageProps> = ({message, avatarLink, time, name}) => {
 
     return (
         <div className={s.content}>
