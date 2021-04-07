@@ -38,3 +38,7 @@ export interface ITextareaProps {
     isResize?: boolean,
     props?: any
 }
+
+export interface IRedirectWithChangeHeader {
+    title: string
+}
