@@ -32,3 +32,10 @@ export interface IPost {
     text: string,
     likeCount: number
 }
+
+export interface IPostData {
+    message: string,
+    file: any
+}
+
+export type PostDataKeys = Extract<keyof IPostData, string>

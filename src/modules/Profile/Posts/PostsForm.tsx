@@ -5,7 +5,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
 import {ResizedTextarea} from "../../common/Textarea/Textarea";
 import createField from '../../common/createField';
-import {IPostData, PostDataKeys} from "./Posts";
+import {IPostData, PostDataKeys} from "../../../interfaces/profile-interfaces";
 
 const maxLength200 = maxLengthValidateCreator(200);
 

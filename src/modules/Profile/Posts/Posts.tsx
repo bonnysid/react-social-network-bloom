@@ -5,13 +5,7 @@ import InputPostForm from "./PostsForm";
 import {reset} from "redux-form";
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
-export interface IPostData {
-    message: string,
-    file: any
-}
-
-export type PostDataKeys = Extract<keyof IPostData, string>
+import {IPostData} from "../../../interfaces/profile-interfaces";
 
 const Posts: React.FC = React.memo((props) => {
 
