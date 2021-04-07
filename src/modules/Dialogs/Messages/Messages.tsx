@@ -12,7 +12,7 @@ const Messages: React.FC = (props) => {
     const loggedUser = useTypedSelector(state => state.auth.loggedUser);
     const {addMessage} = useActions();
     const onMessageSend = ({message} : IMessageData) => {
-        addMessage(message);
+        // addMessage(message);
     }
 
     if(!activeDialog) return null;

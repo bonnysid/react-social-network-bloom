@@ -1,9 +1,9 @@
 import React from 'react';
 import s from "../../Profile/Posts/Posts.module.css";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import SvgItem from "../../common/SvgItem";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
-import Textarea, {ResizedTextarea} from "../../common/Textarea/Textarea";
+import {ResizedTextarea} from "../../common/Textarea/Textarea";
 import {IMessageData, IMessageDataKeys} from "../../../interfaces/dialogs-interfaces";
 import createField from "../../common/createField";
 

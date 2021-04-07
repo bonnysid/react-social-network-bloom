@@ -28,6 +28,7 @@ const dialogsReducer = (state = initialState, action: DialogsAction): IDialogsSt
                 ...state,
                 idActiveDialog: dialog ? dialog.id : null
             };
+        case DialogsActionTypes.ADD_MESSAGE: return {...state}
 
         default:
             return state;
