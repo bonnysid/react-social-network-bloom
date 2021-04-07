@@ -3,27 +3,34 @@ import s from "../../Profile/Posts/Posts.module.css";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import SvgItem from "../../common/SvgItem";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
-import Textarea from "../../common/Textarea/Textarea";
+import Textarea, {ResizedTextarea} from "../../common/Textarea/Textarea";
+import {IMessageData, IMessageDataKeys} from "../../../interfaces/dialogs-interfaces";
+import createField from "../../common/createField";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
-interface Props {
-
-}
-
-const MessageForm: React.FC<Props & InjectedFormProps<Props>> = (props) => {
+const MessageForm: React.FC<InjectedFormProps<IMessageData>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.block_line}>
-            <Field
-                component={Textarea}
-                placeholder={'Input your text'}
-                rows={1}
-                isResize={true}
-                name={"message"}
-                validate={[maxLength200, required]}
-            />
-
-            <Field name={"file"} component={"input"} type='file' id={`post-1`} className={s.file} accept="image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp"/>
+            {createField<IMessageDataKeys>({
+                component: ResizedTextarea,
+                placeholder: 'Enter your message',
+                name: 'message',
+                validators: [maxLength200, required],
+                props: {
+                    rows: 1
+                }
+            })}
+            {createField<IMessageDataKeys>({
+                component: 'input',
+                placeholder: 'Enter your message',
+                name: 'file',
+                validators: [maxLength200, required],
+                props: {
+                    className: s.file,
+                    accept: 'image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp'
+                }
+            })}
             <label htmlFor={`post-1`} className={`${s.file_btn}`}>
                 <SvgItem width={'25px'} height={'25px'} className={s.icon} urlId={'add'} />
             </label>
@@ -34,4 +41,4 @@ const MessageForm: React.FC<Props & InjectedFormProps<Props>> = (props) => {
     )
 }
 
-export default reduxForm({form: 'messageForm'})(MessageForm);
+export default reduxForm<IMessageData>({form: 'messageForm'})(MessageForm);

@@ -1,8 +1,9 @@
 import React from 'react';
 import s from './Messages.module.css';
-import MessageForm from "./MessageForm";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useActions} from "../../../hooks/useActions";
+import {IMessageData} from "../../../interfaces/dialogs-interfaces";
+import MessageForm from './MessageForm';
 
 const Messages: React.FC = (props) => {
 
@@ -10,9 +11,9 @@ const Messages: React.FC = (props) => {
     const activeDialog = dialogs.find(d => d.id === idActiveDialog);
     const loggedUser = useTypedSelector(state => state.auth.loggedUser);
     const {addMessage} = useActions();
-    // const onMessageSend = (data: {message: string | undefined}) => {
-    //     addMessage(data.message);
-    // }
+    const onMessageSend = ({message} : IMessageData) => {
+        addMessage(message);
+    }
 
     if(!activeDialog) return null;
 
@@ -29,7 +30,7 @@ const Messages: React.FC = (props) => {
             </div>
 
             <div className={s.input__msg}>
-                {/*<MessageForm onSubmit={onMessageSend}/>*/}
+                <MessageForm onSubmit={onMessageSend}/>
             </div>
         </aside>
     );
