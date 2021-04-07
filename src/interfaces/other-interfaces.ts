@@ -20,3 +20,5 @@ export type GetState = () => State
 export type ApiMethod = (data: any) => Promise<any>
 
 export type ActionCreator = AppAction | AuthAction | UsersAction | DialogsAction | NavbarAction | ProfileAction;
+
+export type Validator = (value: string) => string | undefined

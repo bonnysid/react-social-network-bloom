@@ -4,7 +4,9 @@ import {IProfile} from "../interfaces/profile-interfaces";
 export interface ApiProps {
     withCredentials: boolean
     baseURL: string
-    key: string
+    key: string,
+    Authorization: string
+    AccessControlAllowOrigin: string
 }
 
 class API {
@@ -15,7 +17,9 @@ class API {
             withCredentials: props.withCredentials,
             baseURL: props.baseURL,
             headers: {
-                "API-KEY": props.key
+                "API-KEY": props.key,
+                Authorization: props.Authorization,
+                "Access-Control-Allow-Origin": props.AccessControlAllowOrigin
             }
         })
 
@@ -87,8 +91,10 @@ class SecurityAPI extends API{
 
 const config = {
     withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    key: "eca71e62-40e5-487f-ace5-c7bb6153f79f"
+    baseURL: 'http://localhost:8080/api/1.0/',
+    key: "eca71e62-40e5-487f-ace5-c7bb6153f79f",
+    Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib25ueXNpZHdvcmtlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2MTc2Mzk1NzUsImV4cCI6MTYxODI0NDM3NX0.FpKAFJ50jsK978UHb7-o1jgI7IbL-X2CHPsun1HZW4A",
+    AccessControlAllowOrigin: "*"
 }
 
 export const usersAPI = new UsersAPI(config);

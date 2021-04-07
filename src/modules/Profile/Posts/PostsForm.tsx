@@ -1,27 +1,39 @@
 import React from 'react';
 import s from './Posts.module.css';
 import SvgItem from "../../common/SvgItem";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
-import Textarea from "../../common/Textarea/Textarea";
+import {ResizedTextarea} from "../../common/Textarea/Textarea";
+import createField from '../../common/createField';
+import {IPostData, PostDataKeys} from "./Posts";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
-const InputPostForm: React.FC<InjectedFormProps> = (props) => {
+const InputPostForm: React.FC<InjectedFormProps<IPostData>> = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit} className={s.block}>
             <h1 className={s.title}>Posts</h1>
-            <Field
-                component={Textarea}
-                placeholder={'Input your text'}
-                rows={5}
-                isResize={true}
-                name={"message"}
-                validate={[required, maxLength200]}
-            />
-
-            <Field name={"file"} component={"input"} type='file' id={`post-1`} className={s.file} accept="image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp"/>
+            {createField<PostDataKeys>({
+                name: 'message',
+                component: ResizedTextarea,
+                placeholder: 'Input your text',
+                validators: [required, maxLength200],
+                props: {
+                    rows: 5,
+                    isResize: true
+                }
+            })}
+            {createField<PostDataKeys>({
+                name: 'file',
+                component: 'input',
+                type: 'file',
+                props: {
+                    className: s.file,
+                    id: 'post-1',
+                    accept: 'image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp'
+                }
+            })}
             <label htmlFor={`post-1`} className={`${s.file_btn}`}>
                 <SvgItem width={'25px'} height={'25px'} className={s.icon} urlId={'add'} />
             </label>
@@ -30,4 +42,4 @@ const InputPostForm: React.FC<InjectedFormProps> = (props) => {
     )
 }
 
-export default reduxForm({form: 'posts'})(InputPostForm);
+export default reduxForm<IPostData>({form: 'posts'})(InputPostForm);

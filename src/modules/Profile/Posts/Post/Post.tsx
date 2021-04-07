@@ -5,7 +5,8 @@ import {IUser} from "../../../../interfaces/users-interfaces";
 import {IAuthUserInfo} from "../../../../interfaces/auth-interfaces";
 
 interface Props {
-    author: IAuthUserInfo
+    id: number
+    author: IAuthUserInfo | null
     comment: string
     likeCount: number
 }

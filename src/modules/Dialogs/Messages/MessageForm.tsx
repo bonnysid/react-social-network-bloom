@@ -7,7 +7,11 @@ import Textarea from "../../common/Textarea/Textarea";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
-const MessageForm: React.FC<InjectedFormProps> = (props) => {
+interface Props {
+
+}
+
+const MessageForm: React.FC<Props & InjectedFormProps<Props>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.block_line}>
             <Field

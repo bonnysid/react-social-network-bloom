@@ -1,11 +1,17 @@
 import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
-import {connect} from "react-redux";
 import InputPostForm from "./PostsForm";
 import {reset} from "redux-form";
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+
+export interface IPostData {
+    message: string,
+    file: any
+}
+
+export type PostDataKeys = Extract<keyof IPostData, string>
 
 const Posts: React.FC = React.memo((props) => {
 
@@ -15,13 +21,13 @@ const Posts: React.FC = React.memo((props) => {
     const postsItems = posts.map(post => (
         <Post
             id={post.id}
-            author={post.author}
-            comment={post.comment}
+            author={loggedUser}
+            comment={post.text}
             likeCount={post.likeCount}
             key={post.id}
         />))
 
-    const onAddPost = ({message}) => {
+    const onAddPost = ({message}: IPostData) => {
         reset('posts');
         addPost(loggedUser, message);
     }
