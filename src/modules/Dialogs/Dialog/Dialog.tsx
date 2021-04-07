@@ -3,9 +3,16 @@ import { NavLink } from 'react-router-dom';
 import AvatarLower from '../../common/AvatarLower';
 import s from './Dialog.module.css';
 
-// import AvatarLower;
+export interface DialogProps {
+    name: string
+    avatarLink?: string | null
+    lastMsg?: string
+    time: string
+    id: number | string
+    isActive: boolean
+}
 
-const Dialog = ({name, avatarLink, lastMsg, time, id, isActive}) => {
+const Dialog: React.FC<DialogProps> = ({name, avatarLink, lastMsg, time, id, isActive}) => {
     return (
         <NavLink to={`/messages/${id}`} className={`${s.content} block ${isActive ? s.active : ''}`} activeClassName={s.active}>
             <AvatarLower url={avatarLink}/>
