@@ -12,7 +12,7 @@ interface RouteParams {
 
 const ProfileContainer: React.FC = (props) => {
 
-    const {isFetching, userStatus, userPageInfo: userInfo} = useTypedSelector(state => state.profilePage)
+    const {isFetching, userStatus, userPageInfo} = useTypedSelector(state => state.profilePage)
     const yourId = useTypedSelector(state => state.auth.userId)
     const {id} = useParams<RouteParams>();
     const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useActions();
@@ -31,12 +31,12 @@ const ProfileContainer: React.FC = (props) => {
     }
 
 
-    if (!Object.keys(userInfo).length || isFetching) return <Preloader/>
+    if (!Object.keys(userPageInfo).length || isFetching) return <Preloader/>
 
     return (
         <Profile saveProfile={saveProfile} savePhoto={savePhoto}
                  isOwner={!id} updateUserStatus={updateUserStatus}
-                 profileInfo={userInfo} status={userStatus}/>
+                 profileInfo={userPageInfo} status={userStatus}/>
     )
 
 }

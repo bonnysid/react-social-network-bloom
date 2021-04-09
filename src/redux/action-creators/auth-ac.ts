@@ -39,14 +39,14 @@ export const setCaptchaUrl = (captchaUrl: string): SetCaptchaUrlType => ({
 })
 
 export const loginRequest = (): AuthThunk => async (dispatch: Dispatch<AuthAction>, getState: GetState) => {
-    dispatch(toggleFetching(true));
-    const data = await authAPI.getAuth()
-    dispatch(toggleFetching(false));
-    if (data.resultCode === 0) {
-        const {id, email, login} = data.data;
-        dispatch(setAuthUserInfo(id, email, login, true));
-        await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
-    }
+    dispatch(toggleFetching(true))
+    const data = await authAPI.getCurrentUser()
+    dispatch(toggleFetching(false))
+    if(!Object.keys(data).length) return
+    const {id, username, email} = data
+    dispatch(setAuthUserInfo(id, email, username, true))
+    await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
+
     return data;
 }
 
@@ -61,12 +61,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 
     dispatch(toggleFetching(false));
     if (data.resultCode === 0) await dispatch(loginRequest());
-    else {
-        if (data.resultCode === 10) await dispatch(getCaptchaUrl());
-
-        // @ts-ignore
-        dispatch(stopSubmit('login', {_error: data.messages[0] || 'Some error!'}))
-    }
+    // else {
+    //     if (data.resultCode === 10) await dispatch(getCaptchaUrl());
+    //
+    //     // @ts-ignore
+    //     dispatch(stopSubmit('login', {_error: data.messages[0] || 'Some error!'}))
+    // }
 
 }
 

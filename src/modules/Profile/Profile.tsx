@@ -20,7 +20,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
     return (
         <>
             <main className={s.content}>
-                <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={profileInfo.photos.large}/>
+                <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={profileInfo.photo}/>
                 <Description
                     isOwner={props.isOwner}
                     saveProfile={props.saveProfile}

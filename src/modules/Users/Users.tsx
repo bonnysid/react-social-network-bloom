@@ -29,7 +29,7 @@ const Users: React.FC<UsersProps> = (props) => {
 
     return (
         <>
-            <Header title={'Users'}/>
+            <Header />
             <main className={s.content}>
                 <div className={s.search}></div>
                 <section className={s.friendList}>

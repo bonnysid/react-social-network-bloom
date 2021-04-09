@@ -35,7 +35,7 @@ const Description: React.FC<DescriptionProps> = ({profileInfo, status, updateUse
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
-                <h1 className={s.name}>{profileInfo.fullName}</h1>
+                <h1 className={s.name}>{profileInfo.username}</h1>
                 <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
                 <div className="underline"></div>
             </div>

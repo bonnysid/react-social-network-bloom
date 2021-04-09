@@ -7,7 +7,7 @@ export interface DialogProps {
     name: string
     avatarLink?: string | null
     lastMsg?: string
-    time: string
+    time?: string
     id: number | string
     isActive: boolean
 }

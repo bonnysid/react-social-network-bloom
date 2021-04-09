@@ -39,12 +39,12 @@ export const setPhotos = (photos: IPhotos): SetPhotosAction => ({type: ProfileAc
 
 export const getUserInfo = (userId: number | string | null): ProfileThunk => async (dispatch, getState) => {
     dispatch(toggleFetching(true));
-    const data = await profileAPI.getProfileInfo(userId)
-    const status = await profileAPI.getUserStatus(userId)
+    const data: IProfile = await profileAPI.getProfileInfo(userId)
 
-    dispatch(setUserStatus(status))
-    dispatch(setUserPageInfo(data));
-    dispatch(setHeaderTitle(data.fullName))
+    dispatch(setUserStatus("lol"))
+    dispatch(setUserPageInfo({...data}));
+    dispatch(setHeaderTitle(data.username))
+    // dispatch(setUserStatus(data.status))
     dispatch(toggleFetching(false));
 }
 

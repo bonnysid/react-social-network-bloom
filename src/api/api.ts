@@ -2,11 +2,14 @@ import axios, { AxiosInstance } from "axios";
 import {IProfile} from "../interfaces/profile-interfaces";
 
 export interface ApiProps {
-    withCredentials: boolean
     baseURL: string
-    key: string,
-    Authorization: string
-    AccessControlAllowOrigin: string
+}
+
+const authHeader = () => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if(user && user.accessToken) return { Authorization: 'Bearer ' + user.accessToken}
+    else return {};
 }
 
 class API {
@@ -14,13 +17,8 @@ class API {
 
     constructor(props: ApiProps) {
         this._instance = axios.create({
-            withCredentials: props.withCredentials,
             baseURL: props.baseURL,
-            headers: {
-                "API-KEY": props.key,
-                Authorization: props.Authorization,
-                "Access-Control-Allow-Origin": props.AccessControlAllowOrigin
-            }
+            headers: authHeader()
         })
 
     }
@@ -74,12 +72,30 @@ class AuthAPI extends API {
         return this._instance.get('auth/me').then(response => response.data);
     }
 
-    login(email: string, password: string, rememberMe = false, captcha: string | null = null) {
-        return this._instance.post('auth/login', {email, password, rememberMe, captcha}).then(response => response.data);
+    login(username: string, password: string, rememberMe = false, captcha: string | null = null) {
+        return this._instance.post('auth/login', {username, password, rememberMe, captcha}).then(response => {
+            if(response.data.token) {
+                localStorage.setItem('user', JSON.stringify(response.data))
+            }
+            return response.data
+        });
     }
 
     logout() {
+        localStorage.removeItem('user')
         return this._instance.delete('auth/login').then(response => response.data);
+    }
+
+    register(email: string, username: string, password: string) {
+        return this._instance.post('auth/register', {
+            username,
+            email,
+            password
+        })
+    }
+
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('user') || '{}')
     }
 }
 
@@ -90,11 +106,7 @@ class SecurityAPI extends API{
 }
 
 const config = {
-    withCredentials: true,
-    baseURL: 'http://localhost:8080/api/1.0/',
-    key: "eca71e62-40e5-487f-ace5-c7bb6153f79f",
-    Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib25ueXNpZHdvcmtlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2MTc2Mzk1NzUsImV4cCI6MTYxODI0NDM3NX0.FpKAFJ50jsK978UHb7-o1jgI7IbL-X2CHPsun1HZW4A",
-    AccessControlAllowOrigin: "*"
+    baseURL: 'http://localhost:8080/api/1.0/'
 }
 
 export const usersAPI = new UsersAPI(config);

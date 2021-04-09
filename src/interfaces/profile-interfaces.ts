@@ -1,12 +1,13 @@
 export interface IProfile {
-    userId: number,
-    lookingForAJob: string,
-    lookingForAJobDescription: string,
-    aboutMe: string,
-    fullName: string,
-    photos: IPhotos,
+    userId: number
+    status: string
+    username: string
+    photo: string
     contacts: IContacts
-
+    posts: IPost[]
+    age: number
+    followed: boolean
+    dateOfBirthday: string
 }
 
 export interface IContacts {

@@ -9,9 +9,6 @@ import UsersContainer from './modules/Users/UsersContainer';
 import Login from "./modules/Login/Login";
 import StartPage from "./modules/StartPage/StartPage";
 import Header from "./modules/Header/Header";
-import {compose} from "redux";
-import {withRouter} from "react-router";
-import {connect} from "react-redux";
 import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
@@ -54,16 +51,6 @@ const App: React.FC = () => {
     );
 }
 
-interface IMapStateToProps {
-    app: {
-        initialized: boolean
-    }
-}
 
-const mapStateToProps = (state: IMapStateToProps) => ({
-    initialized: state.app.initialized
-})
 
-export default compose(
-    withRouter,
-)(App);
+export default App;

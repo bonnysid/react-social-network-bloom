@@ -10,9 +10,24 @@ const DescriptionAboutForm: React.FC<InjectedFormProps> = ({handleSubmit, error}
     return (
         <form onSubmit={handleSubmit}>
             {error && <h3 className={s.error}>{error}</h3>}
-            <div className={s.itemEditBlock}><SingleDescription title={'About'}/>{createField(Input,'text', 'aboutMe', 'about you')}</div>
-            <div className={s.itemEditBlock}><SingleDescription title={'Looking for a job'} />{createField(Input,'checkbox', 'lookingForAJob', 'about you')}</div>
-            <div className={s.itemEditBlock}><SingleDescription title={'Job description'} />{createField(Input,'text', 'lookingForAJobDescription', 'about your job')}</div>
+            <div className={s.itemEditBlock}><SingleDescription title={'About'}/>{createField({
+                component: Input,
+                type: 'text',
+                name: 'aboutMe',
+                placeholder: 'about you'
+            })}</div>
+            <div className={s.itemEditBlock}><SingleDescription title={'Looking for a job'}/>{createField({
+                component: Input,
+                type: 'checkbox',
+                name: 'lookingForAJob',
+                placeholder: 'about you'
+            })}</div>
+            <div className={s.itemEditBlock}><SingleDescription title={'Job description'}/>{createField({
+                component: Input,
+                type: 'text',
+                name: 'lookingForAJobDescription',
+                placeholder: 'about your job'
+            })}</div>
             <button className='btn'>Save</button>
         </form>
     )
