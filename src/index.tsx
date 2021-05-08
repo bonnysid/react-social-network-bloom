@@ -9,9 +9,9 @@ const rootElement = document.getElementById('app-wrapper');
 
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
             <App />
-        </HashRouter>
+        </BrowserRouter>
     </Provider>,
     rootElement
 );

@@ -6,13 +6,13 @@ import {IAuthUserInfo} from "../../../../interfaces/auth-interfaces";
 
 interface Props {
     id: number
-    author: IAuthUserInfo | null
+    author: string
     comment: string
     likeCount: number
+    date: string
 }
 
-const Post: React.FC<Props> = ({author, comment, likeCount}) => {
-    const date = new Date();
+const Post: React.FC<Props> = ({author, comment, likeCount, date}) => {
 
     return (
         <main className={`${s.content} block`}>
@@ -24,12 +24,12 @@ const Post: React.FC<Props> = ({author, comment, likeCount}) => {
                 </div>
                 <div className={s.header__info}>
                     <h2 className={s.author}>{author}</h2>
-                    <time className={s.date}>{date.toDateString()}</time>
+                    <time className={s.date}>{date}</time>
                 </div>
             </div>
 
             <p className={s.comment}>{comment}</p>
-            <div className="underline"></div>
+            <div className="underline"/>
             <section className={s.footer}>
                 {/*<svg className={s.icon}>*/}
                 {/*    <use xlinkHref={`img/icons.svg#like`} />*/}

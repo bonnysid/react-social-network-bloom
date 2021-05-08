@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {useHistory, useParams} from "react-router-dom";
 import Preloader from "../common/Preloader";
-import withSuspense from "../../hoc/withSuspense";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 
@@ -11,16 +10,11 @@ interface RouteParams {
 }
 
 const ProfileContainer: React.FC = (props) => {
-
     const {isFetching, userStatus, userPageInfo} = useTypedSelector(state => state.profilePage)
     const yourId = useTypedSelector(state => state.auth.userId)
     const {id} = useParams<RouteParams>();
     const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useActions();
     const history = useHistory();
-
-    useEffect(() => {
-        getProfileInfo()
-    }, [])
 
     useEffect(() => getProfileInfo(), [id])
 
@@ -34,11 +28,15 @@ const ProfileContainer: React.FC = (props) => {
     if (!Object.keys(userPageInfo).length || isFetching) return <Preloader/>
 
     return (
-        <Profile saveProfile={saveProfile} savePhoto={savePhoto}
-                 isOwner={!id} updateUserStatus={updateUserStatus}
-                 profileInfo={userPageInfo} status={userStatus}/>
+        <Profile
+            saveProfile={saveProfile}
+            savePhoto={savePhoto}
+            isOwner={!id}
+            updateUserStatus={updateUserStatus}
+            profileInfo={userPageInfo}
+            status={userStatus}/>
     )
 
 }
 
-export default withSuspense(ProfileContainer)
+export default ProfileContainer

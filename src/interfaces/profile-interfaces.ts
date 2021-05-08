@@ -7,7 +7,7 @@ export interface IProfile {
     posts: IPost[]
     age: number
     followed: boolean
-    dateOfBirthday: string
+    dateOfBirthday: string | null
 }
 
 export interface IContacts {
@@ -31,6 +31,7 @@ export interface IPhotos {
 export interface IPost {
     id: number,
     text: string,
+    date: string,
     likeCount: number
 }
 

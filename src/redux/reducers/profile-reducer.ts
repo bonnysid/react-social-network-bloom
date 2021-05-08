@@ -68,6 +68,7 @@ const profileReducer = (state = initialState, action: ProfileAction): ProfileSta
             const post = {
                 id: state.posts[state.posts.length - 1].id++,
                 text: action.message,
+                date: new Date().toDateString(),
                 likeCount: 0
             }
 

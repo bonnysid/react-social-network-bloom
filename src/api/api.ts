@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, {AxiosInstance} from "axios";
 import {IProfile} from "../interfaces/profile-interfaces";
 
 export interface ApiProps {
@@ -8,7 +8,7 @@ export interface ApiProps {
 const authHeader = () => {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    if(user && user.accessToken) return { Authorization: 'Bearer ' + user.accessToken}
+    if (user && user.accessToken) return {Authorization: 'Bearer ' + user.accessToken}
     else return {};
 }
 
@@ -30,11 +30,11 @@ class UsersAPI extends API {
     }
 
     followUser(id: number) {
-        return this._instance.post( `follow/${id}`).then(response => response.data);
+        return this._instance.post(`follow/${id}`).then(response => response.data);
     }
 
     unfollowUser(id: number) {
-        return this._instance.delete( `follow/${id}`).then(response => response.data);
+        return this._instance.delete(`follow/${id}`).then(response => response.data);
     }
 }
 
@@ -57,7 +57,7 @@ class ProfileAPI extends API {
         form.append('image', photo);
         return this._instance.put('profile/photo', form, {
             headers: {
-                'Content-Type' : 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         })
     }
@@ -73,12 +73,13 @@ class AuthAPI extends API {
     }
 
     login(username: string, password: string, rememberMe = false, captcha: string | null = null) {
-        return this._instance.post('auth/login', {username, password, rememberMe, captcha}).then(response => {
-            if(response.data.token) {
-                localStorage.setItem('user', JSON.stringify(response.data))
-            }
-            return response.data
-        });
+        return this._instance.post('auth/login', {username, password, rememberMe, captcha})
+            .then(response => {
+                if (response.data.token) {
+                    localStorage.setItem('user', JSON.stringify(response.data))
+                }
+                return response.data
+            });
     }
 
     logout() {
@@ -99,8 +100,8 @@ class AuthAPI extends API {
     }
 }
 
-class SecurityAPI extends API{
-    getCaptcha(){
+class SecurityAPI extends API {
+    getCaptcha() {
         return this._instance.get('security/get-captcha-url').then(response => response.data)
     }
 }

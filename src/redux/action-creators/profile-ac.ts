@@ -41,10 +41,9 @@ export const getUserInfo = (userId: number | string | null): ProfileThunk => asy
     dispatch(toggleFetching(true));
     const data: IProfile = await profileAPI.getProfileInfo(userId)
 
-    dispatch(setUserStatus("lol"))
-    dispatch(setUserPageInfo({...data}));
+    dispatch(setUserPageInfo(data));
     dispatch(setHeaderTitle(data.username))
-    // dispatch(setUserStatus(data.status))
+    dispatch(setUserStatus(data.status))
     dispatch(toggleFetching(false));
 }
 

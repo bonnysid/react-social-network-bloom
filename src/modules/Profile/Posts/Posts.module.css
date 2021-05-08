@@ -1,3 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1em;
+    grid-area: posts;
+    gap: 1em;
+}
+
 .content {
     grid-area: posts-header;
     border: 3px solid var(--underline);

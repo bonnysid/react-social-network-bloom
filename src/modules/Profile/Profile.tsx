@@ -18,20 +18,17 @@ const Profile: React.FC<ProfileProps> = (props) => {
     const {profileInfo} = props;
 
     return (
-        <>
-            <main className={s.content}>
-                <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={profileInfo.photo}/>
-                <Description
-                    isOwner={props.isOwner}
-                    saveProfile={props.saveProfile}
-                    profileInfo={profileInfo}
-                    status={props.status}
-                    updateUserStatus={props.updateUserStatus}
-                />
-                <Posts />
-            </main>
-        </>
-
+        <main className={s.content}>
+            <Avatar savePhoto={props.savePhoto} isOwner={props.isOwner} url={profileInfo.photo}/>
+            <Description
+                isOwner={props.isOwner}
+                saveProfile={props.saveProfile}
+                profileInfo={profileInfo}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus}
+            />
+            <Posts/>
+        </main>
     );
 }
 

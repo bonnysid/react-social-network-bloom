@@ -16,7 +16,6 @@ interface DescriptionProps {
 }
 
 const Description: React.FC<DescriptionProps> = ({profileInfo, status, updateUserStatus, saveProfile, isOwner}) => {
-
     const [isEdit, setIsEdit] = useState(false);
     const contactsLinks = [];
 
@@ -24,6 +23,7 @@ const Description: React.FC<DescriptionProps> = ({profileInfo, status, updateUse
         saveProfile(data);
         setIsEdit(false);
     }
+
     let key: keyof IContacts;
     for (key in profileInfo.contacts) {
         if (profileInfo.contacts[key]) {
@@ -31,7 +31,6 @@ const Description: React.FC<DescriptionProps> = ({profileInfo, status, updateUse
                                            width={'35px'} height={'35px'}/>);
         }
     }
-
     return (
         <main className={`${s.content} block`}>
             <div className={s.header}>
