@@ -1,5 +1,5 @@
 import {AppActionTypes} from "../action-types/app-actions";
-import {loginRequest} from "./auth-ac";
+import {loginRequest, logout} from "./auth-ac";
 import {ThunkAction} from "redux-thunk";
 import {State} from "../redux-store";
 import {AppAction} from "../reducers/app-reducer";
@@ -10,5 +10,9 @@ const initializedSuccessful = () => ({type: AppActionTypes.INITIALIZED_SUCCESSFU
 
 export const initializeApp = (): AppThunk => async (dispatch) => {
     await Promise.all([dispatch(loginRequest())])
+        .catch(e => {
+            if(e.message.includes('status code 401')) dispatch(logout())
+            else console.error(e)
+        })
     dispatch(initializedSuccessful());
 }

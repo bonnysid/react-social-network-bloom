@@ -21,7 +21,6 @@ const Posts: React.FC = React.memo((props) => {
             likeCount={post.likeCount}
             key={post.id}
         />))
-    console.log(posts, postsItems)
 
     const onAddPost = ({message}: IPostData) => {
         reset('posts');

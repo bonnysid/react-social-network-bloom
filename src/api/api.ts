@@ -26,7 +26,6 @@ class API {
 
 class UsersAPI extends API {
     getUsers(page = 1, pageSize = 10) {
-        console.log(authHeader())
         return this._instance.get(`users?page=${page}&count=${pageSize}`, {headers: authHeader()}).then(response => response.data);
     }
 
@@ -70,7 +69,7 @@ class ProfileAPI extends API {
 
 class AuthAPI extends API {
     getAuth() {
-        return this._instance.get('auth/me').then(response => response.data);
+        return this._instance.get('auth/me');
     }
 
     login(username: string, password: string, rememberMe = false, captcha: string | null = null) {

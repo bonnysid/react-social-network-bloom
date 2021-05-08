@@ -40,14 +40,16 @@ export const setCaptchaUrl = (captchaUrl: string): SetCaptchaUrlType => ({
 
 export const loginRequest = (): AuthThunk => async (dispatch: Dispatch<AuthAction>, getState: GetState) => {
     dispatch(toggleFetching(true))
-    const data = await authAPI.getCurrentUser()
-    dispatch(toggleFetching(false))
-    if(!Object.keys(data).length) return
-    const {id, username, email} = data
-    dispatch(setAuthUserInfo(id, email, username, true))
-    await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
-
-    return data;
+    try {
+        const res = await authAPI.getAuth()
+        const {id, username, email} = res.data
+        dispatch(setAuthUserInfo(id, email, username, true))
+        dispatch(toggleFetching(false))
+        await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
+        return res.data
+    } catch (e) {
+        console.log(JSON.stringify(e, null, 2))
+    }
 }
 
 export const getCaptchaUrl = (): AuthThunk => async (dispatch, getState) => {

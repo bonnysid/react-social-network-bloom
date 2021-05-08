@@ -21,8 +21,8 @@ const Users: React.FC<UsersProps> = (props) => {
             follow={props.follow}
             unfollow={props.unfollow}
             followed={u.followed}
-            status={u.status} name={u.name}
-            avatarLink={u.photos.small}
+            status={u.status} name={u.username}
+            avatarLink={u.photo}
             followingProcess={props.followingProcess}
         />)
 

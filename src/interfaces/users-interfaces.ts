@@ -1,12 +1,12 @@
 import {IPhotos} from "./profile-interfaces";
 
 export interface IUser {
-    name: string,
-    id: number,
-    uniqueUrlName: string | null,
-    photos: IPhotos,
-    status: string | null,
+    email: string
     followed: boolean
+    id: number
+    photo: null | string
+    status: null | string
+    username: string
 }
 
 export type Users = IUser[];

@@ -20,15 +20,12 @@ const Dialogs: React.FC = (props) => {
     ))
 
     return (
-        <>
-            <main className={`${s.content}`}>
-                <aside className={s.people}>
-                    {dialogsItems}
-                </aside>
-                <MessagesContainer />
-            </main>
-        </>
-
+        <main className={`${s.content}`}>
+            <aside className={s.people}>
+                {dialogsItems}
+            </aside>
+            <MessagesContainer/>
+        </main>
     );
 }
 

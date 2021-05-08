@@ -44,15 +44,15 @@ export const requestUsers = (currentPage: number, pageSize: number): UsersThunk 
     const data = await usersAPI.getUsers(currentPage, pageSize)
 
     dispatch(toggleFetching(false))
-    dispatch(setUsers(data.items))
-    dispatch(setTotalCountUsers(data.totalCount))
+    dispatch(setUsers(data))
+    dispatch(setTotalCountUsers(data.length))
 }
 
 const followUnfollowFlow = async (dispatch: Dispatch<UsersAction>, id: number, apiMethod: ApiMethod, actionCreator:(id: number) => FollowSuccessAction | UnfollowSuccessAction) => {
     dispatch(toggleFollowingProcess(true, id))
     const data = await apiMethod(id)
     dispatch(toggleFollowingProcess(false, id))
-    if (data.resultCode === 0) dispatch(actionCreator(id))
+    dispatch(actionCreator(id))
 }
 
 export const follow = (id: number): UsersThunk => async (dispatch, getState) => followUnfollowFlow(dispatch, id, usersAPI.followUser.bind(usersAPI), followSuccess)
