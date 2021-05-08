@@ -8,7 +8,7 @@ export interface ApiProps {
 const authHeader = () => {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    if (user && user.accessToken) return {Authorization: 'Bearer ' + user.accessToken}
+    if (user && user.token) return {Authorization: 'Bearer ' + user.token}
     else return {};
 }
 
@@ -26,7 +26,8 @@ class API {
 
 class UsersAPI extends API {
     getUsers(page = 1, pageSize = 10) {
-        return this._instance.get(`users?page=${page}&count=${pageSize}`).then(response => response.data);
+        console.log(authHeader())
+        return this._instance.get(`users?page=${page}&count=${pageSize}`, {headers: authHeader()}).then(response => response.data);
     }
 
     followUser(id: number) {
