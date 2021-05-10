@@ -13,6 +13,7 @@ import Preloader from "./modules/common/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
 import {useActions} from "./hooks/useActions";
+import SignUp from "./modules/SignUp";
 
 const Settings = React.lazy(() => import('./modules/Settings'))
 const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
@@ -37,6 +38,7 @@ const App: React.FC = () => {
             <NavbarContainer/>
             <Header/>
             <div className='container'>
+                <Route path='/signup' render={() => <SignUp/>}/>
                 <Route path='/login' render={() => <Login/>}/>
                 <Route exact={true} path='/' render={() => <StartPage/>}/>
                 <Route path='/profile/:id?' render={withSuspense(ProfileContainer)}/>

@@ -43,9 +43,11 @@ export const loginRequest = (): AuthThunk => async (dispatch: Dispatch<AuthActio
     try {
         const res = await authAPI.getAuth()
         const {id, username, email} = res.data
-        dispatch(setAuthUserInfo(id, email, username, true))
+        if(id && username && email) {
+            dispatch(setAuthUserInfo(id, email, username, true))
+            await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
+        }
         dispatch(toggleFetching(false))
-        await profileAPI.getProfileInfo(id).then(data => dispatch(setLoggedUser(data)))
         return res.data
     } catch (e) {
         console.log(JSON.stringify(e, null, 2))
@@ -62,7 +64,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     const data = await authAPI.login(email, password, rememberMe, captcha)
 
     dispatch(toggleFetching(false));
-    await dispatch(loginRequest());
+    dispatch(setAuthUserInfo(data.id, data.email, data.username, true))
     // else {
     //     if (data.resultCode === 10) await dispatch(getCaptchaUrl());
     //
@@ -73,12 +75,27 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 }
 
 export const logout = (): AuthThunk => async (dispatch, getState) => {
-    dispatch(toggleFetching(true));
-    const data = await authAPI.logout()
-
-    dispatch(toggleFetching(false));
-    if (data.resultCode === 0) {
+    try {
+        dispatch(toggleFetching(true));
+        const data = await authAPI.logout()
+        dispatch(toggleFetching(false));
         dispatch(setAuthUserInfo(null, null, null, false));
+    } catch (e) {
+        console.error(e)
     }
 
+
+
+}
+
+export const registration = (email: string, username: string, password: string): AuthThunk => async (dispatch: Dispatch<AuthAction>, getState: GetState) => {
+    try {
+        dispatch(toggleFetching(true))
+        const res = await authAPI.register(email, username, password)
+        dispatch(toggleFetching(false))
+        return res.data
+    } catch (e) {
+        dispatch(toggleFetching(false))
+        console.log(JSON.stringify(e, null, 2))
+    }
 }

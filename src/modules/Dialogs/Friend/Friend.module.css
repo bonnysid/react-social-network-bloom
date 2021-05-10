@@ -1,0 +1,48 @@
+.block {
+    display: grid;
+    grid-template-columns: 70px 7fr 40px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+            "avatar name sendBtn"
+            "avatar status sendBtn";
+    min-width: 300px;
+}
+
+.name {
+    grid-area: name;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.avatar {
+    grid-area: avatar;
+}
+
+.btn {
+    display: flex;
+    grid-area: sendBtn;
+    align-items: center;
+    justify-content: center;
+    fill: var(--navbar-icon)
+}
+
+.btn:hover {
+    fill: var(--navbar-icon2);
+}
+
+.status {
+    grid-area: status;
+}
+
+.svg {
+    fill: var(--navbar-icon);
+    cursor: pointer;
+    transition: .3s fill;
+    width: 25px;
+    height: 25px;
+}
+
+.svg:hover {
+    fill: var(--navbar-icon2);
+}

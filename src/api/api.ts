@@ -29,6 +29,10 @@ class UsersAPI extends API {
         return this._instance.get(`users?page=${page}&count=${pageSize}`, {headers: authHeader()}).then(response => response.data);
     }
 
+    getFriends() {
+        return this._instance.get(`friends`);
+    }
+
     followUser(id: number) {
         return this._instance.post(`follow/${id}`).then(response => response.data);
     }
@@ -84,11 +88,11 @@ class AuthAPI extends API {
 
     logout() {
         localStorage.removeItem('user')
-        return this._instance.delete('auth/login').then(response => response.data);
+        return this._instance.post('auth/logout').then(response => response.data);
     }
 
     register(email: string, username: string, password: string) {
-        return this._instance.post('auth/register', {
+        return this._instance.post('auth/signup', {
             username,
             email,
             password
@@ -106,6 +110,20 @@ class SecurityAPI extends API {
     }
 }
 
+class ChatAPI extends API {
+    sendMessage(id: string | number, message: string) {
+    }
+
+    createDialog(id: string | number) {
+        return this._instance.post(`dialogs/${id}`)
+    }
+
+    getDialogs() {
+        return this._instance.get(`dialogs`);
+    }
+
+}
+
 const config = {
     baseURL: 'http://localhost:8080/api/1.0/'
 }
@@ -114,6 +132,7 @@ export const usersAPI = new UsersAPI(config);
 export const authAPI = new AuthAPI(config);
 export const profileAPI = new ProfileAPI(config);
 export const securityAPI = new SecurityAPI(config);
+export const chatAPI = new ChatAPI(config);
 
 
 

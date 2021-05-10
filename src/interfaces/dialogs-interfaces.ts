@@ -1,3 +1,5 @@
+import {IUser} from "./users-interfaces";
+
 export interface IMessage {
     id: number
     text: string
@@ -13,9 +15,11 @@ export interface IDialog {
 }
 
 export interface IDialogsState {
+    isFetching: boolean
     dialogs: IDialog[]
     idActiveDialog: number | null
     messages: IMessage[]
+    friends: IUser[]
 }
 
 export interface IMessageData {

@@ -1,9 +1,12 @@
-import {IDialogsState, IMessage} from "../../interfaces/dialogs-interfaces";
+import {IDialog, IDialogsState, IMessage} from "../../interfaces/dialogs-interfaces";
 import {DialogsActionTypes} from "../action-types/dialogs-actions";
+import {IUser} from "../../interfaces/users-interfaces";
 
 const initialState: IDialogsState = {
+    isFetching: false,
     dialogs: [],
     messages: [],
+    friends: [],
     idActiveDialog: 1
 }
 
@@ -17,7 +20,22 @@ export type SelectDialogType = {
     dialogId: number
 }
 
-export type DialogsAction = AddMessageType | SelectDialogType
+export type SetFriendsType = {
+    type: DialogsActionTypes.SET_FRIENDS,
+    friends: IUser[]
+}
+export type SetDialogsType = {
+    type: DialogsActionTypes.SET_DIALOGS,
+    dialogs: IDialog[]
+}
+
+export type AddDialogType = {
+    type: DialogsActionTypes.ADD_DIALOG,
+    dialog: IDialog
+}
+
+
+export type DialogsAction = AddMessageType | SelectDialogType | SetFriendsType | SetDialogsType | AddDialogType
 
 const dialogsReducer = (state = initialState, action: DialogsAction): IDialogsState => {
 
@@ -29,6 +47,9 @@ const dialogsReducer = (state = initialState, action: DialogsAction): IDialogsSt
                 idActiveDialog: dialog ? dialog.id : null
             };
         case DialogsActionTypes.ADD_MESSAGE: return {...state}
+        case DialogsActionTypes.SET_FRIENDS: return {...state, friends: action.friends}
+        case DialogsActionTypes.SET_DIALOGS: return {...state, dialogs: action.dialogs}
+        case DialogsActionTypes.ADD_DIALOG: return {...state, dialogs: [ ...state.dialogs, action.dialog]}
 
         default:
             return state;

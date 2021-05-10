@@ -21,7 +21,7 @@ const ProfileContainer: React.FC = (props) => {
     const getProfileInfo = () => {
         let userId = id ? id : yourId;
         if (!userId) history.push('/login');
-        getUserInfo(userId);
+        else getUserInfo(userId);
     }
 
 

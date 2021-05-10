@@ -15,7 +15,7 @@ const Login: React.FC = (props) => {
         login(email, password, isRemember, captcha);
     }
 
-    if(isAuth) return <Redirect to={'/news'}/>
+    if(isAuth) return <Redirect to={'/profile'}/>
 
     return (
         <div className={s.container}>
