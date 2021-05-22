@@ -12,6 +12,7 @@ export interface IDialog {
     username: string
     photo: string | null
     message: IMessage | null
+    idTo: number
 }
 
 export interface IDialogsState {

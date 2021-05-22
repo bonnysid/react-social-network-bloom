@@ -1,23 +1,23 @@
 import React, {useEffect} from 'react';
-import NavbarContainer from './modules/Navbar';
-import Dialogs from './modules/Dialogs';
-import News from './modules/News';
+import NavbarContainer from './components/Navbar';
+import Dialogs from './pages/Dialogs';
+import News from './pages/News';
 import {Route} from 'react-router-dom';
 import './app.css';
 import './nullstyle.css';
-import UsersContainer from './modules/Users/UsersContainer';
-import Login from "./modules/Login/Login";
-import StartPage from "./modules/StartPage/StartPage";
-import Header from "./modules/Header/Header";
-import Preloader from "./modules/common/Preloader";
+import UsersContainer from './pages/Users/UsersContainer';
+import Login from "./pages/Login/Login";
+import StartPage from "./pages/StartPage/StartPage";
+import Header from "./components/Header/Header";
+import Preloader from "./components/Preloader";
 import withSuspense from "./hoc/withSuspense";
 import {useTypedSelector} from "./hooks/useTypedSelector";
 import {useActions} from "./hooks/useActions";
-import SignUp from "./modules/SignUp";
+import SignUp from "./pages/SignUp";
 
-const Settings = React.lazy(() => import('./modules/Settings'))
-const ProfileContainer = React.lazy(() => import('./modules/Profile/ProfileContainer'))
-const Music = React.lazy(() => import('./modules/Music'))
+const Settings = React.lazy(() => import('./pages/Settings'))
+const ProfileContainer = React.lazy(() => import('./pages/Profile/ProfileContainer'))
+const Music = React.lazy(() => import('./pages/Music'))
 
 const App: React.FC = () => {
 

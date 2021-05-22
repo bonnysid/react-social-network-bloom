@@ -1,4 +1,4 @@
-import ActionCreators from '../redux/action-creators';
+import ActionCreators from '../store/action-creators';
 import {useDispatch} from "react-redux";
 import { bindActionCreators } from "redux";
 

@@ -1,0 +1,62 @@
+.content {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "messages"
+        "input";
+    grid-auto-rows: 43px 1fr 60px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-area: header;
+    border-bottom: 2px solid var(--underline);
+}
+
+.input__msg {
+    grid-area: input;
+    display: grid;
+    grid-template-columns: 1fr 30px 30px;
+    grid-template-areas:
+    "input btn";
+    grid-auto-rows: max-content;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 1em;
+    width: 100%;
+}
+.send_button_block {
+    display: flex;
+    align-items: center;
+}
+
+.messages {
+    grid-area: messages;
+    max-height: 460px;
+    overflow-y: auto;
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+
+.send_button {
+    fill: var(--btn-bg);
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: .3s fill;
+}
+
+.send_button:hover {
+    fill: var(--btn-hover);
+}

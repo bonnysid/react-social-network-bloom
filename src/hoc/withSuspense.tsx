@@ -1,5 +1,5 @@
 import React from 'react';
-import Preloader from "../modules/common/Preloader";
+import Preloader from "../components/Preloader";
 
 const withSuspense = (Component: React.FC | React.ComponentClass) => {
     return (props: any) => {

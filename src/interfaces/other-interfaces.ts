@@ -1,10 +1,10 @@
-import {State} from "../redux/redux-store";
-import {AppAction} from "../redux/reducers/app-reducer";
-import {AuthAction} from "../redux/reducers/auth-reducer";
-import {UsersAction} from "../redux/reducers/users-reducer";
-import {DialogsAction} from "../redux/reducers/dialogs-reducer";
-import {NavbarAction} from "../redux/reducers/navbar-reducer";
-import {ProfileAction} from "../redux/reducers/profile-reducer";
+import {State} from "../store/redux-store";
+import {AppAction} from "../store/reducers/app-reducer";
+import {AuthAction} from "../store/reducers/auth-reducer";
+import {UsersAction} from "../store/reducers/users-reducer";
+import {DialogsAction} from "../store/reducers/dialogs-reducer";
+import {NavbarAction} from "../store/reducers/navbar-reducer";
+import {ProfileAction} from "../store/reducers/profile-reducer";
 import React from "react";
 import {WrappedFieldProps} from "redux-form";
 
