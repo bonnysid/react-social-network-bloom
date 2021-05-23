@@ -13,7 +13,7 @@ const ProfileContainer: React.FC = (props) => {
     const {isFetching, userStatus, userPageInfo} = useTypedSelector(state => state.profilePage)
     const yourId = useTypedSelector(state => state.auth.userId)
     const {id} = useParams<RouteParams>();
-    const {savePhoto, saveProfile, updateUserStatus, getUserInfo} = useActions();
+    const {savePhoto, saveProfile, updateUserStatus, getUserInfo, getPosts} = useActions();
     const history = useHistory();
 
     useEffect(() => getProfileInfo(), [id])
@@ -21,7 +21,10 @@ const ProfileContainer: React.FC = (props) => {
     const getProfileInfo = () => {
         let userId = id ? id : yourId;
         if (!userId) history.push('/login');
-        else getUserInfo(userId);
+        else {
+            getPosts(userId);
+            getUserInfo(userId);
+        }
     }
 
 

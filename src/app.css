@@ -16,6 +16,7 @@
     --header-text: var(--text);
 
     --app-bg: rgb(54, 57, 63);
+    --block-bg-light: rgba(36, 38, 41, 0.95);
 
     --navbar-text: var(--text);
     --navbar-icon: rgb(141, 145, 150);
@@ -113,7 +114,7 @@ body {
 .block {
     background-color: var(--block-bg);
     border-radius: 5px;
-    padding: 1em; 
+    padding: 1em;
 }
 
 .btn {

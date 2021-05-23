@@ -38,3 +38,5 @@ export interface ITextareaProps {
     isResize?: boolean,
     props?: any
 }
+
+export type ID = string | number

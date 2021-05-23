@@ -4,5 +4,6 @@ export enum ProfileActionTypes {
     SET_USER_PAGE_INFO = 'app/profile/SET_USER_PAGE_INFO',
     TOGGLE_FETCHING = 'app/profile/TOGGLE_FETCHING',
     SET_USER_STATUS = 'app/profile/SET_USER_STATUS',
-    SET_PHOTOS = 'app/profile/SET_PHOTOS'
+    SET_PHOTOS = 'app/profile/SET_PHOTOS',
+    SET_POSTS = 'app/profile/SET_POSTS'
 }

@@ -1,5 +1,5 @@
 .text {
-    grid-area: input;
+    grid-area: textarea;
     border-radius: 5px;
     border: 1px solid var(--underline);
     resize: vertical;

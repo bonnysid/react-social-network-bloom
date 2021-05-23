@@ -4,8 +4,9 @@ import SvgItem from "../../../components/SvgItem";
 import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthValidateCreator, required} from "../../../utils/validators/validators";
 import {ResizedTextarea} from "../../../components/Textarea/Textarea";
-import helpers from '../../../components/createField';
+import createField from '../../../components/createField';
 import {IPostData, PostDataKeys} from "../../../interfaces/profile-interfaces";
+import Input from "../../../components/Input/Input";
 
 const maxLength200 = maxLengthValidateCreator(200);
 
@@ -14,8 +15,14 @@ const InputPostForm: React.FC<InjectedFormProps<IPostData>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.block}>
             <h1 className={s.title}>Posts</h1>
-            {helpers<PostDataKeys>({
-                name: 'message',
+            {createField<PostDataKeys>({
+                name: 'title',
+                component: Input,
+                placeholder: 'Title',
+                validators: [required, maxLength200],
+            })}
+            {createField<PostDataKeys>({
+                name: 'text',
                 component: ResizedTextarea,
                 placeholder: 'Input your text',
                 validators: [required, maxLength200],
@@ -24,7 +31,7 @@ const InputPostForm: React.FC<InjectedFormProps<IPostData>> = (props) => {
                     isResize: true
                 }
             })}
-            {helpers<PostDataKeys>({
+            {createField<PostDataKeys>({
                 name: 'file',
                 component: 'input',
                 type: 'file',

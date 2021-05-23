@@ -25,7 +25,7 @@
 .input__msg {
     grid-area: input;
     display: grid;
-    grid-template-columns: 1fr 30px 30px;
+    grid-template-columns: 1fr 30px;
     grid-template-areas:
     "input btn";
     grid-auto-rows: max-content;
@@ -33,6 +33,7 @@
     align-items: center;
     grid-gap: 1em;
     width: 100%;
+    padding: 0 1em;
 }
 .send_button_block {
     display: flex;
@@ -43,6 +44,19 @@
     grid-area: messages;
     max-height: 460px;
     overflow-y: auto;
+}
+
+.isEdit {
+    grid-template-columns: 1fr 30px 30px;
+}
+
+.close_btn {
+    transition: .3s;
+    fill: var(--navbar-exit);
+}
+
+.close_btn:hover {
+    fill: var(--navbar-exit-hover);
 }
 
 .messages::-webkit-scrollbar {

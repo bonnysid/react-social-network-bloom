@@ -1,3 +1,5 @@
+import {IUser} from "./users-interfaces";
+
 export interface IProfile {
     userId: number
     status: string
@@ -30,13 +32,16 @@ export interface IPhotos {
 
 export interface IPost {
     id: number,
+    title: string,
     text: string,
     date: string,
+    user: IUser,
     likeCount: number
 }
 
 export interface IPostData {
-    message: string,
+    title: string,
+    text: string,
     file: any
 }
 

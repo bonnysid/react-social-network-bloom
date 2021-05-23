@@ -44,25 +44,57 @@ export type DeleteMessageType = {
     id: number | string
 }
 
+export type UpdateMessageType = {
+    type: DialogsActionTypes.UPDATE_MESSAGE,
+    id: number | string,
+    text: string
+}
+
 export type ToggleFetchingType = {
     type: DialogsActionTypes.TOGGLE_FETCHING,
     isFetching: boolean
 }
 
 
-export type DialogsAction = DeleteMessageType | AddMessageType | SelectDialogType | SetFriendsType | SetDialogsType | AddDialogType | SetMessagesType | ToggleFetchingType
+export type DialogsAction =
+    UpdateMessageType
+    | DeleteMessageType
+    | AddMessageType
+    | SelectDialogType
+    | SetFriendsType
+    | SetDialogsType
+    | AddDialogType
+    | SetMessagesType
+    | ToggleFetchingType
 
 const dialogsReducer = (state = initialState, action: DialogsAction): IDialogsState => {
 
     switch (action.type) {
-        case DialogsActionTypes.ADD_MESSAGE: return {...state, messages: [...state.messages, action.messageInfo]}
-        case DialogsActionTypes.SET_FRIENDS: return {...state, friends: action.friends}
-        case DialogsActionTypes.SET_DIALOGS: return {...state, dialogs: action.dialogs}
-        case DialogsActionTypes.TOGGLE_FETCHING: return {...state, isFetching: action.isFetching}
-        case DialogsActionTypes.ADD_DIALOG: return {...state, dialogs: [ ...state.dialogs, action.dialog]}
-        case DialogsActionTypes.SET_MESSAGES: return {...state, messages: action.messages}
-        case DialogsActionTypes.SELECT_DIALOG: return {...state, idActiveDialog: action.dialogId}
-        case DialogsActionTypes.DELETE_MESSAGE: return {...state, messages: state.messages.filter(msg => msg.id !== action.id)}
+        case DialogsActionTypes.ADD_MESSAGE:
+            return {...state, messages: [...state.messages, action.messageInfo]}
+        case DialogsActionTypes.SET_FRIENDS:
+            return {...state, friends: action.friends}
+        case DialogsActionTypes.SET_DIALOGS:
+            return {...state, dialogs: action.dialogs}
+        case DialogsActionTypes.TOGGLE_FETCHING:
+            return {...state, isFetching: action.isFetching}
+        case DialogsActionTypes.ADD_DIALOG:
+            return {...state, dialogs: [...state.dialogs, action.dialog]}
+        case DialogsActionTypes.SET_MESSAGES:
+            return {...state, messages: action.messages}
+        case DialogsActionTypes.SELECT_DIALOG:
+            return {...state, idActiveDialog: action.dialogId}
+        case DialogsActionTypes.DELETE_MESSAGE:
+            return {...state, messages: state.messages.filter(msg => msg.id !== action.id)}
+        case DialogsActionTypes.UPDATE_MESSAGE:
+            return {
+                ...state, messages: state.messages.map(msg => {
+                    if (msg.id === action.id) {
+                        msg.text = action.text
+                    }
+                    return msg
+                })
+            }
 
         default:
             return state;

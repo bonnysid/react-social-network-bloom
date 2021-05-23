@@ -7,4 +7,5 @@ export enum DialogsActionTypes {
     SET_MESSAGES = 'app/dialogs/SET_MESSAGES',
     TOGGLE_FETCHING = 'app/dialogs/TOGGLE_FETCHING',
     DELETE_MESSAGE = 'app/dialogs/DELETE_MESSAGE',
+    UPDATE_MESSAGE = 'app/dialogs/UPDATE_MESSAGE',
 }

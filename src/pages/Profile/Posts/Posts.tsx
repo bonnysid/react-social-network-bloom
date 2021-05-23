@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Posts.module.css';
 import Post from './Post';
 import InputPostForm from "./PostsForm";
@@ -9,22 +9,24 @@ import {IPostData} from "../../../interfaces/profile-interfaces";
 
 const Posts: React.FC = React.memo((props) => {
 
-    const {addPost} = useActions()
+    const {putPost, removePost} = useActions()
     const {posts} = useTypedSelector(state => state.profilePage)
-    const {username} = useTypedSelector(state => state.profilePage.userPageInfo)
     const postsItems = posts.map(post => (
         <Post
             id={post.id}
-            author={username}
+            handleDelete={() => removePost(post.id)}
+            photo={post.user.photo}
+            title={post.title}
+            author={post.user.username}
             comment={post.text}
             date={post.date}
             likeCount={post.likeCount}
             key={post.id}
         />))
 
-    const onAddPost = ({message}: IPostData) => {
+    const onAddPost = ({text, title}: IPostData) => {
         reset('posts');
-        // addPost(loggedUser, message);
+        putPost(title, text, new Date());
     }
 
     return (

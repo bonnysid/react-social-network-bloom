@@ -7,7 +7,7 @@
 .author {
     font-size: 16px;
     font-weight: 600;
-    
+
 }
 
 .header__info {
@@ -23,6 +23,8 @@
 
 .header {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -41,6 +43,26 @@
     /* margin-left: 63px; */
     line-height: 1.7em;
     color: #c4cad0;
+}
+
+.close_btn {
+    transition: .3s;
+    fill: var(--navbar-exit);
+}
+
+.close_btn:hover {
+    fill: var(--navbar-exit-hover);
+}
+
+.block {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    grid-area: title;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .footer {

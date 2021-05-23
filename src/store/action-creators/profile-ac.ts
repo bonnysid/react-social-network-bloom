@@ -4,25 +4,31 @@ import {setHeaderTitle} from "./navbar-ac";
 import {stopSubmit} from "redux-form";
 import {
     AddPostAction,
-    DeletePostAction, ProfileAction, SetPhotosAction,
+    DeletePostAction,
+    ProfileAction,
+    SetPhotosAction,
+    SetPostsAction,
     SetUserPageInfoAction,
     SetUserStatusAction,
     ToggleFetchingAction
 } from "../reducers/profile-reducer";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
-import {IPhotos, IProfile} from "../../interfaces/profile-interfaces";
+import {IPhotos, IPost, IProfile} from "../../interfaces/profile-interfaces";
 import {ThunkAction} from "redux-thunk";
 import {State} from "../redux-store";
 import {SetHeaderTitleAction} from "../reducers/navbar-reducer";
+import {ID} from "../../interfaces/other-interfaces";
 
 export type ProfileThunk = ThunkAction<Promise<void>, State, undefined, ProfileAction | SetHeaderTitleAction>
 
-export const addPost = (authorInfo: IAuthUserInfo | null, message: string): AddPostAction => ({
+export const addPost = (post: IPost): AddPostAction => ({
     type: ProfileActionTypes.ADD_POST,
-    authorInfo,
-    message
+    post
 });
-export const deletePost = (postId: number): DeletePostAction => ({type: ProfileActionTypes.DELETE_POST, postId});
+
+export const setPosts = (posts: IPost[]): SetPostsAction => ({type: ProfileActionTypes.SET_POSTS, posts});
+
+export const deletePost = (postId: ID): DeletePostAction => ({type: ProfileActionTypes.DELETE_POST, postId});
 export const setUserPageInfo = (userPageInfo: IProfile): SetUserPageInfoAction => ({
     type: ProfileActionTypes.SET_USER_PAGE_INFO,
     userPageInfo
@@ -68,6 +74,24 @@ export const savePhoto = (photo: any): ProfileThunk  => async (dispatch) => {
     dispatch(setPhotos(data.data.photos));
 }
 
+export const getPosts = (id: string | number): ProfileThunk  => async (dispatch) => {
+    try {
+        const response = await ProfileAPI.getPosts(id);
+        dispatch(setPosts(response.data));
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+export const putPost = (title: string, text: string, date: Date): ProfileThunk  => async (dispatch) => {
+    try {
+        const post = await ProfileAPI.createPost(title, text, date, 0);
+        dispatch(addPost(post));
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export const saveProfile = (profile: IProfile): ProfileThunk  => async (dispatch) => {
     // dispatch(toggleFetching(true))
     const data: any = await ProfileAPI.saveProfile(profile);
@@ -75,6 +99,17 @@ export const saveProfile = (profile: IProfile): ProfileThunk  => async (dispatch
         await dispatch(getUserInfo(profile.userId));
     } else {
         stopSubmit('description', {_error: data.messages[0] || 'Some error!'})
+    }
+    // dispatch(toggleFetching(false))
+}
+
+export const removePost = (id: ID): ProfileThunk  => async (dispatch) => {
+    // dispatch(toggleFetching(true))
+    const response = await ProfileAPI.deletePost(id);
+    if (response.data === true) {
+        await dispatch(deletePost(id));
+    } else {
+        stopSubmit('description', {_error: response.data.messages[0] || 'Some error!'})
     }
     // dispatch(toggleFetching(false))
 }

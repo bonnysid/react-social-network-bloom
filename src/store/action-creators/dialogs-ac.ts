@@ -8,7 +8,8 @@ import {
     SetDialogsType,
     SetFriendsType,
     SetMessagesType,
-    ToggleFetchingType
+    ToggleFetchingType,
+    UpdateMessageType
 } from "../reducers/dialogs-reducer";
 import {IDialog, IMessage} from "../../interfaces/dialogs-interfaces";
 import ChatAPI from "../../api/chat";
@@ -27,13 +28,27 @@ export const addMessage = (messageInfo: IMessage): AddMessageType => ({
     messageInfo
 });
 export const setFriends = (friends: IUser[]): SetFriendsType => ({type: DialogsActionTypes.SET_FRIENDS, friends})
-export const setMessages = (messages: IMessage[]): SetMessagesType => ({type: DialogsActionTypes.SET_MESSAGES, messages})
+export const setMessages = (messages: IMessage[]): SetMessagesType => ({
+    type: DialogsActionTypes.SET_MESSAGES,
+    messages
+})
 export const setDialogs = (dialogs: IDialog[]): SetDialogsType => ({type: DialogsActionTypes.SET_DIALOGS, dialogs})
 export const addDialog = (dialog: IDialog): AddDialogType => ({type: DialogsActionTypes.ADD_DIALOG, dialog})
-export const toggleFetching = (isFetching: boolean): ToggleFetchingType => ({type: DialogsActionTypes.TOGGLE_FETCHING, isFetching})
+export const toggleFetching = (isFetching: boolean): ToggleFetchingType => ({
+    type: DialogsActionTypes.TOGGLE_FETCHING,
+    isFetching
+})
 export const selectDialog = (id: number): SelectDialogType => ({type: DialogsActionTypes.SELECT_DIALOG, dialogId: id});
-export const deleteMessage = (id: number | string) :DeleteMessageType => ({type: DialogsActionTypes.DELETE_MESSAGE, id});
-export const getFriends = (): DialogsThunk  => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
+export const deleteMessage = (id: number | string): DeleteMessageType => ({
+    type: DialogsActionTypes.DELETE_MESSAGE,
+    id
+});
+export const editMessage = (id: number | string, text: string): UpdateMessageType => ({
+    type: DialogsActionTypes.UPDATE_MESSAGE,
+    id,
+    text
+});
+export const getFriends = (): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
     try {
         const response = await UsersAPI.getFriends();
         const {data} = response;
@@ -43,7 +58,8 @@ export const getFriends = (): DialogsThunk  => async (dispatch: Dispatch<Dialogs
         console.error(e)
     }
 }
-export const getDialogs = (): DialogsThunk  => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
+
+export const getDialogs = (): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
     try {
         const response = await ChatAPI.getDialogs();
         const {data} = response;
@@ -53,7 +69,7 @@ export const getDialogs = (): DialogsThunk  => async (dispatch: Dispatch<Dialogs
     }
 }
 
-export const createDialog = (id: string | number):DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
+export const createDialog = (id: string | number): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
     try {
         const response = await ChatAPI.createDialog(id)
         const dialogs = await ChatAPI.getDialogs()
@@ -82,13 +98,24 @@ export const connectToChat = (id: number | string): DialogsThunk => async (dispa
 export const deleteMessageThunk = (id: number | string): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
     try {
         const response = await ChatAPI.deleteMessage(id)
-        if(response.data) {
+        if (response.data) {
             dispatch(deleteMessage(id))
         }
     } catch (e) {
         console.error(e)
     }
 }
+
+export const updateMessage = (id: number | string, text: string): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
+    try {
+        const response = await ChatAPI.updateMessage(id, text);
+        const { data } = response
+        dispatch(editMessage(data.id, data.text))
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 
 export const sendMsg = (idFrom: number, idTo: number, message: string): DialogsThunk => async (dispatch: Dispatch<DialogsAction>, getState: GetState) => {
     // sendMessage(idFrom, idTo, message);

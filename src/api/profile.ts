@@ -1,5 +1,6 @@
 import {IProfile} from "../interfaces/profile-interfaces";
 import {instance} from "./constants";
+import {ID} from "../interfaces/other-interfaces";
 
 const ProfileAPI = {
 
@@ -29,12 +30,29 @@ const ProfileAPI = {
         return instance.put('profile', profile).then(response => response.data);
     },
 
-    createPost(title: string, text: string, date: string) {
-        return instance.post('posts', {
+    createPost(title: string, text: string, date: Date, likeCount: number) {
+        return instance.post('users/posts', {
             title,
             text,
-            date
+            date,
+            likeCount
         }).then(response => response.data);
+    },
+
+    getPosts(id: ID) {
+        return instance.get(`users/posts/${id}`)
+    },
+
+    deletePost(id: ID) {
+        return instance.delete(`users/posts/${id}`);
+    },
+
+    likePost(id: ID) {
+        return instance.post(`users/posts/${id}`);
+    },
+
+    unlikePost(id: ID) {
+        return instance.delete(`users/posts/${id}`);
     }
 }
 

@@ -1,16 +1,11 @@
 import {ProfileActionTypes} from "../action-types/profile-actions";
 import {IAuthUserInfo} from "../../interfaces/auth-interfaces";
 import {IPhotos, IPost, IProfile} from "../../interfaces/profile-interfaces";
+import {ID} from "../../interfaces/other-interfaces";
 
 
 const initialState = {
-    posts: [
-        {
-            id: 1,
-            text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.',
-            likeCount: 90
-        }
-    ] as IPost[],
+    posts: [] as IPost[],
     userPageInfo: {} as IProfile,
     isFetching: false,
     userStatus: ''
@@ -20,13 +15,12 @@ export type ProfileState = typeof initialState
 
 export type AddPostAction = {
     type: ProfileActionTypes.ADD_POST,
-    authorInfo: IAuthUserInfo | null,
-    message: string
+    post: IPost
 }
 
 export type DeletePostAction = {
     type: ProfileActionTypes.DELETE_POST,
-    postId: number
+    postId: ID
 }
 
 export type SetUserPageInfoAction = {
@@ -49,14 +43,19 @@ export type SetPhotosAction = {
     photos: IPhotos
 }
 
+export type SetPostsAction = {
+    type: ProfileActionTypes.SET_POSTS,
+    posts: IPost[]
+}
+
 export type ProfileAction =
-    AddPostAction
+    SetPostsAction
+    | AddPostAction
     | DeletePostAction
     | SetUserStatusAction
     | SetUserPageInfoAction
-    | ToggleFetchingAction | SetPhotosAction
-
-
+    | ToggleFetchingAction
+    | SetPhotosAction
 
 
 const profileReducer = (state = initialState, action: ProfileAction): ProfileState => {
@@ -65,16 +64,9 @@ const profileReducer = (state = initialState, action: ProfileAction): ProfileSta
     switch (action.type) {
 
         case ProfileActionTypes.ADD_POST:
-            const post = {
-                id: state.posts[state.posts.length - 1].id++,
-                text: action.message,
-                date: new Date().toDateString(),
-                likeCount: 0
-            }
-
             return {
                 ...state,
-                posts: [...state.posts, post],
+                posts: [...state.posts, action.post],
             };
 
         case ProfileActionTypes.DELETE_POST:
@@ -105,6 +97,11 @@ const profileReducer = (state = initialState, action: ProfileAction): ProfileSta
                 ...state,
                 userPageInfo: {...state.userPageInfo, photos: action.photos} as IProfile
             }
+        case ProfileActionTypes.SET_POSTS:
+            return {
+                ...state,
+                posts: [...action.posts]
+            };
         default:
             return state;
     }

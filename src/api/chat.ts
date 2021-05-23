@@ -46,6 +46,11 @@ const ChatAPI = {
     },
     deleteMessage(id: string | number) {
         return instance.delete(`message/${id}`);
+    },
+    updateMessage(id: string | number, text: string) {
+        return instance.put(`message/${id}`, {
+            text
+        })
     }
 }
 
